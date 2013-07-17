@@ -1,0 +1,13 @@
+Easy Plugin for WordPress is distributed under the Apache License, Version 2.0.
+The license is included in the file LICENSE, and can also be read here:
+http://www.apache.org/licenses/LICENSE-2.0
+
+Easy Plugin uses Smarty: the PHP compiling template engine developed by New Digital Group, Inc. Smarty is distributed under the GNU Lesser General Public, Version 2.1.
+The license can be read here: http://www.gnu.org/licenses/lgpl-2.1.html
+
+Easy Plugin uses skelJS developed by n33. skelJS is distributed under the MIT license and GNU Public License, Version 2.0.
+The GNUPL can be read here: http://www.gnu.org/licenses/gpl-2.0.html
+The MIT license can be read here: http://www.opensource.org/licenses/mit-license.php
+
+Easy Plugin uses FontAwesome developed by Dave Gandy. FontAwesome is licensed under MIT
+The license can be read here: http://www.opensource.org/licenses/mit-license.php
