@@ -13,6 +13,23 @@ License: 		APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
 
 require_once(ABSPATH . 'wp-admin/includes/plugin.php' );
 
+if (class_exists('TSP_Easy_Plugins'))
+{
+	add_action( 'admin_notices', function (){
+		
+		$message = 'TSP Easy Plugins <strong>will not be installed</strong>, <a href="plugin-install.php?tab=search&type=term&s=TSP+Easy+Plugins+Pro">TSP Easy Plugins Pro</a> already installed.';
+	    ?>
+	    <div class="error">
+	        <p><?php echo $message; ?></p>
+	    </div>
+	    <?php
+	} );
+	
+	deactivate_plugins('tsp-easy-plugins/tsp-easy-plugins.php');
+	
+	return;
+}//endif
+
 define('TSP_EASY_PLUGINS_FILE', 					__FILE__ );
 define('TSP_EASY_PLUGINS_PATH',						plugin_dir_path( __FILE__ ) );
 define('TSP_EASY_PLUGINS_URL', 						plugin_dir_url( __FILE__ ) );
