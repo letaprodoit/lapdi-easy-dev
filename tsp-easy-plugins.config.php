@@ -10,5 +10,5 @@ if (!defined('DS')) {
 $plugin_globals = get_plugin_data( TSP_EASY_PLUGINS_FILE, false, false );
 
 $plugin_globals['name'] 			= TSP_EASY_PLUGINS_NAME;
-$plugin_globals['form_fields']		= array();
+$plugin_globals['widget_fields']	= array();
 ?>

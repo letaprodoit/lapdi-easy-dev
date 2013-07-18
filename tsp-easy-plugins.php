@@ -54,7 +54,6 @@ define('TSP_EASY_PLUGINS_ASSETS_URL',				TSP_EASY_PLUGINS_URL . 'assets/');
 	define('TSP_EASY_PLUGINS_ASSETS_IMAGES_URL',	TSP_EASY_PLUGINS_ASSETS_URL . 'images/');
 /* @end */
 
-
 define('TSP_EASY_PLUGINS_NAME', 					'tsp-easy-plugins');
 
 require_once( TSP_EASY_PLUGINS_PATH . 'tsp-easy-plugins.config.php');

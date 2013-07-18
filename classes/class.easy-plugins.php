@@ -1,7 +1,7 @@
 <?php	
 if ( !class_exists( 'TSP_Easy_Plugins' ) )
 {
-	require_once( 'class.easy-plugins-globals.php' );
+	require_once( 'class.easy-plugins-data.php' );
 	require_once( 'class.easy-plugins-settings.php' );
 	require_once( 'class.easy-plugins-widget.php' );
 	require_once( 'class.easy-plugins-smarty.php' );
@@ -205,15 +205,15 @@ if ( !class_exists( 'TSP_Easy_Plugins' ) )
 		 *
 		 * @return none
 		 */
-		 public function add_script( $script, $admin = false, $required_scripts = array() )
+		 public function add_script( $script, $required_scripts = array(), $admin = false )
 		 {
 			if ( $admin )
 			{
-				$this->admin_js_files[] 	= array ($script, $required_scripts);
+				$this->admin_js_files[$script] 	= $required_scripts;
 			}//endif
 			else
 			{
-				$this->user_js_files[] 		= array ($script, $required_scripts);
+				$this->user_js_files[$script] 	= $required_scripts;
 			}//end else
 		 }//end add_css
 

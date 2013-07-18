@@ -17,17 +17,20 @@ if ( !class_exists( 'TSP_Easy_Plugins_Smarty' ) )
 		 *
 		 * @since 1.0.0
 		 *
-		 * @param array $settings Required settings for smarty
+		 * @param array $template_dirs Optional array of template directories
+		 * @param string $cache_dir Optional directory for cache
+		 * @param string $compiled_dir Optional directory for cache
 		 * @param boolean $form Optional are we displaying a form or not
 		 *
 		 * @return smarty object
 		 */
-		static public function get_smarty ( &$settings, $form = false )
+		static public function get_smarty ( $template_dirs = null, $cache_dir = null, $compiled_dir = null, $form = false )
 		{
 	 		$smarty = new Smarty();
-			$smarty->setTemplateDir( array( $settings['templates'], $settings['easy_templates'] ) );
-			$smarty->setCompileDir( $settings['smarty_compiled'] );
-			$smarty->setCacheDir( $settings['smarty_cache'] );
+			$smarty->setTemplateDir( $template_dirs );
+			
+			$smarty->setCompileDir( $cache_dir );
+			$smarty->setCacheDir( $compiled_dir );
 			
 			if ( $form )
 			{

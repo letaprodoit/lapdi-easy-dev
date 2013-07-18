@@ -60,18 +60,19 @@ if ( !class_exists( 'TSP_Easy_Plugins_Widget' ) )
 		 */
 		public function update( $new_instance, $old_instance ) 
 		{
-			$defaults = new TSP_Easy_Plugins_Globals ( get_option( $this->plugin_globals['option_name'] ) );
+			$database_options = get_option( $this->plugin_globals['option_name'] );
+			$defaults = new TSP_Easy_Plugins_Data ( $database_options['widget_fields'] );
 
 			if ( !empty ( $new_instance ))
 			{
-				$defaults->set_form_field_values( $new_instance ); // overwrite defaults with new instance (user data)
+				$defaults->set_values( $new_instance ); // overwrite defaults with new instance (user data)
 			}//endif
 			else
 			{
-				$defaults->encode_form_field_values();
+				$defaults->encode_values();
 			}//endelse
 			
-			$instance = $defaults->get_form_field_values();
+			$instance = $defaults->get_values();
 	        
 	        return $instance;
 		}//end update
@@ -88,25 +89,38 @@ if ( !class_exists( 'TSP_Easy_Plugins_Widget' ) )
 		 */
 		public function widget( $args, $instance )
 		{
-	        extract($args);
-	                
-			$defaults = new TSP_Easy_Plugins_Globals ( get_option( $this->plugin_globals['option_name'] ) );
+			$database_options = get_option( $this->plugin_globals['option_name'] );
+			$defaults = new TSP_Easy_Plugins_Data ( $database_options['widget_fields'] );
 			
 			if ( !empty ( $instance ))
 			{
-				$defaults->set_form_field_values( $instance );
+				$defaults->set_values( $instance );
 			}//endif
 			else
 			{
-				$defaults->decode_form_field_values();
+				$defaults->decode_values();
 			}//endelse
 			
-			$fields = $defaults->get_form_field_values();
+			$fields = $defaults->get_values();
 
-	        // Display the widget
-	        echo $before_widget;
+	        if ( !empty( $args ) )
+	        {
+	        	extract($args);
+	        }//end if
+	        
+	        // Display data before widget
+	        if ( isset( $before_widget ) )
+	        {	
+	        	echo $before_widget;
+	        }//end if
+	        
 	        $this->display_widget( $fields );
-	        echo $after_widget;
+	        
+	        // Display data after widget
+	        if ( isset( $after_widget ) )
+	        {	
+	        	echo $after_widget;
+	        }//end if
 		}//end widget
 		
 		/**
@@ -120,18 +134,19 @@ if ( !class_exists( 'TSP_Easy_Plugins_Widget' ) )
 		 */
 	 	public function form( $instance )
 	 	{
-			$defaults = new TSP_Easy_Plugins_Globals ( get_option( $this->plugin_globals['option_name'] ) );
+			$database_options = get_option( $this->plugin_globals['option_name'] );
+			$defaults = new TSP_Easy_Plugins_Data ( $database_options['widget_fields'] );
 
-			if ( !empty ( $instance ))
+			if ( !empty ( $instance ) )
 			{
-				$defaults->set_form_field_values( $instance );
+				$defaults->set_values( $instance );
 			}//endif
 			else
 			{
-				$defaults->decode_form_field_values();
+				$defaults->decode_values();
 			}//endelse
-			
-			$fields = $defaults->get_form_field_values( true );
+						
+			$fields = $defaults->get_values( true );
 
 			$this->display_form ( $fields );
 	 	}//end form
@@ -176,7 +191,7 @@ if ( !class_exists( 'TSP_Easy_Plugins_Widget' ) )
 			{
 				// Update attributes to include old attribute names from short codes
 				// Backwards compatibility
-				foreach ( $this->plugin_globals['form_fields'] as $key => $opts )
+				foreach ( $this->plugin_globals['widget_fields'] as $key => $opts )
 				{
 					// continue if this label was renamed
 					if ( !empty($opts['old_labels'] ) )
@@ -190,25 +205,26 @@ if ( !class_exists( 'TSP_Easy_Plugins_Widget' ) )
 							if ( !array_key_exists( $new_label, $attributes ) && array_key_exists( $old_label, $attributes ) )
 							{
 								$attributes[$new_label] = $attributes[$old_label];
+								unset($attributes[$old_label]);
 							}//end fi
 						}//end foreach
 					}//end if
 				}//end foreach
 			}//end if
 			
-			$defaults = new TSP_Easy_Plugins_Globals ( get_option( $this->plugin_globals['option_name'] ) );
+			$database_options = get_option( $this->plugin_globals['option_name'] );
+			$defaults = new TSP_Easy_Plugins_Data ( $database_options['widget_fields'] );
 			
 			if ( !empty ( $attributes ))
 			{
-				$defaults->set_form_field_values( $attributes );
+				$defaults->set_values( $attributes );
 			}//endif
 			else
 			{
-				$defaults->decode_form_field_values();
+				$defaults->decode_values();
 			}//endelse
 			
-			$fields = $defaults->get_form_field_values();
-
+			$fields = $defaults->get_values();
 
 			$output = $this->display_widget( $fields, false );
 			
