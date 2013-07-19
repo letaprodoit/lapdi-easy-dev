@@ -16,15 +16,7 @@ if ( !class_exists( 'TSP_Easy_Plugins_Data' ) )
 		private $fields = array();
 		
 		/**
-		 * PHP4 constructor
-		 */
-		public function TSP_Easy_Plugins_Data( $fields ) 
-		{
-			TSP_Easy_Plugins_Data::__construct( $fields );
-		}//end TSP_Plugin_Settings
-	
-		/**
-		 * PHP5 constructor
+		 * Constructor
 		 */
 		public function __construct( $fields ) 
 		{

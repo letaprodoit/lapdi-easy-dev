@@ -15,15 +15,7 @@ if ( !class_exists( 'TSP_Easy_Plugins_Widget' ) )
 		protected $plugin_globals = null;
 		
 		/**
-		 * PHP4 constructor
-		 */
-		public function TSP_Easy_Plugins_Widget( $globals ) 
-		{
-			TSP_Easy_Plugins_Widget::__construct( $globals );
-		}//end TSP_Plugin_Widget
-	
-		/**
-		 * PHP5 constructor
+		 * Constructor
 		 */
 		public function __construct( $globals ) 
 		{
@@ -60,8 +52,8 @@ if ( !class_exists( 'TSP_Easy_Plugins_Widget' ) )
 		 */
 		public function update( $new_instance, $old_instance ) 
 		{
-			$database_options = get_option( $this->plugin_globals['option_name'] );
-			$defaults = new TSP_Easy_Plugins_Data ( $database_options['widget_fields'] );
+			$plugin_data = get_option( $this->plugin_globals['option_name'] );
+			$defaults = new TSP_Easy_Plugins_Data ( $plugin_data['widget_fields'] );
 
 			if ( !empty ( $new_instance ))
 			{
@@ -89,8 +81,8 @@ if ( !class_exists( 'TSP_Easy_Plugins_Widget' ) )
 		 */
 		public function widget( $args, $instance )
 		{
-			$database_options = get_option( $this->plugin_globals['option_name'] );
-			$defaults = new TSP_Easy_Plugins_Data ( $database_options['widget_fields'] );
+			$plugin_data = get_option( $this->plugin_globals['option_name'] );
+			$defaults = new TSP_Easy_Plugins_Data ( $plugin_data['widget_fields'] );
 			
 			if ( !empty ( $instance ))
 			{
@@ -134,8 +126,8 @@ if ( !class_exists( 'TSP_Easy_Plugins_Widget' ) )
 		 */
 	 	public function form( $instance )
 	 	{
-			$database_options = get_option( $this->plugin_globals['option_name'] );
-			$defaults = new TSP_Easy_Plugins_Data ( $database_options['widget_fields'] );
+			$plugin_data = get_option( $this->plugin_globals['option_name'] );
+			$defaults = new TSP_Easy_Plugins_Data ( $plugin_data['widget_fields'] );
 
 			if ( !empty ( $instance ) )
 			{
@@ -187,14 +179,19 @@ if ( !class_exists( 'TSP_Easy_Plugins_Widget' ) )
 			if ( is_feed() )
 				return '[' . $this->plugin_globals['name'] . ']';
 						
+			$plugin_data = get_option( $this->plugin_globals['option_name'] );
+			$defaults = new TSP_Easy_Plugins_Data ( $plugin_data['widget_fields'] );
+
 			if (! empty ( $attributes) )
 			{
+				$fields = $defaults->get_values( true );
+
 				// Update attributes to include old attribute names from short codes
 				// Backwards compatibility
-				foreach ( $this->plugin_globals['widget_fields'] as $key => $opts )
+				foreach ( $fields as $key => $opts )
 				{
 					// continue if this label was renamed
-					if ( !empty($opts['old_labels'] ) )
+					if ( !empty( $opts['old_labels'] ) )
 					{
 						$new_label = $key;
 						// looop through all the old label names
@@ -211,9 +208,6 @@ if ( !class_exists( 'TSP_Easy_Plugins_Widget' ) )
 					}//end if
 				}//end foreach
 			}//end if
-			
-			$database_options = get_option( $this->plugin_globals['option_name'] );
-			$defaults = new TSP_Easy_Plugins_Data ( $database_options['widget_fields'] );
 			
 			if ( !empty ( $attributes ))
 			{

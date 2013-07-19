@@ -17,15 +17,7 @@ if ( !class_exists( 'TSP_Easy_Plugins_Settings' ) )
 		private $menu_icon = null;
 				
 		/**
-		 * PHP4 constructor
-		 */
-		public function TSP_Easy_Plugins_Settings() 
-		{
-			TSP_Easy_Plugins_Settings::__construct();
-		}//end TSP_Plugin_Settings
-	
-		/**
-		 * PHP5 constructor
+		 * Constructor
 		 */
 		public function __construct() 
 		{
@@ -52,7 +44,7 @@ if ( !class_exists( 'TSP_Easy_Plugins_Settings' ) )
 			// if option was not found this means the plugin is being installed
 			if( !get_option( $this->plugin_globals['option_name'] ) ) 
 			{
-				add_option( $this->plugin_globals['option_name'], $this->plugin_globals );
+				add_option( $this->plugin_globals['option_name'], $this->plugin_globals['plugin_data'] );
 			}//end if
 		}//end register_settings
 

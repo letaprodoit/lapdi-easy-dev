@@ -4,7 +4,6 @@ if ( !class_exists( 'TSP_Easy_Plugins' ) )
 	require_once( 'class.easy-plugins-data.php' );
 	require_once( 'class.easy-plugins-settings.php' );
 	require_once( 'class.easy-plugins-widget.php' );
-	require_once( 'class.easy-plugins-smarty.php' );
 	
 	/**
 	 * TSP_Easy_Plugins - API implementations for TSP Easy Plugins
@@ -31,6 +30,7 @@ if ( !class_exists( 'TSP_Easy_Plugins' ) )
 		protected $plugin_globals 		= null;
 		
 		public $settings;
+		public $widget;
 		public $required_wordpress_version;
 
 		public $uses_shortcodes 		= false;
@@ -38,15 +38,7 @@ if ( !class_exists( 'TSP_Easy_Plugins' ) )
 				
 		
 		/**
-		 * PHP4 constructor
-		 */
-		public function TSP_Easy_Plugins( $globals ) 
-		{
-			TSP_Easy_Plugins::__construct( $globals );
-		}//end TSP_Plugin_Widget
-	
-		/**
-		 * PHP5 constructor
+		 * Constructor
 		 */
 		public function __construct( $globals ) 
 		{
@@ -74,7 +66,7 @@ if ( !class_exists( 'TSP_Easy_Plugins' ) )
 			
 			add_action( 'init', 					array( $this, 'init' ) );
 			add_action( 'admin_init', 				array( $this, 'init' ) );
-			add_action( 'deactivate_' . $plugin, 	array( $this, 'deinit' ) );
+			add_action( 'deactivate_' . $plugin, 	array( $this, 'de_init' ) );
 			
 			add_action('admin_enqueue_scripts', 	array( $this, 'enqueue_admin_scripts' ));
 			add_action('wp_enqueue_scripts', 		array( $this, 'enqueue_user_scripts' ));
@@ -86,14 +78,10 @@ if ( !class_exists( 'TSP_Easy_Plugins' ) )
 				$this->settings->set_menu_icon($this->plugin_icon);
 
 			}//end if
-
+			
 			if ( $this->uses_smarty )
 			{
-				if (!class_exists('Smarty'))
-				{
-				    if (file_exists( plugin_dir_path( __FILE__ ) . 'lib' . DS. 'Smarty' . DS . 'Smarty.class.php' ))
-				        require_once plugin_dir_path( __FILE__ ) . 'lib' . DS. 'Smarty' . DS . 'Smarty.class.php';
-				}//endif
+				require_once( 'class.easy-plugins-smarty.php' );
 			}//end if
 		 }//end setup
 
@@ -139,16 +127,24 @@ if ( !class_exists( 'TSP_Easy_Plugins' ) )
 			// If the plugin requries smarty create cache and compiled directories
 			if ( $this->uses_smarty )
 			{
-				if (!wp_mkdir_p( $this->plugin_globals['smarty_cache'] ))
-					$message .= "<br>Unable to create " . $this->plugin_globals['smarty_cache'] . " directory. Please create this directory manually via FTP or cPanel.";
-				else
-					@chmod( $this->plugin_globals['smarty_cache'], 0777 );
+				$smarty_cache_dir = $this->plugin_globals['smarty_cache_dir'];
+				$smarty_compiled_dir = $this->plugin_globals['smarty_compiled_dir'];
 				
-				
-				if (!wp_mkdir_p( $this->plugin_globals['smarty_compiled'] ))
-					$message .= "<br>Unable to create " . $this->plugin_globals['smarty_compiled'] . " directory. Please create this directory manually via FTP or cPanel.";
-				else
-					@chmod( $this->plugin_globals['smarty_compiled'], 0777 );
+				if ( !file_exists( $smarty_cache_dir ) )
+				{
+					if (!@mkdir( $smarty_cache_dir, 0777, true ))
+					{
+						$message .= "<br>Unable to create $smarty_cache_dir directory. Please create this directory manually via FTP or cPanel.";
+					}//end if
+				}//end if
+
+				if ( !file_exists( $smarty_compiled_dir ) )
+				{
+					if (!!@mkdir( $smarty_compiled_dir, 0777, true ))
+					{
+						$message .= "<br>Unable to create $smarty_compiled_dir directory. Please create this directory manually via FTP or cPanel.";
+					}//end if
+				}//end if
 			}//end if
 
 			return $message;
@@ -164,11 +160,24 @@ if ( !class_exists( 'TSP_Easy_Plugins' ) )
 			// If the plugin requries smarty create cache and compiled directories
 			if ( $this->uses_smarty )
 			{
-				if (!@rmdir( $this->plugin_globals['smarty_cache'] ))
-					$message .= "<br>Unable to remove " . $this->plugin_globals['smarty_cache'] . " directory. Please remove this directory manually via FTP or cPanel.";
+				$smarty_cache_dir = $this->plugin_globals['smarty_cache_dir'];
+				$smarty_compiled_dir = $this->plugin_globals['smarty_compiled_dir'];
+
+				if ( file_exists( $smarty_cache_dir ) )
+				{
+					if (!@rmdir( $smarty_cache_dir ))
+					{
+						$message .= "<br>Unable to remove $smarty_cache_dir directory. Please remove this directory manually via FTP or cPanel.";
+					}//end if
+				}//end if
 				
-				if (!@rmdir( $this->plugin_globals['smarty_compiled'] ))
-					$message .= "<br>Unable to remove " . $this->plugin_globals['smarty_compiled'] . " directory. Please remove this directory manually via FTP or cPanel.";
+				if ( file_exists( $smarty_compiled_dir ) )
+				{
+					if (!@rmdir( $smarty_compiled_dir ))
+					{
+						$message .= "<br>Unable to remove $smarty_compiled_dir directory. Please remove this directory manually via FTP or cPanel.";
+					}//end if
+				}//end if
 			}//end if
 			
 			return $message;
@@ -317,6 +326,20 @@ if ( !class_exists( 'TSP_Easy_Plugins' ) )
 			}//endforeach
 		}//end enqueue_scripts
 
+		/**
+		 * Return the current global settings
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param none
+		 *
+		 * @return array $this->plugin_globals current global settings
+		 */
+		 public function get_globals()
+		 {
+		 	return $this->plugin_globals;
+		 }//end get_globals
+		 
 		/**
 		 * Optional implementation to install plugin
 		 *
