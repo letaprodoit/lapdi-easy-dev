@@ -2,21 +2,42 @@
 if ( !class_exists( 'TSP_Easy_Plugins_Data' ) )
 {
 	/**
-	 * TSP_Easy_Plugins_Data - Class to manipulate easy plugin global settings
-	 * @package TSP_Easy_Plugins
-	 * @author sharrondenice, thesoftwarepeople
-	 * @author Sharron Denice, The Software People
-	 * @copyright 2013 The Software People
-	 * @license APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
-	 * @version $Id: [FILE] [] [DATE] [TIME] [USER] $
+	 * Class to manipulate Easy Plugin fields for widget_fields, post_fields, settings_fields and category_fields
+	 * @package 	TSP_Easy_Plugins
+	 * @author 		sharrondenice, thesoftwarepeople
+	 * @author 		Sharron Denice, The Software People
+	 * @copyright 	2013 The Software People
+	 * @license 	APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
+	 * @version 	1.0
 	 */
-	
 	final class TSP_Easy_Plugins_Data
 	{
+		/**
+		 * The fields that this class will manage
+		 * fields expects the array to be in the following format:
+		 * 
+		 * 'show_names' 	=> array( 
+		 *		'value' 		=> 'Y',
+		 *		'html'			=> true,
+		 * 	),	
+		 *	
+		 * value: 	is the default value for the field
+		 * html:	TRUE or FALSE (is html allowed for the value)
+		 *
+		 * Other keys can be added but will not be used
+		 *
+		 * @var array
+		 */
 		private $fields = array();
 		
 		/**
 		 * Constructor
+		 *
+		 * @since 1.0
+		 *
+		 * @param array $fields Required - Sets the fields
+		 *
+		 * @return none
 		 */
 		public function __construct( $fields ) 
 		{
@@ -27,7 +48,9 @@ if ( !class_exists( 'TSP_Easy_Plugins_Data' ) )
 		/**
 		 * Replace settings with values in instance
 		 *
-		 * @since 1.0.0
+		 * @api
+		 *
+		 * @since 1.0
 		 *
 		 * @param array $settings Required - Settings to store in globals
 		 *
@@ -41,7 +64,9 @@ if ( !class_exists( 'TSP_Easy_Plugins_Data' ) )
 		/**
 		 * Set and process field values
 		 *
-		 * @since 1.0.0
+		 * @api
+		 *
+		 * @since 1.0
 		 *
 		 * @param array $settings Required - Settings to store in globals
 		 *
@@ -68,7 +93,9 @@ if ( !class_exists( 'TSP_Easy_Plugins_Data' ) )
 		/**
 		 * Set a global settings with specified key with value
 		 *
-		 * @since 1.0.0
+		 * @api
+		 *
+		 * @since 1.0
 		 *
 		 * @param string $key Required - The setting key to be set
 		 * @param string $value Optional - The value to set the key
@@ -90,7 +117,9 @@ if ( !class_exists( 'TSP_Easy_Plugins_Data' ) )
 		/**
 		 * Get the current field values
 		 *
-		 * @since 1.0.0
+		 * @api
+		 *
+		 * @since 1.0
 		 *
 		 * @param none
 		 *
@@ -105,9 +134,12 @@ if ( !class_exists( 'TSP_Easy_Plugins_Data' ) )
 		/**
 		 * Get the field values
 		 *
-		 * @since 1.0.0
+		 * @api
 		 *
-		 * @param bool $values_only Optional - Return array that is in $key/value or all field attributes
+		 * @since 1.0
+		 *
+		 * @param bool $include_options Optional - Return array that is in $key/value or all field attributes
+		 * if options are included update id, name with the name of the key
 		 *
 		 * @return array $fields array of field values
 		 */
@@ -147,7 +179,9 @@ if ( !class_exists( 'TSP_Easy_Plugins_Data' ) )
 		/**
 		 * Get the global settings given a key
 		 *
-		 * @since 1.0.0
+		 * @api
+		 *
+		 * @since 1.0
 		 *
 		 * @param string $key Required - The setting key to be used to get the entire array
 		 *
@@ -168,7 +202,9 @@ if ( !class_exists( 'TSP_Easy_Plugins_Data' ) )
 		/**
 		 * Get the global settings value given a key
 		 *
-		 * @since 1.0.0
+		 * @api
+		 *
+		 * @since 1.0
 		 *
 		 * @param string $key Required - The setting key to be used to get value
 		 *
@@ -190,7 +226,9 @@ if ( !class_exists( 'TSP_Easy_Plugins_Data' ) )
 		/**
 		 * Process all entries in array for display
 		 *
-		 * @since 1.0.0
+		 * @api
+		 *
+		 * @since 1.0
 		 *
 		 * @param none
 		 *
@@ -210,7 +248,9 @@ if ( !class_exists( 'TSP_Easy_Plugins_Data' ) )
 		/**
 		 * Process all entries in array for database save
 		 *
-		 * @since 1.0.0
+		 * @api
+		 *
+		 * @since 1.0
 		 *
 		 * @param none
 		 *
@@ -229,7 +269,7 @@ if ( !class_exists( 'TSP_Easy_Plugins_Data' ) )
 		/**
 		 * Process string for viewing on screen
 		 *
-		 * @since 1.0.0
+		 * @since 1.0
 		 *
 		 * @param string $str Required - String to process
 		 *
@@ -247,7 +287,7 @@ if ( !class_exists( 'TSP_Easy_Plugins_Data' ) )
 		/**
 		 * Process string for saving to database
 		 *
-		 * @since 1.0.0
+		 * @since 1.0
 		 *
 		 * @param string $str Required - String to process
 		 *
@@ -269,7 +309,7 @@ if ( !class_exists( 'TSP_Easy_Plugins_Data' ) )
 		/**
 		 * Determine if its ok to store html in the field
 		 *
-		 * @since 1.0.0
+		 * @since 1.0
 		 *
 		 * @param string $str Required - String to process
 		 *

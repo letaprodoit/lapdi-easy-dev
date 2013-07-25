@@ -6,54 +6,114 @@ if ( !class_exists( 'TSP_Easy_Plugins' ) )
 	require_once( 'class.easy-plugins-widget.php' );
 	
 	/**
-	 * TSP_Easy_Plugins - API implementations for TSP Easy Plugins
-	 * @package TSP_Easy_Plugins
-	 * @author sharrondenice, thesoftwarepeople
-	 * @author Sharron Denice, The Software People
-	 * @copyright 2013 The Software People
-	 * @license APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
-	 * @version $Id: [FILE] [COMMIT] [DATE] [TIME] [USER] $
-	 */
-	
-	/**
-	 * Use TSP Easy Plugins package to easily create, manage and display wordpress plugins
-	 *
-	 * original author: Sharron Denice
+	 * API implementations for TSP Easy Plugins Pro, Use TSP Easy Plugins package to easily create, manage and display wordpress plugins
+	 * @package 	TSP_Easy_Plugins
+	 * @author 		sharrondenice, thesoftwarepeople
+	 * @author 		Sharron Denice, The Software People
+	 * @copyright 	2013 The Software People
+	 * @license 	APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
+	 * @version 	1.0
 	 */
 	class TSP_Easy_Plugins
 	{
-		protected $plugin_icon			= null;
+		/**
+		 * An array of CSS URLs to include in the admin area
+		 *
+		 * @var array
+		 */
 		protected $admin_css_files		= array();
+		/**
+		 * An array of JS URLs to include in the admin area
+		 *
+		 * @var array
+		 */
 		protected $admin_js_files		= array();
+		/**
+		 * An array of CSS URLs to include in the user front-end
+		 *
+		 * @var array
+		 */
 		protected $user_css_files		= array();
+		/**
+		 * An array of JS URLs to include in the user front-end
+		 *
+		 * @var array
+		 */
 		protected $user_js_files		= array();
-		protected $plugin_globals 		= null;
-		
-		public $settings;
-		public $widget;
+		/**
+		 * The array of global values for the plugin, provided by the USER on instantiation
+		 *
+		 * @var array
+		 */
+		protected $settings 		= array();
+		/**
+		 * The version of WordPress that this plugin requires
+         *
+         * @api
+		 *
+		 * @var string
+		 */
 		public $required_wordpress_version;
-
+		/**
+		 * Does the plugin use shortcodes?
+         *
+         * @api
+		 *
+		 * @var boolean
+		 */
 		public $uses_shortcodes 		= false;
+		/**
+		 * Does the plugin require Smarty?
+         *
+         * @api
+		 *
+		 * @var boolean
+		 */
 		public $uses_smarty 			= false;
-				
 		
 		/**
+		 * The extended TSP_Easy_Plugins_Settings class, must be instantiated (ie $my_plugin->settings_class = new TSP_Easy_Plugins_Settings_MY_PLUGIN ( $settings );)
+         *
+         * @api
+		 *
+		 * @var TSP_Easy_Plugins_Settings
+		 */
+		private $settings_class;
+		/**
+		 * The name of the widget class created by the user, a placeholder because logic can not be handled  
+		 * by this class, the widget class has to be static and and called statically by WordPress
+         *
+         * @api
+		 *
+		 * @var string
+		 */
+		private $widget_class; //TODO: There was no way to aggregate a class for widget it has to be handled by WordPress via a hook, look into this with newer versions of WordPress
+				
+		/**
 		 * Constructor
+		 *
+		 * @since 1.0
+		 *
+		 * @param array $globals Required - Sets the global settings for the plugin
+		 *
+		 * @return none
 		 */
 		public function __construct( $globals ) 
 		{
 			// Only use the default globals if they are none in the database
 			
-			$this->plugin_globals	= $globals;
+			$this->settings	= $globals;
 		}//end __construct
 		
 
 		/**
-		 * Register Wordpress hooks for this pluginx
+		 * After all the settings are initialized, run the plugin
 		 *
-		 * @since 1.0.0
+		 * @api
 		 *
-		 * @param string - The file name of the plugin
+		 * @since 1.0
+		 *
+		 * @param string $plugin Required - The file name of the plugin, __FILE__
 		 *
 		 * @return none
 		 */
@@ -72,11 +132,14 @@ if ( !class_exists( 'TSP_Easy_Plugins' ) )
 			add_action('wp_enqueue_scripts', 		array( $this, 'enqueue_user_scripts' ));
 
 			// If the plugin uses settings add them
-			if ( $this->settings )
+			if ( $this->settings_class )
 			{
-				$this->settings->init( $this->plugin_globals );
-				$this->settings->set_menu_icon($this->plugin_icon);
-
+				$this->settings_class->init( $this->settings );
+			}//end if
+			
+			if ( $this->settings_class || $this->widget_class )
+			{
+				$this->uses_smarty = true; // Smarty required to display HTML on settings and widget pages
 			}//end if
 			
 			if ( $this->uses_smarty )
@@ -87,9 +150,11 @@ if ( !class_exists( 'TSP_Easy_Plugins' ) )
 
 
 		/**
-		 * Function to initialize the plugin
+		 * Function to initialize the plugin on install or activation
 		 *
-		 * @since 1.0.0
+		 * @ignore - Must be public because used in WordPress hooks
+		 *
+		 * @since 1.0
 		 *
 		 * @param none
 		 *
@@ -107,15 +172,15 @@ if ( !class_exists( 'TSP_Easy_Plugins' ) )
 					add_action( 'admin_notices', function (){
 						global $wp_version;
 						
-						$message =  $this->plugin_globals['Title'] . " requires WordPress version <strong>{$this->required_wordpress_version} or higher</strong>.<br>You have version <strong>$wp_version</strong> installed.";
+						$message =  $this->settings['Title'] . " requires WordPress version <strong>{$this->required_wordpress_version} or higher</strong>.<br>You have version <strong>$wp_version</strong> installed.";
 					    ?>
 					    <div class="error">
-					        <p><?php _e( $message, $this->plugin_globals['name']  ); ?></p>
+					        <p><?php _e( $message, $this->settings['name']  ); ?></p>
 					    </div>
 					    <?php
 					} );
 					
-					deactivate_plugins($this->plugin_globals['name'] . DS . $this->plugin_globals['name'].'.php');
+					deactivate_plugins($this->settings['name'] . DS . $this->settings['name'].'.php');
 					
 					return;
 				}//endif
@@ -127,8 +192,8 @@ if ( !class_exists( 'TSP_Easy_Plugins' ) )
 			// If the plugin requries smarty create cache and compiled directories
 			if ( $this->uses_smarty )
 			{
-				$smarty_cache_dir = $this->plugin_globals['smarty_cache_dir'];
-				$smarty_compiled_dir = $this->plugin_globals['smarty_compiled_dir'];
+				$smarty_cache_dir = $this->settings['smarty_cache_dir'];
+				$smarty_compiled_dir = $this->settings['smarty_compiled_dir'];
 				
 				if ( !file_exists( $smarty_cache_dir ) )
 				{
@@ -150,18 +215,93 @@ if ( !class_exists( 'TSP_Easy_Plugins' ) )
 			return $message;
 		}
 		
+		/**
+		 * Method to intialize the settings class for this plugin
+		 *
+		 * @since 1.0
+		 *
+		 * @param TSP_Easy_Plugins_Settings $settings_class Required The settings handler class for this plugin
+		 *
+		 * @return none
+		 */
+		public function set_settings_handler( $settings_class ) 
+		{
+			if ( is_subclass_of( $settings_class, 'TSP_Easy_Plugins_Settings' ) )
+			{
+				$this->settings_class = $settings_class;
+			}//end if
+			else
+			{
+				wp_die ( "The settings handler must be a subclass of TSP_Easy_Plugins_Settings." );
+			}//end else
+		}//end set_settings_handler
+		
+		
+		/**
+		 * Method to return the name of the widget class handler
+		 *
+		 * @since 1.0
+		 *
+		 * @param none
+		 *
+		 * @return TSP_Easy_Plugins_Settings object reference
+		 */
+		public function get_settings_handler() 
+		{
+			return $this->settings_class;
+		}//end get_settings_handler
+		
+		/**
+		 * Method to intialize the settings class for this plugin
+		 *
+		 * @since 1.0
+		 *
+		 * @param string $widget_class Required The NAME of the widget handler class for this plugin
+		 *
+		 * @return none
+		 */
+		public function set_widget_handler( $widget_class ) 
+		{
+			$this->widget_class = $widget_class;
+		}//end set_widget_handler
+		
+		/**
+		 * Method to return the name of the widget class handler
+		 *
+		 * @since 1.0
+		 *
+		 * @param none
+		 *
+		 * @return string Widget class name
+		 */
+		public function get_widget_handler() 
+		{
+			return $this->widget_class;
+		}//end get_widget_handler
+
+		/**
+		 * Function to de-initialize the plugin on uninstall
+		 *
+		 * @ignore - Must be public because used in WordPress hooks
+		 *
+		 * @since 1.0
+		 *
+		 * @param none
+		 *
+		 * @return none (extend to add additional checks)
+		 */
 		public function de_init()
 		{
-			if ( $this->settings)
-				$this->settings->deregister_settings();
+			if ( $this->settings_class )
+				$this->settings_class->deregister_settings();
 
 			$message = "";
 			
 			// If the plugin requries smarty create cache and compiled directories
 			if ( $this->uses_smarty )
 			{
-				$smarty_cache_dir = $this->plugin_globals['smarty_cache_dir'];
-				$smarty_compiled_dir = $this->plugin_globals['smarty_compiled_dir'];
+				$smarty_cache_dir = $this->settings['smarty_cache_dir'];
+				$smarty_compiled_dir = $this->settings['smarty_compiled_dir'];
 
 				if ( file_exists( $smarty_cache_dir ) )
 				{
@@ -184,11 +324,14 @@ if ( !class_exists( 'TSP_Easy_Plugins' ) )
 		}//end deinit
 
 		/**
-		 * Add user styles to the queue
+		 * Add styles to the queue
 		 *
-		 * @since 1.0.0
+		 * @api
 		 *
-		 * @param string - The file name of the css file
+		 * @since 1.0
+		 *
+		 * @param string $css Required - The full URL of the css file
+		 * @param boolean $admin Optonal - Is the style for the admin or user interface
 		 *
 		 * @return none
 		 */
@@ -206,11 +349,15 @@ if ( !class_exists( 'TSP_Easy_Plugins' ) )
 
 
 		/**
-		 * Add user styles to the queue
+		 * Add user scripts to the queue
 		 *
-		 * @since 1.0.0
+		 * @api
 		 *
-		 * @param string - The file name of the css file
+		 * @since 1.0
+		 *
+		 * @param string $script Required - The full URL of the script file
+		 * @param array $required_scripts Optonal - Array of required script tags (ie 'jquery','jquery-ui-widget')
+		 * @param boolean $admin Optonal - Is the style for the admin or user interface
 		 *
 		 * @return none
 		 */
@@ -229,9 +376,11 @@ if ( !class_exists( 'TSP_Easy_Plugins' ) )
 		/**
 		 * Add short codes for processing to the widget
 		 *
-		 * @since 1.0.0
+		 * @api
 		 *
-		 * @param string $tag Required the tag name of the shortcode
+		 * @since 1.0
+		 *
+		 * @param string $tag Required - the tag name of the shortcode
 		 *
 		 * @return none
 		 */
@@ -239,28 +388,32 @@ if ( !class_exists( 'TSP_Easy_Plugins' ) )
 		 {
 			if ( $this->uses_shortcodes )
 			{
-				$this->plugin_globals['shortcodes'][] = $tag;
+				$this->settings['shortcodes'][] = $tag;
 			}//endif
 		 }//end add_shortcode
 
 		/**
 		 * Set the plugin icon (used by settings on run)
 		 *
-		 * @since 1.0.0
+		 * @api
 		 *
-		 * @param none
+		 * @since 1.0
 		 *
-		 * @return none (extend to add submenus to the parent menu)
+		 * @param string $icon Required - The full URL of the icon file
+		 *
+		 * @return none
 		 */
 		public function set_plugin_icon( $icon )
 		{
-			$this->plugin_icon =  $icon;
+			$this->settings['plugin_icon'] =  $icon;
 		}//end set_plugin_icon
 
 		/**
 		 *  Implementation to queue user scripts and stylesheets
 		 *
-		 * @since 1.0.0
+		 * @ignore - Must be public because used in WordPress hooks
+		 *
+		 * @since 1.0
 		 *
 		 * @param none
 		 *
@@ -295,7 +448,9 @@ if ( !class_exists( 'TSP_Easy_Plugins' ) )
 		/**
 		 *  Implementation to queue admin scripts and stylesheets
 		 *
-		 * @since 1.0.0
+		 * @ignore - Must be public because used in WordPress hooks
+		 *
+		 * @since 1.0
 		 *
 		 * @param none
 		 *
@@ -329,21 +484,25 @@ if ( !class_exists( 'TSP_Easy_Plugins' ) )
 		/**
 		 * Return the current global settings
 		 *
-		 * @since 1.0.0
+		 * @api
+		 *
+		 * @since 1.0
 		 *
 		 * @param none
 		 *
-		 * @return array $this->plugin_globals current global settings
+		 * @return array $this->settings current global settings
 		 */
-		 public function get_globals()
+		 public function get_settings()
 		 {
-		 	return $this->plugin_globals;
-		 }//end get_globals
+		 	return $this->settings;
+		 }//end get_settings
 		 
 		/**
-		 * Optional implementation to install plugin
+		 * Optional implementation to install plugin - can be extended by subclasses, not to be called directly but extended by subclasses
 		 *
-		 * @since 1.0.0
+		 * @api
+		 *
+		 * @since 1.0
 		 *
 		 * @param none
 		 *
@@ -355,9 +514,11 @@ if ( !class_exists( 'TSP_Easy_Plugins' ) )
 		}//end install
 		
 		/**
-		 * Optional implementation to uninstall plugin
+		 * Optional implementation to uninstall plugin - can be extended by subclasses, not to be called directly but extended by subclasses
 		 *
-		 * @since 1.0.0
+		 * @api
+		 *
+		 * @since 1.0
 		 *
 		 * @param none
 		 *
@@ -369,9 +530,11 @@ if ( !class_exists( 'TSP_Easy_Plugins' ) )
 		}//end uninstall
 		
 		/**
-		 * Optional implementation to activate plugin
+		 * Optional implementation to activate plugin - can be extended by subclasses, not to be called directly but extended by subclasses
 		 *
-		 * @since 1.0.0
+		 * @api
+		 *
+		 * @since 1.0
 		 *
 		 * @param none
 		 *
@@ -383,9 +546,11 @@ if ( !class_exists( 'TSP_Easy_Plugins' ) )
 		}//end activate
 		
 		/**
-		 * Optional implementation to deactivate plugin
+		 * Optional implementation to deactivate plugin - can be extended by subclasses, not to be called directly but extended by subclasses
 		 *
-		 * @since 1.0.0
+		 * @api
+		 *
+		 * @since 1.0
 		 *
 		 * @param none
 		 *

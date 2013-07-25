@@ -1,4 +1,4 @@
-=== TSP Easy Plugins Pro ===
+=== TSP Easy Plugins ===
 Contributors: thesoftwarepeople,sharrondenice
 Donate link: http://www.thesoftwarepeople.com/software/plugins/wordpress/easy-plugins-pro-for-wordpress.html
 Tags: API, OO, object oriented, learn, wordpress, add_filter, add_action, tutorial, plugin, application, interface, development
@@ -8,11 +8,11 @@ Stable tag: 1.0
 License: Apache v2.0
 License URI: http://www.apache.org/licenses/LICENSE-2.0
 
-Easy Plugins is an API for easy WordPress plugin creation. Easy Plugins makes OOD hot again!
+Create plugins quickly using the our API.
 
 == Description ==
 
-The Software People's (TSP) Easy Plugins allows developers to create plugins easily using the our API.
+The Software People's (TSP) Easy Plugins for WordPress is an API for WordPress plugin creation, check out some of the features below. Easy Plugins makes OOD hot again and it's the engine that powers all WordPress plugins created by The Software People!
 
 = Features Included =
 
@@ -31,7 +31,10 @@ Upgrades will include fixes only, no new functionality
 
 Includes all of the features of the standard version AND…
 
+* Checks for browser type and version (currently supports Chrome, Firefox, Safari, Opera and IE detection)
 * Add additional `external URL links` to your plugins description
+* Add form fields (metadata) to posts
+* Add form fields (metadata) to categories
 * Check for `incompatible plugins` on activate
 * Check for `required plugins` on activate
 * Display `favicons` (ie Twitter, Facebook, GitHub, thumbs, folders, etc) easily in your html

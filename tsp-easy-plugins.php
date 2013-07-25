@@ -30,47 +30,133 @@ if (class_exists('TSP_Easy_Plugins'))
 	return;
 }//endif
 
+/**
+* Every plugin that uses Easy Plugins must define a UNIQUE variable that holds the plugin's file name
+*
+* @var string
+*/
 define('TSP_EASY_PLUGINS_FILE', 					__FILE__ );
+/**
+* Every plugin that uses Easy Plugins must define a UNIQUE variable that holds the plugin's absolute path
+*
+* @var string
+*/
 define('TSP_EASY_PLUGINS_PATH',						plugin_dir_path( __FILE__ ) );
+/**
+* Every plugin that uses Easy Plugins must define a UNIQUE variable that holds the plugin's URL
+*
+* @var string
+*/
 define('TSP_EASY_PLUGINS_URL', 						plugin_dir_url( __FILE__ ) );
+/**
+* Every plugin that uses Easy Plugins must define a UNIQUE variable that holds the plugin's name/id
+*
+* @var string
+*/
+define('TSP_EASY_PLUGINS_NAME', 					'tsp-easy-plugins');
+/**
+* Every plugin that uses Easy Plugins must define a UNIQUE variable that holds the plugin's name (not description but plugin title)
+*
+* @var string
+*/
+define('TSP_EASY_PLUGINS_TITLE', 					'TSP Easy Plugins');
 
+/**
+ * @ignore
+ */
 define('TSP_EASY_PLUGINS_CLASS_PATH',				TSP_EASY_PLUGINS_PATH . 'classes/');
+/**
+ * @ignore
+ */
 define('TSP_EASY_PLUGINS_LIB_PATH',					TSP_EASY_PLUGINS_PATH . 'lib/');
 
 /* @group Assets */
+/**
+ * Assets absolute path
+ *
+ * @ignore
+ */
 define('TSP_EASY_PLUGINS_ASSETS_PATH',				TSP_EASY_PLUGINS_PATH . 'assets/');
 
 // Absolute directory paths
+	/**
+	 * Full absolute path to the Easy Plugins templates directory
+	 *
+	 * @var string
+	 */
 	define('TSP_EASY_PLUGINS_ASSETS_TEMPLATES_PATH',TSP_EASY_PLUGINS_ASSETS_PATH . 'templates/');
+	/**
+	 * Full absolute path to the Easy Plugins css directory
+	 *
+	 * @var string
+	 */
 	define('TSP_EASY_PLUGINS_ASSETS_CSS_PATH',		TSP_EASY_PLUGINS_ASSETS_PATH . 'css/');
+	/**
+	 * Full absolute path to the Easy Plugins javascript directory
+	 *
+	 * @var string
+	 */
 	define('TSP_EASY_PLUGINS_ASSETS_JS_PATH',		TSP_EASY_PLUGINS_ASSETS_PATH . 'js/');
+	/**
+	 * Full absolute path to the Easy Plugins images directory
+	 *
+	 * @var string
+	 */
 	define('TSP_EASY_PLUGINS_ASSETS_IMAGES_PATH',	TSP_EASY_PLUGINS_ASSETS_PATH . 'images/');
 
-// Absolute directory URLs
+/**
+ * Assets URL
+ *
+ * @ignore
+ */
 define('TSP_EASY_PLUGINS_ASSETS_URL',				TSP_EASY_PLUGINS_URL . 'assets/');
 
+	/**
+	 * Full URL to the Easy Plugins templates directory
+	 *
+	 * @var string
+	 */
+	define('TSP_EASY_PLUGINS_ASSETS_TEMPLATES_URL',	TSP_EASY_PLUGINS_ASSETS_URL . 'templates/');
+	/**
+	 * Full URL to the Easy Plugins css directory
+	 *
+	 * @var string
+	 */
 	define('TSP_EASY_PLUGINS_ASSETS_CSS_URL',		TSP_EASY_PLUGINS_ASSETS_URL . 'css/');
+	/**
+	 * Full URL to the Easy Plugins javascript directory
+	 *
+	 * @var string
+	 */
 	define('TSP_EASY_PLUGINS_ASSETS_JS_URL',		TSP_EASY_PLUGINS_ASSETS_URL . 'js/');
+	/**
+	 * Full URL to the Easy Plugins images directory
+	 *
+	 * @var string
+	 */
 	define('TSP_EASY_PLUGINS_ASSETS_IMAGES_URL',	TSP_EASY_PLUGINS_ASSETS_URL . 'images/');
 /* @end */
-
-define('TSP_EASY_PLUGINS_NAME', 					'tsp-easy-plugins');
 
 require_once( TSP_EASY_PLUGINS_PATH . 'tsp-easy-plugins.config.php');
 require_once( TSP_EASY_PLUGINS_CLASS_PATH  . 'class.easy-plugins.php');
 
 // Store smarty cache and compiled directories
 $upload_dir	= wp_upload_dir();
-define('TSP_EASY_PLUGINS_TMP_PATH',					$upload_dir['basedir'] . DS . TSP_EASY_PLUGINS_NAME . DS );
+/**
+ * Full absolute path to the Easy Plugins temp directory
+ *
+ * @var string
+ */
+define('TSP_EASY_PLUGINS_TMP_PATH',					$upload_dir['basedir'] . DS . 'tsp_plugins' . DS );
 
 //--------------------------------------------------------
 // initialize the plugin
 //--------------------------------------------------------
-global $plugin_globals;
+global $easy_plugin_settings;
 
-$easy_plugin 										= new TSP_Easy_Plugins( $plugin_globals );
+$easy_plugins 										= new TSP_Easy_Plugins( $easy_plugin_settings );
 
-$easy_plugin->required_wordpress_version 			= "3.5.2";
+$easy_plugins->required_wordpress_version 			= "3.5.1";
 
-$easy_plugin->run( __FILE__ );
+$easy_plugins->run( __FILE__ );
 ?>

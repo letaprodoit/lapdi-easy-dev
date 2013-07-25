@@ -1,14 +1,21 @@
 <?php									
-// Get the plugin path
-if (!defined('WP_CONTENT_DIR')) define('WP_CONTENT_DIR', ABSPATH . 'wp-content');
-
+/**
+* Every plugin that uses Easy Plugins must define the DS variable that sets the path deliminter
+*
+* @var string
+*/
 if (!defined('DS')) {
     if (strpos(php_uname('s') , 'Win') !== false) define('DS', '\\');
     else define('DS', '/');
 }//endif
 
-$plugin_globals = get_plugin_data( TSP_EASY_PLUGINS_FILE, false, false );
+$easy_plugin_settings = get_plugin_data( TSP_EASY_PLUGINS_FILE, false, false );
 
-$plugin_globals['name'] 			= TSP_EASY_PLUGINS_NAME;
-$plugin_globals['widget_fields']	= array();
+$easy_plugin_settings['name'] 			= TSP_EASY_PLUGINS_NAME;
+$easy_plugin_settings['plugin_data']	= array(
+	'category_fields'			=> array(),
+	'post_fields'				=> array(),
+	'widget_fields'				=> array(),
+	'settings_fields'			=> array(),
+);
 ?>

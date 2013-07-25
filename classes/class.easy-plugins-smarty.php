@@ -8,13 +8,13 @@ if ( !class_exists( 'TSP_Easy_Plugins_Smarty' ) )
 	}//endif
 	
 	/**
-	 * TSP_Easy_Plugins_Smarty - Wrapper for the Smarty class
-	 * @package TSP_Easy_Plugins
-	 * @author sharrondenice, thesoftwarepeople
-	 * @author Sharron Denice, The Software People
-	 * @copyright 2013 The Software People
-	 * @license APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
-	 * @version $Id: [FILE] [] [DATE] [TIME] [USER] $
+	 * Wrapper for the Smarty class
+	 * @package 	TSP_Easy_Plugins
+	 * @author 		sharrondenice, thesoftwarepeople
+	 * @author 		Sharron Denice, The Software People
+	 * @copyright 	2013 The Software People
+	 * @license 	APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
+	 * @version 	1.0
 	 */
 	final class TSP_Easy_Plugins_Smarty extends Smarty
 	{

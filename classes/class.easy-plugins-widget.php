@@ -2,48 +2,69 @@
 if ( !class_exists( 'TSP_Easy_Plugins_Widget' ) )
 {
 	/**
-	 * TSP_Easy_Plugins_Widget - Class to extend WP_Widget to show widget fields, save and load settings
-	 * @package TSP_Easy_Plugins
-	 * @author sharrondenice, thesoftwarepeople
-	 * @author Sharron Denice, The Software People
-	 * @copyright 2013 The Software People
-	 * @license APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
-	 * @version $Id: [FILE] [] [DATE] [TIME] [USER] $
+	 * Class to extend WP_Widget to show widget fields, save and load settings
+	 * @package 	TSP_Easy_Plugins
+	 * @author 		sharrondenice, thesoftwarepeople
+	 * @author 		Sharron Denice, The Software People
+	 * @copyright 	2013 The Software People
+	 * @license 	APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
+	 * @version 	1.0
 	 */
 	abstract class TSP_Easy_Plugins_Widget extends WP_Widget 
 	{
-		protected $plugin_globals = null;
+		/**
+		 * The array of global values for the plugin
+		 *
+		 * @var array
+		 */
+		protected $settings = array();
 		
 		/**
-		 * Constructor
+		 * Constructor - Inside the constructor of ALL TSP_Easy_Plugins_Widget subclasses a call to the add_filter (expand for more details)
+		 *
+		 * Upon implementation, must contain the following line EXACTLY as it appears: 
+		 *
+		 * add_filter( get_class()  .'-init', array($this, 'init'), 10, 1 );
+		 *
+		 * The filter will be applied via apply_filter in the plugin's main file
+		 *
+		 * @api
+		 *
+		 * @since 1.0
+		 *
+		 * @param array $globals Required - Sets the global settings for the widget
+		 *
+		 * @return none
 		 */
 		public function __construct( $globals ) 
 		{
-			$this->plugin_globals = $globals;
+			$this->settings = $globals;
 			
 	        // Get widget options
 	        $widget_options  = array(
-	            'classname'  			=> $this->plugin_globals['name'],
-	            'description'   		=> __( $this->plugin_globals['Description'], $this->plugin_globals['name'] )
+	            'classname'  			=> $this->settings['name'],
+	            'description'   		=> __( $this->settings['Description'], $this->settings['name'] )
 	        );
 	        
 	        // Get control options
 	        $control_options = array(
-	            'width' 				=> $this->plugin_globals['widget_width'],
-	            'height'				=> $this->plugin_globals['widget_height'],
-	            'id_base' 				=> $this->plugin_globals['name'],
+	            'width' 				=> $this->settings['widget_width'],
+	            'height'				=> $this->settings['widget_height'],
+	            'id_base' 				=> $this->settings['name'],
 	        );
 
 			$this->load_shortcodes();
 
 	        // Create the widget
-			parent::__construct( $this->plugin_globals['name'], __( $this->plugin_globals['Name'], $this->plugin_globals['name'] ) , $widget_options, $control_options);
+			parent::__construct( $this->settings['name'], __( $this->settings['Name'], $this->settings['name'] ) , $widget_options, $control_options);
 		}//end __construct
 	
 		/**
 		 * Implements update function
 		 *
-		 * @since 1.0.0
+		 * @ignore - WP_Widget::update must be public
+		 *
+		 * @since 1.0
 		 *
 	 	 * @param array $new_instance Values just sent to be saved.
 		 * @param array $old_instance Previously saved values from database.
@@ -52,7 +73,7 @@ if ( !class_exists( 'TSP_Easy_Plugins_Widget' ) )
 		 */
 		public function update( $new_instance, $old_instance ) 
 		{
-			$plugin_data = get_option( $this->plugin_globals['option_name'] );
+			$plugin_data = get_option( $this->settings['option_name'] );
 			$defaults = new TSP_Easy_Plugins_Data ( $plugin_data['widget_fields'] );
 
 			if ( !empty ( $new_instance ))
@@ -73,7 +94,9 @@ if ( !class_exists( 'TSP_Easy_Plugins_Widget' ) )
 		/**
 		 * widget function can be overriden by the plugin to display plugin widget info to screen
 		 *
-		 * @since 1.0.0
+		 * @ignore - WP_Widget::widget must be public
+		 *
+		 * @since 1.0
 		 *
 		 * @param none
 		 *
@@ -81,7 +104,7 @@ if ( !class_exists( 'TSP_Easy_Plugins_Widget' ) )
 		 */
 		public function widget( $args, $instance )
 		{
-			$plugin_data = get_option( $this->plugin_globals['option_name'] );
+			$plugin_data = get_option( $this->settings['option_name'] );
 			$defaults = new TSP_Easy_Plugins_Data ( $plugin_data['widget_fields'] );
 			
 			if ( !empty ( $instance ))
@@ -118,7 +141,9 @@ if ( !class_exists( 'TSP_Easy_Plugins_Widget' ) )
 		/**
 		 * form function must be expanded by the plugin to display plugin widget info to screen
 		 *
-		 * @since 1.0.0
+		 * @ignore - WP_Widget::form must be public
+		 *
+		 * @since 1.0
 		 *
 		 * @param array $instance Required - Data to be displayed on the form
 		 *
@@ -126,7 +151,7 @@ if ( !class_exists( 'TSP_Easy_Plugins_Widget' ) )
 		 */
 	 	public function form( $instance )
 	 	{
-			$plugin_data = get_option( $this->plugin_globals['option_name'] );
+			$plugin_data = get_option( $this->settings['option_name'] );
 			$defaults = new TSP_Easy_Plugins_Data ( $plugin_data['widget_fields'] );
 
 			if ( !empty ( $instance ) )
@@ -146,18 +171,18 @@ if ( !class_exists( 'TSP_Easy_Plugins_Widget' ) )
 		/**
 		 * Process all shorcodes associated with this widget
 		 *
-		 * @since 1.0.0
+		 * @since 1.0
 		 *
 		 * @param none
 		 *
 		 * @return none
 		 */
-	 	public function load_shortcodes()
+	 	private function load_shortcodes()
 	 	{
-			if ( !empty ($this->plugin_globals['shortcodes']) )
+			if ( !empty ($this->settings['shortcodes']) )
 			{
 				// add all the associated shortcodes associated with this widget
-				foreach ( $this->plugin_globals['shortcodes'] as $code )
+				foreach ( $this->settings['shortcodes'] as $code )
 				{
 					add_shortcode($code, array( $this, 'process_shortcode') );
 				}//endforeach
@@ -168,7 +193,9 @@ if ( !class_exists( 'TSP_Easy_Plugins_Widget' ) )
 		/**
 		 * Process shortcodes passed to widget
 		 *
-		 * @since 1.0.0
+		 * @ignore - Must be public, used by WordPress hook
+		 *
+		 * @since 1.0
 		 *
 		 * @param array $attributes Optional the arguments passed to the shortcode
 		 *
@@ -177,9 +204,9 @@ if ( !class_exists( 'TSP_Easy_Plugins_Widget' ) )
 		public function process_shortcode( $attributes )
 		{
 			if ( is_feed() )
-				return '[' . $this->plugin_globals['name'] . ']';
+				return '[' . $this->settings['name'] . ']';
 						
-			$plugin_data = get_option( $this->plugin_globals['option_name'] );
+			$plugin_data = get_option( $this->settings['option_name'] );
 			$defaults = new TSP_Easy_Plugins_Data ( $plugin_data['widget_fields'] );
 
 			if (! empty ( $attributes) )
@@ -226,11 +253,32 @@ if ( !class_exists( 'TSP_Easy_Plugins_Widget' ) )
 		}//end process_shortcode
 		
 		/**
+		 * Required: Must be implemented by the plugin to initialize the widget with global settings - method will be applied to a filter (expand for more details)
+		 *
+		 * Upon implementation, must contain the following line EXACTLY as it appears: 
+		 *
+		 * $this->settings = $globals;
+		 *
+		 * parent::__construct( $this->settings );
+		 *
+		 * @api
+		 *
+		 * @since 1.0
+		 *
+		 * @param array $settings Required global settings used by the plugin
+		 *
+		 * @return none
+		 */
+		abstract public function init( $settings );
+
+		/**
 		 * Required: Must be implemented by the plugin to display the HTML to the screen
 		 *
-		 * @since 1.0.0
+		 * @api
 		 *
-		 * @param array $fields Data to display to the screen
+		 * @since 1.0
+		 *
+		 * @param array $fields Required Data to display to the screen
 		 *
 		 * @return none
 		 */
@@ -239,9 +287,11 @@ if ( !class_exists( 'TSP_Easy_Plugins_Widget' ) )
 		/**
 		 * Required: Must be implemented by the plugin to display the HTML to the screen
 		 *
-		 * @since 1.0.0
+		 * @api
 		 *
-		 * @param array $instance Required data to display to the screen
+		 * @since 1.0
+		 *
+		 * @param array $fields Required data to display to the screen
 		 * @param boolean $echo Optional if true display data to screen
 		 *
 		 * @return none
