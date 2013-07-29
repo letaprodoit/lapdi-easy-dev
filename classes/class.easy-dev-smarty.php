@@ -1,5 +1,5 @@
 <?php	
-if ( !class_exists( 'TSP_Easy_Plugins_Smarty' ) )
+if ( !class_exists( 'TSP_Easy_Dev_Smarty' ) )
 {
 	if (!class_exists('Smarty'))
 	{
@@ -9,14 +9,14 @@ if ( !class_exists( 'TSP_Easy_Plugins_Smarty' ) )
 	
 	/**
 	 * Wrapper for the Smarty class
-	 * @package 	TSP_Easy_Plugins
+	 * @package 	TSP_Easy_Dev
 	 * @author 		sharrondenice, thesoftwarepeople
 	 * @author 		Sharron Denice, The Software People
 	 * @copyright 	2013 The Software People
 	 * @license 	APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
 	 * @version 	1.0
 	 */
-	final class TSP_Easy_Plugins_Smarty extends Smarty
+	final class TSP_Easy_Dev_Smarty extends Smarty
 	{
 		/**
 		 * Constructor
@@ -44,9 +44,9 @@ if ( !class_exists( 'TSP_Easy_Plugins_Smarty' ) )
 			
 			if ( $form )
 			{
-				$this->assign( 'EASY_PLUGIN_FORM_FIELDS',	'easy-plugin-field.tpl' );
+				$this->assign( 'EASY_DEV_FORM_FIELDS',	'easy-dev-form-fields.tpl' );
 				$this->assign( 'class',						'');
 			}//end if
 		}//end __construct
-	}//end TSP_Easy_Plugins_Smarty
+	}//end TSP_Easy_Dev_Smarty
 }//end if

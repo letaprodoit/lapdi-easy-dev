@@ -1,16 +1,16 @@
 <?php
-if ( !class_exists( 'TSP_Easy_Plugins_Data' ) )
+if ( !class_exists( 'TSP_Easy_Dev_Data' ) )
 {
 	/**
 	 * Class to manipulate Easy Plugin fields for widget_fields, post_fields, settings_fields and category_fields
-	 * @package 	TSP_Easy_Plugins
+	 * @package 	TSP_Easy_Dev
 	 * @author 		sharrondenice, thesoftwarepeople
 	 * @author 		Sharron Denice, The Software People
 	 * @copyright 	2013 The Software People
 	 * @license 	APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
 	 * @version 	1.0
 	 */
-	final class TSP_Easy_Plugins_Data
+	final class TSP_Easy_Dev_Data
 	{
 		/**
 		 * The fields that this class will manage
@@ -327,6 +327,6 @@ if ( !class_exists( 'TSP_Easy_Plugins_Data' ) )
         	return $html_ok;
 		}//end html_ok
 
-	}//end TSP_Easy_Plugins_Data
+	}//end TSP_Easy_Dev_Data
 }//endif
 ?>

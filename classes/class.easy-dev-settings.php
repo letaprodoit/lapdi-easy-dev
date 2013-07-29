@@ -1,16 +1,16 @@
 <?php	
-if ( !class_exists( 'TSP_Easy_Plugins_Settings' ) )
+if ( !class_exists( 'TSP_Easy_Dev_Settings' ) )
 {
 	/**
 	 * Class to display admin settings in admin area
-	 * @package 	TSP_Easy_Plugins
+	 * @package 	TSP_Easy_Dev
 	 * @author 		sharrondenice, thesoftwarepeople
 	 * @author 		Sharron Denice, The Software People
 	 * @copyright 	2013 The Software People
 	 * @license 	APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
 	 * @version 	1.0
 	 */
-	abstract class TSP_Easy_Plugins_Settings
+	abstract class TSP_Easy_Dev_Settings
 	{
 		/**
 		 * The array of global values for the plugin
@@ -229,6 +229,6 @@ if ( !class_exists( 'TSP_Easy_Plugins_Settings' ) )
 		 */
 		abstract public function display_plugin_settings_page();
 		
-	}//end TSP_Easy_Plugins_Settings
+	}//end TSP_Easy_Dev_Settings
 }//endif
 ?>

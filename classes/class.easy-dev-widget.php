@@ -1,16 +1,16 @@
 <?php
-if ( !class_exists( 'TSP_Easy_Plugins_Widget' ) )
+if ( !class_exists( 'TSP_Easy_Dev_Widget' ) )
 {
 	/**
 	 * Class to extend WP_Widget to show widget fields, save and load settings
-	 * @package 	TSP_Easy_Plugins
+	 * @package 	TSP_Easy_Dev
 	 * @author 		sharrondenice, thesoftwarepeople
 	 * @author 		Sharron Denice, The Software People
 	 * @copyright 	2013 The Software People
 	 * @license 	APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
 	 * @version 	1.0
 	 */
-	abstract class TSP_Easy_Plugins_Widget extends WP_Widget 
+	abstract class TSP_Easy_Dev_Widget extends WP_Widget 
 	{
 		/**
 		 * The array of global values for the plugin
@@ -20,7 +20,7 @@ if ( !class_exists( 'TSP_Easy_Plugins_Widget' ) )
 		protected $settings = array();
 		
 		/**
-		 * Constructor - Inside the constructor of ALL TSP_Easy_Plugins_Widget subclasses a call to the add_filter (expand for more details)
+		 * Constructor - Inside the constructor of ALL TSP_Easy_Dev_Widget subclasses a call to the add_filter (expand for more details)
 		 *
 		 * Upon implementation, must contain the following line EXACTLY as it appears: 
 		 *
@@ -74,7 +74,7 @@ if ( !class_exists( 'TSP_Easy_Plugins_Widget' ) )
 		public function update( $new_instance, $old_instance ) 
 		{
 			$plugin_data = get_option( $this->settings['option_name'] );
-			$defaults = new TSP_Easy_Plugins_Data ( $plugin_data['widget_fields'] );
+			$defaults = new TSP_Easy_Dev_Data ( $plugin_data['widget_fields'] );
 
 			if ( !empty ( $new_instance ))
 			{
@@ -105,7 +105,7 @@ if ( !class_exists( 'TSP_Easy_Plugins_Widget' ) )
 		public function widget( $args, $instance )
 		{
 			$plugin_data = get_option( $this->settings['option_name'] );
-			$defaults = new TSP_Easy_Plugins_Data ( $plugin_data['widget_fields'] );
+			$defaults = new TSP_Easy_Dev_Data ( $plugin_data['widget_fields'] );
 			
 			if ( !empty ( $instance ))
 			{
@@ -152,7 +152,7 @@ if ( !class_exists( 'TSP_Easy_Plugins_Widget' ) )
 	 	public function form( $instance )
 	 	{
 			$plugin_data = get_option( $this->settings['option_name'] );
-			$defaults = new TSP_Easy_Plugins_Data ( $plugin_data['widget_fields'] );
+			$defaults = new TSP_Easy_Dev_Data ( $plugin_data['widget_fields'] );
 
 			if ( !empty ( $instance ) )
 			{
@@ -207,7 +207,7 @@ if ( !class_exists( 'TSP_Easy_Plugins_Widget' ) )
 				return '[' . $this->settings['name'] . ']';
 						
 			$plugin_data = get_option( $this->settings['option_name'] );
-			$defaults = new TSP_Easy_Plugins_Data ( $plugin_data['widget_fields'] );
+			$defaults = new TSP_Easy_Dev_Data ( $plugin_data['widget_fields'] );
 
 			if (! empty ( $attributes) )
 			{
@@ -298,6 +298,6 @@ if ( !class_exists( 'TSP_Easy_Plugins_Widget' ) )
 		 */
 		abstract public function display_widget( $fields, $echo = false );
 		
-	}//end TSP_Easy_Plugins_Widget
+	}//end TSP_Easy_Dev_Widget
 }//endif
 ?>

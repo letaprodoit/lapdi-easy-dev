@@ -1,25 +1,25 @@
-Easy Plugins for WordPress
+Easy Dev for WordPress
 -------
-The Software People's (TSP) Easy Plugins for WordPress allows developers to create plugins easily using the our API.
+Easy Dev for WordPress is an API for WordPress plugin development
 
 For up-to-date installation and setup notes, visit the FAQ:
-[http://lab.thesoftwarepeople.com/tracker/wiki/wordpress-ep:MainPage](http://lab.thesoftwarepeople.com/tracker/wiki/wordpress-ep:MainPage)
+[http://lab.thesoftwarepeople.com/tracker/wiki/wordpress-ed:MainPage](http://lab.thesoftwarepeople.com/tracker/wiki/wordpress-ed:MainPage)
 
 
 *GENERAL INSTALLATION NOTES*
 
-- Install Easy Plugins either via the WordPress.org plugin directory, or by uploading the files to your server
+- Install Easy Dev either via the WordPress.org plugin directory, or by uploading the files to your server
 - That's it. You're ready to go!
 
 *USING THE PLUGIN*
 
-- API - [http://lab.thesoftwarepeople.com/tracker/wordpress-ep](http://lab.thesoftwarepeople.com/tracker/wordpress-ep)
+- API - [http://lab.thesoftwarepeople.com/tracker/wordpress-ed](http://lab.thesoftwarepeople.com/tracker/wordpress-ed)
 
 *REPORTING ISSUES*
 
-Thank you for downloading the Easy Plugins for WordPress
+Thank you for downloading the Easy Dev for WordPress
 If you find any issues, please report them in the issue tracker on our website:
-[http://lab.thesoftwarepeople.com/tracker/wordpress-ep](http://lab.thesoftwarepeople.com/tracker/wordpress-ep)
+[http://lab.thesoftwarepeople.com/tracker/wordpress-ed](http://lab.thesoftwarepeople.com/tracker/wordpress-ed)
 
 *COPYRIGHT AND LICENSE*
 

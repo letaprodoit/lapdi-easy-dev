@@ -1,4 +1,4 @@
-<div class="tspep_form_element" id="{$field.name}_container_div" style="">
+<div class="tspedev_form_element" id="{$field.name}_container_div" style="">
 	<label for="{$field.id}">{$field.label}</label>
 	{if $field.type == 'INPUT'}
 	   <input class="{$class}" id="{$field.id}" name="{$field.name}" value="{$field.value}" />

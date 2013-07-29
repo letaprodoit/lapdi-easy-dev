@@ -1,45 +1,62 @@
 <?php	
-if ( !class_exists( 'TSP_Easy_Plugins' ) )
+if ( !class_exists( 'TSP_Easy_Dev' ) )
 {
-	require_once( 'class.easy-plugins-data.php' );
-	require_once( 'class.easy-plugins-settings.php' );
-	require_once( 'class.easy-plugins-widget.php' );
+	require_once( 'class.easy-dev-data.php' );
+	require_once( 'class.easy-dev-settings.php' );
+	require_once( 'class.easy-dev-widget.php' );
 	
 	/**
-	 * API implementations for TSP Easy Plugins Pro, Use TSP Easy Plugins package to easily create, manage and display wordpress plugins
-	 * @package 	TSP_Easy_Plugins
+	 * API implementations for TSP Easy Dev Pro, Use TSP Easy Dev package to easily create, manage and display wordpress plugins
+	 * @package 	TSP_Easy_Dev
 	 * @author 		sharrondenice, thesoftwarepeople
 	 * @author 		Sharron Denice, The Software People
 	 * @copyright 	2013 The Software People
 	 * @license 	APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
 	 * @version 	1.0
 	 */
-	class TSP_Easy_Plugins
+	class TSP_Easy_Dev
 	{
 		/**
 		 * An array of CSS URLs to include in the admin area
 		 *
 		 * @var array
 		 */
-		protected $admin_css_files		= array();
+		private $admin_css_files		= array();
 		/**
 		 * An array of JS URLs to include in the admin area
 		 *
 		 * @var array
 		 */
-		protected $admin_js_files		= array();
+		private $admin_js_files		= array();
 		/**
 		 * An array of CSS URLs to include in the user front-end
 		 *
 		 * @var array
 		 */
-		protected $user_css_files		= array();
+		private $user_css_files		= array();
 		/**
 		 * An array of JS URLs to include in the user front-end
 		 *
 		 * @var array
 		 */
-		protected $user_js_files		= array();
+		private $user_js_files		= array();
+		/**
+		 * The extended TSP_Easy_Dev_Settings class, must be instantiated (ie $my_plugin->settings_class = new TSP_Easy_Dev_Settings_MY_PLUGIN ( $settings );)
+         *
+         * @api
+		 *
+		 * @var TSP_Easy_Dev_Settings
+		 */
+		private $settings_class;
+		/**
+		 * The name of the widget class created by the user, a placeholder because logic can not be handled  
+		 * by this class, the widget class has to be static and and called statically by WordPress
+         *
+         * @api
+		 *
+		 * @var string
+		 */
+		private $widget_class; //TODO: There was no way to aggregate a class for widget it has to be handled by WordPress via a hook, look into this with newer versions of WordPress
 		/**
 		 * The array of global values for the plugin, provided by the USER on instantiation
 		 *
@@ -70,24 +87,6 @@ if ( !class_exists( 'TSP_Easy_Plugins' ) )
 		 * @var boolean
 		 */
 		public $uses_smarty 			= false;
-		
-		/**
-		 * The extended TSP_Easy_Plugins_Settings class, must be instantiated (ie $my_plugin->settings_class = new TSP_Easy_Plugins_Settings_MY_PLUGIN ( $settings );)
-         *
-         * @api
-		 *
-		 * @var TSP_Easy_Plugins_Settings
-		 */
-		private $settings_class;
-		/**
-		 * The name of the widget class created by the user, a placeholder because logic can not be handled  
-		 * by this class, the widget class has to be static and and called statically by WordPress
-         *
-         * @api
-		 *
-		 * @var string
-		 */
-		private $widget_class; //TODO: There was no way to aggregate a class for widget it has to be handled by WordPress via a hook, look into this with newer versions of WordPress
 				
 		/**
 		 * Constructor
@@ -120,9 +119,9 @@ if ( !class_exists( 'TSP_Easy_Plugins' ) )
 		 public function run( $plugin )
 		 {
 			// register install/uninstall hooks
-			register_activation_hook( $plugin, 		array( 'TSP_Easy_Plugins', 'install') );
-			register_deactivation_hook( $plugin, 	array( 'TSP_Easy_Plugins', 'deactivate') );
-			register_uninstall_hook( $plugin, 		array( 'TSP_Easy_Plugins', 'uninstall' ) );
+			register_activation_hook( $plugin, 		array( 'TSP_Easy_Dev', 'install') );
+			register_deactivation_hook( $plugin, 	array( 'TSP_Easy_Dev', 'deactivate') );
+			register_uninstall_hook( $plugin, 		array( 'TSP_Easy_Dev', 'uninstall' ) );
 			
 			add_action( 'init', 					array( $this, 'init' ) );
 			add_action( 'admin_init', 				array( $this, 'init' ) );
@@ -144,7 +143,7 @@ if ( !class_exists( 'TSP_Easy_Plugins' ) )
 			
 			if ( $this->uses_smarty )
 			{
-				require_once( 'class.easy-plugins-smarty.php' );
+				require_once( 'class.easy-dev-smarty.php' );
 			}//end if
 		 }//end setup
 
@@ -220,19 +219,19 @@ if ( !class_exists( 'TSP_Easy_Plugins' ) )
 		 *
 		 * @since 1.0
 		 *
-		 * @param TSP_Easy_Plugins_Settings $settings_class Required The settings handler class for this plugin
+		 * @param TSP_Easy_Dev_Settings $settings_class Required The settings handler class for this plugin
 		 *
 		 * @return none
 		 */
 		public function set_settings_handler( $settings_class ) 
 		{
-			if ( is_subclass_of( $settings_class, 'TSP_Easy_Plugins_Settings' ) )
+			if ( is_subclass_of( $settings_class, 'TSP_Easy_Dev_Settings' ) )
 			{
 				$this->settings_class = $settings_class;
 			}//end if
 			else
 			{
-				wp_die ( "The settings handler must be a subclass of TSP_Easy_Plugins_Settings." );
+				wp_die ( "The settings handler must be a subclass of TSP_Easy_Dev_Settings." );
 			}//end else
 		}//end set_settings_handler
 		
@@ -244,7 +243,7 @@ if ( !class_exists( 'TSP_Easy_Plugins' ) )
 		 *
 		 * @param none
 		 *
-		 * @return TSP_Easy_Plugins_Settings object reference
+		 * @return TSP_Easy_Dev_Settings object reference
 		 */
 		public function get_settings_handler() 
 		{
@@ -561,6 +560,6 @@ if ( !class_exists( 'TSP_Easy_Plugins' ) )
 			return;
 		}//end deactivate
 		
-	}//end TSP_Easy_Plugins
+	}//end TSP_Easy_Dev
 }//endif	
 ?>
