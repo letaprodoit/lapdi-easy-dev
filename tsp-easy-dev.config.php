@@ -11,8 +11,9 @@ if (!defined('DS')) {
 
 $easy_dev_settings = get_plugin_data( TSP_EASY_DEV_FILE, false, false );
 
-$easy_dev_settings['name'] 			= TSP_EASY_DEV_NAME;
+$easy_dev_settings['name'] 				= TSP_EASY_DEV_NAME;
 $easy_dev_settings['title'] 			= TSP_EASY_DEV_TITLE;
+$easy_dev_settings['file']	 			= TSP_EASY_DEV_FILE;
 $easy_dev_settings['base_name']	 		= TSP_EASY_DEV_BASE_NAME;
 $easy_dev_settings['plugin_options']	= array(
 	'category_fields'			=> array(),
