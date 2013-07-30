@@ -2,7 +2,7 @@
 if ( !class_exists( 'TSP_Easy_Dev_Data' ) )
 {
 	/**
-	 * Class to manipulate Easy Plugin fields for widget_fields, post_fields, settings_fields and category_fields
+	 * Class to manipulate Easy Dev fields for widget_fields, post_fields, settings_fields and category_fields
 	 * @package 	TSP_Easy_Dev
 	 * @author 		sharrondenice, thesoftwarepeople
 	 * @author 		Sharron Denice, The Software People

@@ -2,7 +2,7 @@
 if ( !class_exists( 'TSP_Easy_Dev' ) )
 {
 	require_once( 'class.easy-dev-data.php' );
-	require_once( 'class.easy-dev-settings.php' );
+	require_once( 'class.easy-dev-options.php' );
 	require_once( 'class.easy-dev-widget.php' );
 	
 	/**
@@ -21,7 +21,7 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 		 *
 		 * @var array
 		 */
-		private $admin_css_files		= array();
+		private $admin_css_files	= array();
 		/**
 		 * An array of JS URLs to include in the admin area
 		 *
@@ -41,28 +41,17 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 		 */
 		private $user_js_files		= array();
 		/**
-		 * The extended TSP_Easy_Dev_Settings class, must be instantiated (ie $my_plugin->settings_class = new TSP_Easy_Dev_Settings_MY_PLUGIN ( $settings );)
-         *
-         * @api
-		 *
-		 * @var TSP_Easy_Dev_Settings
-		 */
-		private $settings_class;
-		/**
-		 * The name of the widget class created by the user, a placeholder because logic can not be handled  
-		 * by this class, the widget class has to be static and and called statically by WordPress
-         *
-         * @api
-		 *
-		 * @var string
-		 */
-		private $widget_class; //TODO: There was no way to aggregate a class for widget it has to be handled by WordPress via a hook, look into this with newer versions of WordPress
-		/**
-		 * The array of global values for the plugin, provided by the USER on instantiation
+		 * An array of short codes that this plugin will process
 		 *
 		 * @var array
 		 */
-		protected $settings 		= array();
+		private $shortcodes			= array();
+		/**
+		 * This plugin's icon URL
+		 *
+		 * @var string
+		 */
+		private $plugin_icon		= null;
 		/**
 		 * The version of WordPress that this plugin requires
          *
@@ -78,7 +67,25 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 		 *
 		 * @var boolean
 		 */
-		public $uses_shortcodes 		= false;
+		public $uses_shortcodes 	= false;
+		/**
+		 * A string that contains the base name (file) of the plugin
+		 *
+		 * @var string
+		 */
+		public $plugin_base_name 	= null;
+		/**
+		 * A string that contains the title of the plugin
+		 *
+		 * @var string
+		 */
+		public $plugin_title 		= null;
+		/**
+		 * A string that contains the name of the plugin
+		 *
+		 * @var string
+		 */
+		public $plugin_name 		= null;
 		/**
 		 * Does the plugin require Smarty?
          *
@@ -86,7 +93,24 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 		 *
 		 * @var boolean
 		 */
-		public $uses_smarty 			= false;
+		public $uses_smarty 		= false;
+		/**
+		 * The extended TSP_Easy_Dev_Options class, must be instantiated (ie $my_plugin->set_options_handler ( new TSP_Easy_Dev_Options_MY_PLUGIN() ))
+         * 
+         * @api
+		 *
+		 * @var TSP_Easy_Dev_Options
+		 */
+		public $options;
+		/**
+		 * The name of the widget class created by the user, a placeholder because logic can not be handled  
+		 * by this class, the widget class has to be static and and called statically by WordPress
+         *
+         * @api
+		 *
+		 * @var string
+		 */
+		public $widget; //TODO: There was no way to aggregate a class for widget it has to be handled by WordPress via a hook, look into this with newer versions of WordPress
 				
 		/**
 		 * Constructor
@@ -97,11 +121,14 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 		 *
 		 * @return none
 		 */
-		public function __construct( $globals ) 
+		public function __construct( $plugin, $required_wordpress_version ) 
 		{
-			// Only use the default globals if they are none in the database
+			$this->required_wordpress_version = $required_wordpress_version;
 			
-			$this->settings	= $globals;
+			// register install/uninstall hooks
+			register_activation_hook( $plugin, 		array( $this, 'activate') );
+			register_deactivation_hook( $plugin, 	array( $this, 'deactivate') );
+			register_uninstall_hook( $plugin, 		$this->uninstall() );
 		}//end __construct
 		
 
@@ -118,25 +145,30 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 		 */
 		 public function run( $plugin )
 		 {
-			// register install/uninstall hooks
-			register_activation_hook( $plugin, 		array( 'TSP_Easy_Dev', 'install') );
-			register_deactivation_hook( $plugin, 	array( 'TSP_Easy_Dev', 'deactivate') );
-			register_uninstall_hook( $plugin, 		array( 'TSP_Easy_Dev', 'uninstall' ) );
-			
-			add_action( 'init', 					array( $this, 'init' ) );
 			add_action( 'admin_init', 				array( $this, 'init' ) );
-			add_action( 'deactivate_' . $plugin, 	array( $this, 'de_init' ) );
 			
 			add_action('admin_enqueue_scripts', 	array( $this, 'enqueue_admin_scripts' ));
 			add_action('wp_enqueue_scripts', 		array( $this, 'enqueue_user_scripts' ));
 
 			// If the plugin uses settings add them
-			if ( $this->settings_class )
+			if ( $this->options )
 			{
-				$this->settings_class->init( $this->settings );
+				if ( $this->widget )
+					$this->options->has_widget_options = true;
+									
+				if ( $this->uses_shortcodes )
+					$this->options->set_value( 'shortcodes', $this->shortcodes );
+
+				if ( !empty( $this->plugin_icon ))
+					$this->options->set_value( 'plugin_icon', $this->plugin_icon );
+
+				$this->options->has_settings_options = true;
+
+				$this->options->init();
+				
 			}//end if
 			
-			if ( $this->settings_class || $this->widget_class )
+			if ( $this->options || $this->widget )
 			{
 				$this->uses_smarty = true; // Smarty required to display HTML on settings and widget pages
 			}//end if
@@ -171,69 +203,45 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 					add_action( 'admin_notices', function (){
 						global $wp_version;
 						
-						$message =  $this->settings['Title'] . " requires WordPress version <strong>{$this->required_wordpress_version} or higher</strong>.<br>You have version <strong>$wp_version</strong> installed.";
+						$message =  $this->plugin_title . " requires WordPress version <strong>{$this->required_wordpress_version} or higher</strong>.<br>You have version <strong>$wp_version</strong> installed.";
 					    ?>
 					    <div class="error">
-					        <p><?php _e( $message, $this->settings['name']  ); ?></p>
+					        <p><?php _e( $message, $this->plugin_name ); ?></p>
 					    </div>
 					    <?php
 					} );
 					
-					deactivate_plugins($this->settings['name'] . DS . $this->settings['name'].'.php');
+					deactivate_plugins( $this->plugin_base_name );
 					
 					return;
 				}//endif
 			}//endif
-			
-			
-			$message = "";
-
-			// If the plugin requries smarty create cache and compiled directories
-			if ( $this->uses_smarty )
-			{
-				$smarty_cache_dir = $this->settings['smarty_cache_dir'];
-				$smarty_compiled_dir = $this->settings['smarty_compiled_dir'];
-				
-				if ( !file_exists( $smarty_cache_dir ) )
-				{
-					if (!@mkdir( $smarty_cache_dir, 0777, true ))
-					{
-						$message .= "<br>Unable to create $smarty_cache_dir directory. Please create this directory manually via FTP or cPanel.";
-					}//end if
-				}//end if
-
-				if ( !file_exists( $smarty_compiled_dir ) )
-				{
-					if (!!@mkdir( $smarty_compiled_dir, 0777, true ))
-					{
-						$message .= "<br>Unable to create $smarty_compiled_dir directory. Please create this directory manually via FTP or cPanel.";
-					}//end if
-				}//end if
-			}//end if
-
-			return $message;
-		}
+		}//end init
 		
 		/**
-		 * Method to intialize the settings class for this plugin
+		 * Method to intialize the options class for this plugin
 		 *
 		 * @since 1.0
 		 *
-		 * @param TSP_Easy_Dev_Settings $settings_class Required The settings handler class for this plugin
+		 * @param TSP_Easy_Dev_Options $options Required The settings handler class for this plugin
+		 * @param boolean $has_post_options Optional Does the plugin save post options?
+		 * @param boolean $has_term_options Optional Does the plugin save term/category options?
 		 *
 		 * @return none
 		 */
-		public function set_settings_handler( $settings_class ) 
+		public function set_options_handler( $options, $has_post_options = false, $has_term_options = false ) 
 		{
-			if ( is_subclass_of( $settings_class, 'TSP_Easy_Dev_Settings' ) )
+			if ( is_subclass_of( $options, 'TSP_Easy_Dev_Options' ) )
 			{
-				$this->settings_class = $settings_class;
+				$this->options 						= $options;
+				$this->options->has_post_options 	= $has_post_options;
+				$this->options->has_term_options 	= $has_term_options;
 			}//end if
 			else
 			{
-				wp_die ( "The settings handler must be a subclass of TSP_Easy_Dev_Settings." );
+				wp_die ( "The settings handler must be a subclass of TSP_Easy_Dev_Options." );
 			}//end else
-		}//end set_settings_handler
+		}//end set_options_handler
 		
 		
 		/**
@@ -243,25 +251,25 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 		 *
 		 * @param none
 		 *
-		 * @return TSP_Easy_Dev_Settings object reference
+		 * @return TSP_Easy_Dev_Options object reference
 		 */
-		public function get_settings_handler() 
+		public function get_options_handler() 
 		{
-			return $this->settings_class;
+			return $this->options;
 		}//end get_settings_handler
 		
 		/**
-		 * Method to intialize the settings class for this plugin
+		 * Method to intialize the options class for this plugin
 		 *
 		 * @since 1.0
 		 *
-		 * @param string $widget_class Required The NAME of the widget handler class for this plugin
+		 * @param string $widget Required The NAME of the widget handler class for this plugin
 		 *
 		 * @return none
 		 */
-		public function set_widget_handler( $widget_class ) 
+		public function set_widget_handler( $widget ) 
 		{
-			$this->widget_class = $widget_class;
+			$this->widget = $widget;
 		}//end set_widget_handler
 		
 		/**
@@ -275,52 +283,9 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 		 */
 		public function get_widget_handler() 
 		{
-			return $this->widget_class;
+			return $this->widget;
 		}//end get_widget_handler
 
-		/**
-		 * Function to de-initialize the plugin on uninstall
-		 *
-		 * @ignore - Must be public because used in WordPress hooks
-		 *
-		 * @since 1.0
-		 *
-		 * @param none
-		 *
-		 * @return none (extend to add additional checks)
-		 */
-		public function de_init()
-		{
-			if ( $this->settings_class )
-				$this->settings_class->deregister_settings();
-
-			$message = "";
-			
-			// If the plugin requries smarty create cache and compiled directories
-			if ( $this->uses_smarty )
-			{
-				$smarty_cache_dir = $this->settings['smarty_cache_dir'];
-				$smarty_compiled_dir = $this->settings['smarty_compiled_dir'];
-
-				if ( file_exists( $smarty_cache_dir ) )
-				{
-					if (!@rmdir( $smarty_cache_dir ))
-					{
-						$message .= "<br>Unable to remove $smarty_cache_dir directory. Please remove this directory manually via FTP or cPanel.";
-					}//end if
-				}//end if
-				
-				if ( file_exists( $smarty_compiled_dir ) )
-				{
-					if (!@rmdir( $smarty_compiled_dir ))
-					{
-						$message .= "<br>Unable to remove $smarty_compiled_dir directory. Please remove this directory manually via FTP or cPanel.";
-					}//end if
-				}//end if
-			}//end if
-			
-			return $message;
-		}//end deinit
 
 		/**
 		 * Add styles to the queue
@@ -373,7 +338,7 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 		 }//end add_css
 
 		/**
-		 * Add short codes for processing to the widget
+		 * Add short codes for processing
 		 *
 		 * @api
 		 *
@@ -387,12 +352,12 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 		 {
 			if ( $this->uses_shortcodes )
 			{
-				$this->settings['shortcodes'][] = $tag;
+				$this->shortcodes[] = $tag;
 			}//endif
 		 }//end add_shortcode
 
 		/**
-		 * Set the plugin icon (used by settings on run)
+		 * Set the plugin icon (used by options class on run)
 		 *
 		 * @api
 		 *
@@ -404,7 +369,7 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 		 */
 		public function set_plugin_icon( $icon )
 		{
-			$this->settings['plugin_icon'] =  $icon;
+			$this->plugin_icon = $icon;
 		}//end set_plugin_icon
 
 		/**
@@ -479,55 +444,7 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 				wp_enqueue_script( $tag );
 			}//endforeach
 		}//end enqueue_scripts
-
-		/**
-		 * Return the current global settings
-		 *
-		 * @api
-		 *
-		 * @since 1.0
-		 *
-		 * @param none
-		 *
-		 * @return array $this->settings current global settings
-		 */
-		 public function get_settings()
-		 {
-		 	return $this->settings;
-		 }//end get_settings
-		 
-		/**
-		 * Optional implementation to install plugin - can be extended by subclasses, not to be called directly but extended by subclasses
-		 *
-		 * @api
-		 *
-		 * @since 1.0
-		 *
-		 * @param none
-		 *
-		 * @return string $message Optional any messages generated by install
-		 */
-		static public function install()
-		{
-			return;
-		}//end install
-		
-		/**
-		 * Optional implementation to uninstall plugin - can be extended by subclasses, not to be called directly but extended by subclasses
-		 *
-		 * @api
-		 *
-		 * @since 1.0
-		 *
-		 * @param none
-		 *
-		 * @return string $message Optional any messages generated by uninstall
-		 */
-		static public function uninstall()
-		{
-			return;
-		}//end uninstall
-		
+		 				
 		/**
 		 * Optional implementation to activate plugin - can be extended by subclasses, not to be called directly but extended by subclasses
 		 *
@@ -539,9 +456,34 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 		 *
 		 * @return string $message Optional any messages generated by deactivation
 		 */
-		static public function activate()
+		public function activate()
 		{
-			return;
+			$message = "";
+
+			// If the plugin requries smarty create cache and compiled directories
+			if ( $this->uses_smarty )
+			{
+				$smarty_cache_dir = $this->options->get_value('smarty_cache_dir');
+				$smarty_compiled_dir = $this->options->get_value('smarty_compiled_dir');
+				
+				if ( !file_exists( $smarty_cache_dir ) )
+				{
+					if (!@mkdir( $smarty_cache_dir, 0777, true ))
+					{
+						$message .= "<br>Unable to create $smarty_cache_dir directory. Please create this directory manually via FTP or cPanel.";
+					}//end if
+				}//end if
+
+				if ( !file_exists( $smarty_compiled_dir ) )
+				{
+					if (!!@mkdir( $smarty_compiled_dir, 0777, true ))
+					{
+						$message .= "<br>Unable to create $smarty_compiled_dir directory. Please create this directory manually via FTP or cPanel.";
+					}//end if
+				}//end if
+			}//end if
+
+			return $message;
 		}//end activate
 		
 		/**
@@ -555,11 +497,55 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 		 *
 		 * @return string $message Optional any messages generated by deactivation
 		 */
-		static public function deactivate()
+		public function deactivate()
 		{
-			return;
+			$message = "";
+			
+			// If the plugin requries smarty create cache and compiled directories
+			if ( $this->uses_smarty )
+			{
+				$smarty_cache_dir 		= $this->options->get_value('smarty_cache_dir');
+				$smarty_compiled_dir 	= $this->options->get_value('smarty_compiled_dir');
+
+				if ( file_exists( $smarty_cache_dir ) )
+				{
+					if (!@rmdir( $smarty_cache_dir ))
+					{
+						$message .= "<br>Unable to remove $smarty_cache_dir directory. Please remove this directory manually via FTP or cPanel.";
+					}//end if
+				}//end if
+				
+				if ( file_exists( $smarty_compiled_dir ) )
+				{
+					if (!@rmdir( $smarty_compiled_dir ))
+					{
+						$message .= "<br>Unable to remove $smarty_compiled_dir directory. Please remove this directory manually via FTP or cPanel.";
+					}//end if
+				}//end if
+			}//end if
+			
+			return $message;
 		}//end deactivate
 		
+
+		/**
+		 * Optional implementation to uninstall plugin - can be extended by subclasses, not to be called directly but extended by subclasses
+		 *
+		 * @api
+		 *
+		 * @since 1.0
+		 *
+		 * @param none
+		 *
+		 * @return string $message Optional any messages generated by uninstall
+		 */
+		public function uninstall()
+		{
+			if ( $this->options )
+			{
+				$this->options->deregister_options();
+			}//end if
+		}//end uninstall
 	}//end TSP_Easy_Dev
 }//endif	
 ?>

@@ -13,11 +13,13 @@ if ( !class_exists( 'TSP_Easy_Dev_Widget' ) )
 	abstract class TSP_Easy_Dev_Widget extends WP_Widget 
 	{
 		/**
-		 * The array of global values for the plugin
+		 * The reference to the TSP_Easy_Dev_Options class
+         * 
+         * @api
 		 *
-		 * @var array
+		 * @var TSP_Easy_Dev_Options
 		 */
-		protected $settings = array();
+		protected $options;
 		
 		/**
 		 * Constructor - Inside the constructor of ALL TSP_Easy_Dev_Widget subclasses a call to the add_filter (expand for more details)
@@ -36,27 +38,27 @@ if ( !class_exists( 'TSP_Easy_Dev_Widget' ) )
 		 *
 		 * @return none
 		 */
-		public function __construct( $globals ) 
+		public function __construct( $options ) 
 		{
-			$this->settings = $globals;
+			$this->options = $options;
 			
 	        // Get widget options
 	        $widget_options  = array(
-	            'classname'  			=> $this->settings['name'],
-	            'description'   		=> __( $this->settings['Description'], $this->settings['name'] )
+	            'classname'  			=> $this->options->get_value('name'),
+	            'description'   		=> __( $this->options->get_value('Description'), $this->options->get_value('name') )
 	        );
 	        
 	        // Get control options
 	        $control_options = array(
-	            'width' 				=> $this->settings['widget_width'],
-	            'height'				=> $this->settings['widget_height'],
-	            'id_base' 				=> $this->settings['name'],
+	            'width' 				=> $this->options->get_value('widget_width'),
+	            'height'				=> $this->options->get_value('widget_height'),
+	            'id_base' 				=> $this->options->get_value('name'),
 	        );
 
 			$this->load_shortcodes();
 
 	        // Create the widget
-			parent::__construct( $this->settings['name'], __( $this->settings['Name'], $this->settings['name'] ) , $widget_options, $control_options);
+			parent::__construct( $this->options->get_value('name'), __( $this->options->get_value('Name'), $this->options->get_value('name') ) , $widget_options, $control_options);
 		}//end __construct
 	
 		/**
@@ -73,8 +75,8 @@ if ( !class_exists( 'TSP_Easy_Dev_Widget' ) )
 		 */
 		public function update( $new_instance, $old_instance ) 
 		{
-			$plugin_data = get_option( $this->settings['option_name'] );
-			$defaults = new TSP_Easy_Dev_Data ( $plugin_data['widget_fields'] );
+			$widget_fields = get_option( $this->options->get_value('widget-fields-option-name') );
+			$defaults = new TSP_Easy_Dev_Data ( $widget_fields );
 
 			if ( !empty ( $new_instance ))
 			{
@@ -104,8 +106,8 @@ if ( !class_exists( 'TSP_Easy_Dev_Widget' ) )
 		 */
 		public function widget( $args, $instance )
 		{
-			$plugin_data = get_option( $this->settings['option_name'] );
-			$defaults = new TSP_Easy_Dev_Data ( $plugin_data['widget_fields'] );
+			$widget_fields = get_option( $this->options->get_value('widget-fields-option-name') );
+			$defaults = new TSP_Easy_Dev_Data ( $widget_fields );
 			
 			if ( !empty ( $instance ))
 			{
@@ -151,8 +153,8 @@ if ( !class_exists( 'TSP_Easy_Dev_Widget' ) )
 		 */
 	 	public function form( $instance )
 	 	{
-			$plugin_data = get_option( $this->settings['option_name'] );
-			$defaults = new TSP_Easy_Dev_Data ( $plugin_data['widget_fields'] );
+			$widget_fields = get_option( $this->options->get_value('widget-fields-option-name') );
+			$defaults = new TSP_Easy_Dev_Data ( $widget_fields );
 
 			if ( !empty ( $instance ) )
 			{
@@ -179,10 +181,12 @@ if ( !class_exists( 'TSP_Easy_Dev_Widget' ) )
 		 */
 	 	private function load_shortcodes()
 	 	{
-			if ( !empty ($this->settings['shortcodes']) )
+			$shortcodes = $this->options->get_value('shortcodes');
+			
+			if ( !empty ( $shortcodes ) )
 			{
 				// add all the associated shortcodes associated with this widget
-				foreach ( $this->settings['shortcodes'] as $code )
+				foreach ( $shortcodes as $code )
 				{
 					add_shortcode($code, array( $this, 'process_shortcode') );
 				}//endforeach
@@ -204,10 +208,10 @@ if ( !class_exists( 'TSP_Easy_Dev_Widget' ) )
 		public function process_shortcode( $attributes )
 		{
 			if ( is_feed() )
-				return '[' . $this->settings['name'] . ']';
+				return '[' . $this->options->get_value('name') . ']';
 						
-			$plugin_data = get_option( $this->settings['option_name'] );
-			$defaults = new TSP_Easy_Dev_Data ( $plugin_data['widget_fields'] );
+			$widget_fields = get_option( $this->options->get_value('widget-fields-option-name') );
+			$defaults = new TSP_Easy_Dev_Data ( $widget_fields );
 
 			if (! empty ( $attributes) )
 			{

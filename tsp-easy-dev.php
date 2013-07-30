@@ -53,13 +53,25 @@ define('TSP_EASY_DEV_URL', 					plugin_dir_url( __FILE__ ) );
 *
 * @var string
 */
-define('TSP_EASY_DEV_NAME', 					'tsp-easy-dev-pro');
+define('TSP_EASY_DEV_NAME', 					'tsp-easy-dev');
 /**
 * Every plugin that uses Easy Dev must define a UNIQUE variable that holds the plugin's name (not description but plugin title)
 *
 * @var string
 */
-define('TSP_EASY_DEV_TITLE', 					'TSP Easy Dev (Pro)');
+define('TSP_EASY_DEV_TITLE', 					'TSP Easy Dev');
+/**
+* Every plugin that uses Easy Dev must define a UNIQUE variable that holds the plugin's required wordpress version
+*
+* @var string
+*/
+define('TSP_EASY_DEV_REQ_VERSION', 				"3.5.1");
+/**
+* Every plugin that uses Easy Dev must define a UNIQUE variable that holds the plugin's base file name
+*
+* @var string
+*/
+define('TSP_EASY_DEV_BASE_NAME', 				TSP_EASY_DEV_NAME . '/'. TSP_EASY_DEV_NAME . '.php' );
 
 /**
  * @ignore
@@ -137,9 +149,6 @@ define('TSP_EASY_DEV_ASSETS_URL',				TSP_EASY_DEV_URL . 'assets/');
 	define('TSP_EASY_DEV_ASSETS_IMAGES_URL',	TSP_EASY_DEV_ASSETS_URL . 'images/');
 /* @end */
 
-require_once( TSP_EASY_DEV_PATH . 'tsp-easy-dev.config.php');
-require_once( TSP_EASY_DEV_CLASS_PATH  . 'class.easy-dev.php');
-
 // Store smarty cache and compiled directories
 $upload_dir	= wp_upload_dir();
 /**
@@ -147,16 +156,23 @@ $upload_dir	= wp_upload_dir();
  *
  * @var string
  */
-define('TSP_EASY_DEV_TMP_PATH',					$upload_dir['basedir'] . DS . 'tsp_plugins' . DS );
+define('TSP_EASY_DEV_TMP_PATH',					$upload_dir['basedir'] . '/tsp_plugins/' );
 
+
+global $easy_dev_settings;
+
+require_once( TSP_EASY_DEV_PATH . 'tsp-easy-dev.config.php');
+require_once( TSP_EASY_DEV_CLASS_PATH  . 'class.easy-dev.php');
 //--------------------------------------------------------
 // initialize the plugin
 //--------------------------------------------------------
-global $easy_dev_settings;
 
-$easy_dev 										= new TSP_Easy_Dev( $easy_dev_settings );
+$easy_dev 										= new TSP_Easy_Dev( __FILE__ , TSP_EASY_DEV_REQ_VERSION );
 
-$easy_dev->required_wordpress_version 			= "3.5.1";
+// If the plugin does not require settings the following three variables must be set
+$easy_dev->plugin_title							= $easy_dev_settings['title'];
+$easy_dev->plugin_name							= $easy_dev_settings['name'];
+$easy_dev->plugin_base_name						= $easy_dev_settings['base_name'];
 
 $easy_dev->run( __FILE__ );
 ?>
