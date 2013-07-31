@@ -233,7 +233,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 						__( $this->get_value('title_short'), $this->get_value('name') ), 
 						'manage_options', 
 						$menu_slug, 
-						array( $this, 'display_plugin_settings_page' ), 
+						array( $this, 'display_plugin_options_page' ), 
 						$this->menu_icon, 
 						$this->get_value('menu_pos'));
 				}//end if
@@ -245,7 +245,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 						 __( $this->get_value('title_short'), $this->get_value('name') ), 
 						 'manage_options', 
 						 $menu_slug, 
-						 array( $this, 'display_plugin_settings_page' ));
+						 array( $this, 'display_plugin_options_page' ));
 				}//end else
 			}//endif
 		}//end add_admin_menu
@@ -362,7 +362,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 		}
 		
 		/**
-		 * Must be implemented by the plugin to include a settings page for the plugin, if not required implement empty
+		 * Must be implemented by the plugin to include a options page for the plugin, if not required implement empty. Best used for displaying informational data to user (ie Listing company information)
 		 *
 		 * @api
 		 *
@@ -375,7 +375,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 		abstract public function display_parent_page();
 
 		/**
-		 * Must be implemented by the plugin to include a settings page for the plugin, if not required implement empty
+		 * Must be implemented by the plugin to include a options page for the plugin, if not required implement empty
 		 *
 		 * @api
 		 *
@@ -385,7 +385,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 		 *
 		 * @return none
 		 */
-		abstract public function display_plugin_settings_page();
+		abstract public function display_plugin_options_page();
 		
 	}//end TSP_Easy_Dev_Options
 }//endif

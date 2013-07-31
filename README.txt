@@ -37,6 +37,7 @@ Includes all of the features of the standard version AND…
 * Add form fields (metadata) to categories
 * Check for `incompatible plugins` on activate
 * Check for `required plugins` on activate
+* Deregister annoying scripts
 * Display `favicons` (ie Twitter, Facebook, GitHub, thumbs, folders, etc) easily in your html
 * `Format your html` into columns on the fly
 * Additional images and resources

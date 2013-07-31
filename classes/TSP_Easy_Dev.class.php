@@ -29,6 +29,12 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 		 */
 		public $uses_shortcodes 	= false;
 		/**
+		 * A string that contains the absolute path and file name of the plugin
+		 *
+		 * @var string
+		 */
+		public $plugin_file 		= null;
+		/**
 		 * A string that contains the base name (file) of the plugin
 		 *
 		 * @var string
@@ -149,8 +155,6 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 		 */
 		 public function run( $plugin )
 		 {
-			add_action( 'admin_init', 				array( $this, 'init' ) );
-			
 			add_action('admin_enqueue_scripts', 	array( $this, 'enqueue_admin_scripts' ));
 			add_action('wp_enqueue_scripts', 		array( $this, 'enqueue_user_scripts' ));
 
@@ -175,7 +179,71 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 
 				$this->options->init();
 				
+				if ( !isset ($this->plugin_title) )
+				{
+					$this->plugin_title = $this->options->get_value( 'title' );
+				}//end if
+				
+				if ( !isset ($this->plugin_name) )
+				{
+					$this->plugin_name = $this->options->get_value( 'name' );
+				}//end if
+				
+				if ( !isset ($this->plugin_file) )
+				{
+					$this->plugin_file = $this->options->get_value( 'file' );
+				}//end if
+				
+				if ( !isset ($this->plugin_base_name) )
+				{
+					$this->plugin_base_name = $this->options->get_value( 'base_name' );
+				}//end if
+				
 			}//end if
+			else
+			{
+				$message = "";
+				
+				//Check to make sure that the required variables are set
+				if ( !isset ($this->plugin_title) )
+				{
+					$message .= "Since you are not extending the `TSP_Easy_Dev_Options` or `TSP_Easy_Dev_Pro_Options` classes, you must set <strong>plugin_title</strong> in your plugins file (Example: \$my_plugin->plugin_title = 'My Plugin').";
+				}//end if
+				
+				if ( !isset ($this->plugin_name) )
+				{
+					$message .= "Since you are not extending the `TSP_Easy_Dev_Options` or `TSP_Easy_Dev_Pro_Options` classes, you must set <strong>plugin_name</strong> in your plugins file (Example: \$my_plugin->plugin_name = 'my-plugin').";
+				}//end if
+				
+				if ( !isset ($this->plugin_file) )
+				{
+					$message .= "Since you are not extending the `TSP_Easy_Dev_Options` or `TSP_Easy_Dev_Pro_Options` classes, you must set <strong>plugin_file</strong> in your plugins file (Example: \$my_plugin->plugin_name = __FILE__ ).";
+				}//end if
+				
+				if ( !isset ($this->plugin_base_name) )
+				{
+					$message .= "Since you are not extending the `TSP_Easy_Dev_Options` or `TSP_Easy_Dev_Pro_Options` classes, you must set <strong>plugin_base_name</strong> in your plugins file (Example: \$my_plugin->plugin_base_name = plugin_basename( __FILE__ ) ).";
+				}//end if
+				
+				if (!empty( $message ))
+				{
+					$message .= "<br>See <a href='http://lab.thesoftwarepeople.com/tracker/wiki/wordpress-ed:MainPage' target='_blank'>docs</a> for more details.";
+
+					add_action( 'admin_notices', function (){
+						global $message;
+					    ?>
+					    <div class="error">
+					        <p><?php echo $message; ?></p>
+					    </div>
+					    <?php
+					} );
+					
+					return;
+				}//end
+				
+			}//end else
+			
+			add_action( 'admin_init', 				array( $this, 'init' ) );
 		 }//end setup
 
 

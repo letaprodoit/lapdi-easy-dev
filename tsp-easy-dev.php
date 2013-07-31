@@ -169,12 +169,13 @@ include( TSP_EASY_DEV_PATH . 'TSP_Easy_Dev.config.php');
 // initialize the plugin
 //--------------------------------------------------------
 
-$easy_dev 										= new TSP_Easy_Dev( __FILE__ , TSP_EASY_DEV_REQ_VERSION );
+$easy_dev 										= new TSP_Easy_Dev( TSP_EASY_DEV_FILE , TSP_EASY_DEV_REQ_VERSION );
 
 // If the plugin does not require settings the following three variables must be set
 $easy_dev->plugin_title							= $easy_dev_settings['title'];
 $easy_dev->plugin_name							= $easy_dev_settings['name'];
+$easy_dev->plugin_file							= $easy_dev_settings['file'];
 $easy_dev->plugin_base_name						= $easy_dev_settings['base_name'];
 
-$easy_dev->run( __FILE__ );
+$easy_dev->run( TSP_EASY_DEV_FILE );
 ?>
