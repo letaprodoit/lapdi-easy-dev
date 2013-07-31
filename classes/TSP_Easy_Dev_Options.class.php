@@ -13,11 +13,17 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 	abstract class TSP_Easy_Dev_Options
 	{
 		/**
+		 * Does the plugin need a parent page?
+		 *
+		 * @var boolean
+		 */
+		public $has_parent_page 		= false;
+		/**
 		 * Does the plugin save settings options?
 		 *
 		 * @var boolean
 		 */
-		public $has_settings_options 	= false;
+		public $has_options_page 	= false;
 		/**
 		 * Does the plugin save widget options?
 		 *
@@ -59,14 +65,17 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 		 * @since 1.0
 		 *
 		 * @param array $settings Required the default plugin settings
+		 * @param boolean $has_parent_page Optional does the plugin have a parent/company page - default true
+		 * @param boolean $has_options_page Optional does the plugin have an options page - default true
 		 *
 		 * @return none
 		 */
-		public function __construct( $settings, $has_settings_options = true ) 
+		public function __construct( $settings, $has_parent_page = true, $has_options_page = true ) 
 		{
 			$this->settings				= $settings;
 			
-			$this->has_settings_options = $has_settings_options;
+			$this->has_options_page 	= $has_options_page;
+			$this->has_parent_page 		= $has_parent_page;
 		}//end __construct
 				
 		/**
@@ -80,11 +89,11 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 		 */
 		public function init ()
 		{
+			$this->set_menu_icon( $this->get_value('plugin_icon') );
 			add_action( 'admin_menu', 			array( $this, 'add_admin_menu' ) );
 			
-			if ( $this->has_settings_options )
+			if ( $this->has_options_page )
 			{
-				$this->set_menu_icon( $this->get_value('plugin_icon') );
 				add_filter( 'plugin_action_links', 	array( $this, 'add_settings_link'), 10, 2 );
 			}//end if
 			
@@ -129,7 +138,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 			}//end if
 
 			// if option was not found this means the plugin is being installed
-			if( $this->has_settings_options && !get_option( $this->get_value('settings-fields-option-name') ) ) 
+			if( $this->has_options_page && !get_option( $this->get_value('settings-fields-option-name') ) ) 
 			{
 				add_option( $this->get_value('settings-fields-option-name'), $this->get_value('settings_fields') );
 			}//end if
@@ -162,7 +171,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 			}//end if
 
 			// delete settings fields & data
-			if( $this->has_settings_options && get_option( $this->get_value( 'settings-fields-option-name' ) ) )
+			if( $this->has_options_page && get_option( $this->get_value( 'settings-fields-option-name' ) ) )
 			{
 				delete_option( $this->get_value( 'settings-fields-option-name' ) );
 			}//end if
@@ -209,7 +218,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 			$parent_slug = $this->get_value('parent_name');
 			$menu_slug = $this->get_value('name').'.php';
 
-			if ( !menu_page_url( $parent_slug, false ) )
+			if ( !menu_page_url( $parent_slug, false ) && $this->has_parent_page )
 			{
 				// Make sure that each setting is nested into a company
 				// menu area
@@ -222,7 +231,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 					$this->get_value('menu_pos'));
 			}//endif
 					
-			if ( !menu_page_url( $menu_slug, false ) )
+			if ( !menu_page_url( $menu_slug, false ) && $this->has_options_page )
 			{				
 				// If there is to be no parent menu then add the settings page as the main page
 				if ( empty ( $parent_slug ) )

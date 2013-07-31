@@ -165,17 +165,17 @@ define('TSP_EASY_DEV_TMP_PATH',					$upload_dir['basedir'] . '/tsp_plugins/' );
 global $easy_dev_settings;
 
 include( TSP_EASY_DEV_PATH . 'TSP_Easy_Dev.config.php');
+include( TSP_EASY_DEV_PATH . 'TSP_Easy_Dev.extend.php');
 //--------------------------------------------------------
 // initialize the plugin
 //--------------------------------------------------------
 
 $easy_dev 										= new TSP_Easy_Dev( TSP_EASY_DEV_FILE , TSP_EASY_DEV_REQ_VERSION );
 
-// If the plugin does not require settings the following three variables must be set
-$easy_dev->plugin_title							= $easy_dev_settings['title'];
-$easy_dev->plugin_name							= $easy_dev_settings['name'];
-$easy_dev->plugin_file							= $easy_dev_settings['file'];
-$easy_dev->plugin_base_name						= $easy_dev_settings['base_name'];
+// Display the parent page but not the options page for this plugin
+$easy_dev->set_options_handler( new TSP_Easy_Dev_Options_Easy_Dev( $easy_dev_settings, true, false ) );
+
+$easy_dev->set_plugin_icon( TSP_EASY_DEV_ASSETS_IMAGES_URL . 'tsp_icon_16.png' );
 
 $easy_dev->run( TSP_EASY_DEV_FILE );
 ?>
