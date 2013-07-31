@@ -1,6 +1,6 @@
 === TSP Easy Dev ===
 Contributors: thesoftwarepeople,sharrondenice
-Donate link: http://www.thesoftwarepeople.com/software/plugins/wordpress/easy-dev-pro-for-wordpress.html
+Donate link: http://www.thesoftwarepeople.com/software/plugins/wordpress/easy-dev-for-wordpress.html
 Tags: API, OO, object oriented, learn, wordpress, add_filter, add_action, tutorial, plugin, application, interface, development, developer
 Requires at least: 3.5.1
 Tested up to: 3.5.6

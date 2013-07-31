@@ -13,13 +13,13 @@ if ( !class_exists( 'TSP_Easy_Dev_Smarty' ) )
 	class TSP_Easy_Dev_Smarty extends Smarty
 	{
 		/**
-		 * A boolean to turn debugging on for this class
+		 * A boolean to turn debugging on for this class - used in Smarty so must be public
 		 *
 		 * @ignore
 		 *
 		 * @var boolean
 		 */
-		private $debugging = false;
+		public $debugging = false;
 
 		/**
 		 * Constructor

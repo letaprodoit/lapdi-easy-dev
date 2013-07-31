@@ -80,12 +80,11 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 		 */
 		public function init ()
 		{
-			$this->set_menu_icon( $this->get_value('plugin_icon') );
-			
 			add_action( 'admin_menu', 			array( $this, 'add_admin_menu' ) );
 			
 			if ( $this->has_settings_options )
 			{
+				$this->set_menu_icon( $this->get_value('plugin_icon') );
 				add_filter( 'plugin_action_links', 	array( $this, 'add_settings_link'), 10, 2 );
 			}//end if
 			
@@ -265,13 +264,15 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 		{
 			$return_value = null;
 			
-			if (empty ( $arr ))
+			// if the loop is just starting and there is no array value set
+			// then we are being told to loop through our settings
+			if ($loop_count == 0 && empty ( $arr ))
 			{
 				$arr = $this->settings;
 			}//end if
 			
 			// if $arr is currently set to the find_key then return the array
-			if ( isset ( $arr[$find_key] ) )
+			if ( array_key_exists( $find_key, $arr ) )
 			{
 				if ( $this->debugging )
 				{
@@ -286,11 +287,11 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 				{ 
 					// in the previous condition statements we checked the first level of the array for the key
 					// since it was not found we only want to look at the values that are arrays now
-					if ( is_array( $value ))
+					if ( is_array( $value ) && !empty ( $value ))
 					{
 						// If the find_key was found in the second level then return it else
 						// we need to recurse the  array
-						if ( isset ( $value[$find_key] ))
+						if ( array_key_exists( $find_key, $value ) )
 						{
 							if ( $this->debugging )
 							{
@@ -306,7 +307,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 							{
 								d( "Looking for $find_key in the $key array..." );
 							}//end if
-							$this->get_value( $find_key, $value, $loop_count++ );
+							$return_value = $this->get_value( $find_key, $value, $loop_count++ );
 						}//end else
 					}//end if
 				}//end foreach
