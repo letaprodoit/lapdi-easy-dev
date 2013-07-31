@@ -35,52 +35,56 @@ if (class_exists('TSP_Easy_Dev'))
 *
 * @var string
 */
-define('TSP_EASY_DEV_FILE', 				__FILE__ );
+define('TSP_EASY_DEV_FILE', 					__FILE__ );
 /**
 * Every plugin that uses Easy Dev must define a UNIQUE variable that holds the plugin's absolute path
 *
 * @var string
 */
-define('TSP_EASY_DEV_PATH',					plugin_dir_path( __FILE__ ) );
+define('TSP_EASY_DEV_PATH',						plugin_dir_path( __FILE__ ) );
 /**
 * Every plugin that uses Easy Dev must define a UNIQUE variable that holds the plugin's URL
 *
 * @var string
 */
-define('TSP_EASY_DEV_URL', 					plugin_dir_url( __FILE__ ) );
+define('TSP_EASY_DEV_URL', 						plugin_dir_url( __FILE__ ) );
 /**
 * Every plugin that uses Easy Dev must define a UNIQUE variable that holds the plugin's base file name
 *
 * @var string
 */
-define('TSP_EASY_DEV_BASE_NAME', 			plugin_basename( __FILE__ ) );
+define('TSP_EASY_DEV_BASE_NAME', 				plugin_basename( __FILE__ ) );
 /**
 * Every plugin that uses Easy Dev must define a UNIQUE variable that holds the plugin's name/id
 *
 * @var string
 */
-define('TSP_EASY_DEV_NAME', 				'tsp-easy-dev');
+define('TSP_EASY_DEV_NAME', 					'tsp-easy-dev');
 /**
 * Every plugin that uses Easy Dev must define a UNIQUE variable that holds the plugin's name (not description but plugin title)
 *
 * @var string
 */
-define('TSP_EASY_DEV_TITLE', 				'TSP Easy Dev');
+define('TSP_EASY_DEV_TITLE', 					'TSP Easy Dev');
 /**
 * Every plugin that uses Easy Dev must define a UNIQUE variable that holds the plugin's required wordpress version
 *
 * @var string
 */
-define('TSP_EASY_DEV_REQ_VERSION', 			"3.5.1");
+define('TSP_EASY_DEV_REQ_VERSION', 				"3.5.1");
 
 /**
  * @ignore
  */
-define('TSP_EASY_DEV_CLASS_PATH',			TSP_EASY_DEV_PATH . 'classes/');
+define('TSP_EASY_DEV_CLASS_PATH',				TSP_EASY_DEV_PATH . 'classes/');
 /**
  * @ignore
  */
-define('TSP_EASY_DEV_LIB_PATH',				TSP_EASY_DEV_CLASS_PATH . 'lib/');
+define('TSP_EASY_DEV_LIB_PATH',					TSP_EASY_DEV_CLASS_PATH . 'lib/');
+/**
+ * @ignore
+ */
+define('TSP_EASY_DEV_INCLUDES_PATH',			TSP_EASY_DEV_CLASS_PATH . 'includes/');
 
 /* @group Assets */
 /**
@@ -88,7 +92,7 @@ define('TSP_EASY_DEV_LIB_PATH',				TSP_EASY_DEV_CLASS_PATH . 'lib/');
  *
  * @ignore
  */
-define('TSP_EASY_DEV_ASSETS_PATH',			TSP_EASY_DEV_PATH . 'assets/');
+define('TSP_EASY_DEV_ASSETS_PATH',				TSP_EASY_DEV_PATH . 'assets/');
 
 // Absolute directory paths
 	/**
