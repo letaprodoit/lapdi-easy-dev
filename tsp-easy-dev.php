@@ -49,6 +49,12 @@ define('TSP_EASY_DEV_PATH',					plugin_dir_path( __FILE__ ) );
 */
 define('TSP_EASY_DEV_URL', 					plugin_dir_url( __FILE__ ) );
 /**
+* Every plugin that uses Easy Dev must define a UNIQUE variable that holds the plugin's base file name
+*
+* @var string
+*/
+define('TSP_EASY_DEV_BASE_NAME', 			plugin_basename( __FILE__ ) );
+/**
 * Every plugin that uses Easy Dev must define a UNIQUE variable that holds the plugin's name/id
 *
 * @var string
@@ -66,12 +72,6 @@ define('TSP_EASY_DEV_TITLE', 				'TSP Easy Dev');
 * @var string
 */
 define('TSP_EASY_DEV_REQ_VERSION', 			"3.5.1");
-/**
-* Every plugin that uses Easy Dev must define a UNIQUE variable that holds the plugin's base file name
-*
-* @var string
-*/
-define('TSP_EASY_DEV_BASE_NAME', 			TSP_EASY_DEV_NAME . '/'. TSP_EASY_DEV_NAME . '.php' );
 
 /**
  * @ignore
@@ -80,7 +80,7 @@ define('TSP_EASY_DEV_CLASS_PATH',			TSP_EASY_DEV_PATH . 'classes/');
 /**
  * @ignore
  */
-define('TSP_EASY_DEV_LIB_PATH',				TSP_EASY_DEV_PATH . 'lib/');
+define('TSP_EASY_DEV_LIB_PATH',				TSP_EASY_DEV_CLASS_PATH . 'lib/');
 
 /* @group Assets */
 /**
@@ -158,11 +158,9 @@ $upload_dir	= wp_upload_dir();
  */
 define('TSP_EASY_DEV_TMP_PATH',					$upload_dir['basedir'] . '/tsp_plugins/' );
 
-
 global $easy_dev_settings;
 
-require_once( TSP_EASY_DEV_PATH . 'tsp-easy-dev.config.php');
-require_once( TSP_EASY_DEV_CLASS_PATH  . 'class.easy-dev.php');
+include( TSP_EASY_DEV_PATH . 'TSP_Easy_Dev.config.php');
 //--------------------------------------------------------
 // initialize the plugin
 //--------------------------------------------------------

@@ -20,6 +20,14 @@ if ( !class_exists( 'TSP_Easy_Dev_Widget' ) )
 		 * @var TSP_Easy_Dev_Options
 		 */
 		protected $options;
+		/**
+		 * A boolean to turn debugging on for this class
+		 *
+		 * @ignore
+		 *
+		 * @var boolean
+		 */
+		private $debugging = false;
 		
 		/**
 		 * Constructor - Inside the constructor of ALL TSP_Easy_Dev_Widget subclasses a call to the add_filter (expand for more details)

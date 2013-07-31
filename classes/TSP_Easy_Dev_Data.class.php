@@ -28,7 +28,15 @@ if ( !class_exists( 'TSP_Easy_Dev_Data' ) )
 		 *
 		 * @var array
 		 */
-		private $fields = array();
+		private $fields 	= array();
+		/**
+		 * A boolean to turn debugging on for this class
+		 *
+		 * @ignore
+		 *
+		 * @var boolean
+		 */
+		private $debugging 	= false;
 		
 		/**
 		 * Constructor

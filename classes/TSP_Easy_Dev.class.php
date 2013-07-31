@@ -1,10 +1,6 @@
 <?php	
 if ( !class_exists( 'TSP_Easy_Dev' ) )
 {
-	require_once( 'class.easy-dev-data.php' );
-	require_once( 'class.easy-dev-options.php' );
-	require_once( 'class.easy-dev-widget.php' );
-	
 	/**
 	 * API implementations for TSP Easy Dev Pro, Use TSP Easy Dev package to easily create, manage and display wordpress plugins
 	 * @package 	TSP_Easy_Dev
@@ -16,42 +12,6 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 	 */
 	class TSP_Easy_Dev
 	{
-		/**
-		 * An array of CSS URLs to include in the admin area
-		 *
-		 * @var array
-		 */
-		private $admin_css_files	= array();
-		/**
-		 * An array of JS URLs to include in the admin area
-		 *
-		 * @var array
-		 */
-		private $admin_js_files		= array();
-		/**
-		 * An array of CSS URLs to include in the user front-end
-		 *
-		 * @var array
-		 */
-		private $user_css_files		= array();
-		/**
-		 * An array of JS URLs to include in the user front-end
-		 *
-		 * @var array
-		 */
-		private $user_js_files		= array();
-		/**
-		 * An array of short codes that this plugin will process
-		 *
-		 * @var array
-		 */
-		private $shortcodes			= array();
-		/**
-		 * This plugin's icon URL
-		 *
-		 * @var string
-		 */
-		private $plugin_icon		= null;
 		/**
 		 * The version of WordPress that this plugin requires
          *
@@ -111,7 +71,51 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 		 * @var string
 		 */
 		public $widget; //TODO: There was no way to aggregate a class for widget it has to be handled by WordPress via a hook, look into this with newer versions of WordPress
-				
+		/**
+		 * An array of CSS URLs to include in the admin area
+		 *
+		 * @var array
+		 */
+		private $admin_css_files	= array();
+		/**
+		 * An array of JS URLs to include in the admin area
+		 *
+		 * @var array
+		 */
+		private $admin_js_files		= array();
+		/**
+		 * An array of CSS URLs to include in the user front-end
+		 *
+		 * @var array
+		 */
+		private $user_css_files		= array();
+		/**
+		 * An array of JS URLs to include in the user front-end
+		 *
+		 * @var array
+		 */
+		private $user_js_files		= array();
+		/**
+		 * An array of short codes that this plugin will process
+		 *
+		 * @var array
+		 */
+		private $shortcodes			= array();
+		/**
+		 * This plugin's icon URL
+		 *
+		 * @var string
+		 */
+		private $plugin_icon		= null;
+		/**
+		 * A boolean to turn debugging on for this class
+		 *
+		 * @ignore
+		 *
+		 * @var boolean
+		 */
+		private $debugging 			= false;
+						
 		/**
 		 * Constructor
 		 *
@@ -169,20 +173,8 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 					$this->options->set_value( 'plugin_icon', $this->plugin_icon );
 				}//end if
 
-				$this->options->has_settings_options = true;
-
 				$this->options->init();
 				
-			}//end if
-			
-			if ( $this->options || $this->widget )
-			{
-				$this->uses_smarty = true; // Smarty required to display HTML on settings and widget pages
-			}//end if
-			
-			if ( $this->uses_smarty )
-			{
-				require_once( 'class.easy-dev-smarty.php' );
 			}//end if
 		 }//end setup
 
@@ -342,6 +334,30 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 			{
 				$this->user_js_files[$script] 	= $required_scripts;
 			}//end else
+		 }//end add_css
+
+
+		/**
+		 * Remove registered scripts
+		 *
+		 * @api
+		 *
+		 * @since 1.0
+		 *
+		 * @param array $tags Optonal - Array of registered script tags (ie 'autosave')
+		 *
+		 * @return none
+		 */
+		 public function remove_registered_scripts( $tags )
+		 {
+			foreach ( $tags as $tag )
+			{
+				add_action( 'init', function(){
+					global $tag;
+					
+					wp_deregister_script( $tag );
+				});
+			}//end foreach
 		 }//end add_css
 
 		/**

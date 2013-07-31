@@ -13,23 +13,23 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 	abstract class TSP_Easy_Dev_Options
 	{
 		/**
-		 * Does the plugin save widget options?
-		 *
-		 * @var boolean
-		 */
-		public $has_widget_options = false;
-		/**
 		 * Does the plugin save settings options?
 		 *
 		 * @var boolean
 		 */
-		public $has_settings_options = false;
+		public $has_settings_options 	= false;
+		/**
+		 * Does the plugin save widget options?
+		 *
+		 * @var boolean
+		 */
+		public $has_widget_options 		= false;
 		/**
 		 * Does the plugin save shortcode options?
 		 *
 		 * @var boolean
 		 */
-		public $has_shortcode_options = false;
+		public $has_shortcode_options 	= false;
 		/**
 		 * The URL link to the settings menu icon
 		 *
@@ -41,7 +41,15 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 		 *
 		 * @var array
 		 */
-		private $settings = array(); // sub-classes can call directly
+		private $settings 				= array(); // sub-classes can call directly
+		/**
+		 * A boolean to turn debugging on for this class
+		 *
+		 * @ignore
+		 *
+		 * @var boolean
+		 */
+		private $debugging 				= false;
 				
 		/**
 		 * Constructor
@@ -54,9 +62,11 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 		 *
 		 * @return none
 		 */
-		public function __construct( $settings ) 
+		public function __construct( $settings, $has_settings_options = true ) 
 		{
 			$this->settings				= $settings;
+			
+			$this->has_settings_options = $has_settings_options;
 		}//end __construct
 				
 		/**
@@ -73,7 +83,11 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 			$this->set_menu_icon( $this->get_value('plugin_icon') );
 			
 			add_action( 'admin_menu', 			array( $this, 'add_admin_menu' ) );
-			add_filter( 'plugin_action_links', 	array( $this, 'add_settings_link'), 10, 2 );
+			
+			if ( $this->has_settings_options )
+			{
+				add_filter( 'plugin_action_links', 	array( $this, 'add_settings_link'), 10, 2 );
+			}//end if
 			
 			self::register_options();
 		}//end register_options
@@ -243,31 +257,62 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 		 *
 		 * @param string $key Required get the key to return from settings
 		 * @param array $arr Optional array to search recursively
+		 * @param int $loop_count Optional for testing purposes only
 		 *
 		 * @return string the setting key value
 		 */
-		public function get_value ( $find_key, $arr = array() ) 
+		public function get_value ( $find_key, $arr = array(), $loop_count = 0 ) 
 		{
-			static $current_value;
+			$return_value = null;
 			
 			if (empty ( $arr ))
 			{
 				$arr = $this->settings;
 			}//end if
 			
-			foreach( $arr as $key => $value) 
-			{ 
-				$current_key = $key;
-				$current_value = $value;
-				
-				if ( $current_key === $find_key OR ( is_array( $current_value ) && $this->get_value( $find_key, $current_value )))
+			// if $arr is currently set to the find_key then return the array
+			if ( isset ( $arr[$find_key] ) )
+			{
+				if ( $this->debugging )
 				{
-					return $current_value;
+					d( "1. It took $loop_count recursive calls to find $find_key with [" . serialize( $arr[$find_key] ) . "]" );
 				}//end if
-												 
-			}//end foreach
-			 
-			return false;
+				
+				$return_value = $arr[$find_key];
+			}//end elseif
+			else
+			{
+				foreach( $arr as $key => $value) 
+				{ 
+					// in the previous condition statements we checked the first level of the array for the key
+					// since it was not found we only want to look at the values that are arrays now
+					if ( is_array( $value ))
+					{
+						// If the find_key was found in the second level then return it else
+						// we need to recurse the  array
+						if ( isset ( $value[$find_key] ))
+						{
+							if ( $this->debugging )
+							{
+								d( "2. It took $loop_count recursive calls to find $find_key with [" . serialize( $value[$find_key] ) . "]" );
+							}//end if
+							
+							$return_value = $value[$find_key];
+							break; // stop looping
+						}//end if
+						else
+						{
+							if ( $this->debugging )
+							{
+								d( "Looking for $find_key in the $key array..." );
+							}//end if
+							$this->get_value( $find_key, $value, $loop_count++ );
+						}//end else
+					}//end if
+				}//end foreach
+			}//end else
+			
+			return $return_value;
    		} // end function get_value
 
 		

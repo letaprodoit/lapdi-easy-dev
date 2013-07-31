@@ -1,12 +1,6 @@
 <?php	
 if ( !class_exists( 'TSP_Easy_Dev_Smarty' ) )
 {
-	if (!class_exists('Smarty'))
-	{
-	    if (file_exists( plugin_dir_path( __FILE__ ) . 'lib/Smarty/Smarty.class.php' ))
-	        require_once plugin_dir_path( __FILE__ ) . 'lib/Smarty/Smarty.class.php';
-	}//endif
-	
 	/**
 	 * Wrapper for the Smarty class
 	 * @package 	TSP_Easy_Dev
@@ -18,6 +12,15 @@ if ( !class_exists( 'TSP_Easy_Dev_Smarty' ) )
 	 */
 	class TSP_Easy_Dev_Smarty extends Smarty
 	{
+		/**
+		 * A boolean to turn debugging on for this class
+		 *
+		 * @ignore
+		 *
+		 * @var boolean
+		 */
+		private $debugging = false;
+
 		/**
 		 * Constructor
 		 *
