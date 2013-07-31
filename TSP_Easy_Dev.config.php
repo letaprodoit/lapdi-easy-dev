@@ -32,6 +32,17 @@ $easy_dev_settings['plugin_options']	= array(
  
 spl_autoload_register( 'register_classes' );
 
+/**
+ * Hook implementation for spl_autoload_register
+ *
+ * @ignore
+ *
+ * @since 1.0
+ *
+ * @param string $class Required - the class name to include the class file for
+ *
+ * @return none
+ */
 function register_classes( $class )
 {
     if (file_exists( TSP_EASY_DEV_CLASS_PATH . $class . '.class.php' ))
