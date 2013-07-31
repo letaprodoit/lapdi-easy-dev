@@ -3,7 +3,7 @@ Contributors: thesoftwarepeople,sharrondenice
 Donate link: http://www.thesoftwarepeople.com/software/plugins/wordpress/easy-dev-pro-for-wordpress.html
 Tags: API, OO, object oriented, learn, wordpress, add_filter, add_action, tutorial, plugin, application, interface, development, developer
 Requires at least: 3.5.1
-Tested up to: 3.5.2
+Tested up to: 3.5.6
 Stable tag: 1.0
 License: Apache v2.0
 License URI: http://www.apache.org/licenses/LICENSE-2.0
@@ -40,7 +40,6 @@ Includes all of the features of the standard version AND…
 * Display `favicons` (ie Twitter, Facebook, GitHub, thumbs, folders, etc) easily in your html
 * `Format your html` into columns on the fly
 * Additional images and resources
-* When ready to deploy, bundle the `TSP_Easy_Dev_Pro` class into YOUR plugin's `tsp-easy-dev.extend.php` file
 * `Upgrades includes fixes and new functionality from our community of developers`
 
 Visit [The Software People's Marketplace](http://www.thesoftwarepeople.com/software/plugins/wordpress/easy-dev-for-wordpress.html) to download the Professional Version for Developers.

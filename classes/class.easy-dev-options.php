@@ -13,18 +13,6 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 	abstract class TSP_Easy_Dev_Options
 	{
 		/**
-		 * Does the plugin save post options?
-		 *
-		 * @var boolean
-		 */
-		public $has_post_options = false;
-		/**
-		 * Does the plugin save term/category options?
-		 *
-		 * @var boolean
-		 */
-		public $has_term_options = false;
-		/**
 		 * Does the plugin save widget options?
 		 *
 		 * @var boolean
@@ -36,6 +24,12 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 		 * @var boolean
 		 */
 		public $has_settings_options = false;
+		/**
+		 * Does the plugin save shortcode options?
+		 *
+		 * @var boolean
+		 */
+		public $has_shortcode_options = false;
 		/**
 		 * The URL link to the settings menu icon
 		 *
@@ -81,13 +75,13 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 			add_action( 'admin_menu', 			array( $this, 'add_admin_menu' ) );
 			add_filter( 'plugin_action_links', 	array( $this, 'add_settings_link'), 10, 2 );
 			
-			$this->register_options();
+			self::register_options();
 		}//end register_options
 					
 		/**
 		 * Create settings entry in database
 		 *
-		 * @ignore - Must be public because used in WordPress hooks
+		 * @ignore
 		 *
 		 * @since 1.0
 		 *
@@ -105,30 +99,20 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 
 			$prefix = $this->get_value('option_prefix');
 			
-			$this->set_value('term-fields-option-name', 	$prefix.'-term-fields');
-			$this->set_value('term-data-option-name', 		$prefix.'-term-data');
-
-			$this->set_value('post-fields-option-name', 	$prefix.'-post-fields');
 			$this->set_value('widget-fields-option-name', 	$prefix.'-widget-fields');
+			$this->set_value('shortcode-fields-option-name', $prefix.'-shortcode-fields');
 			$this->set_value('settings-fields-option-name', $prefix.'-settings-fields');
 			
-			// if option was not found this means the plugin is being installed
-			if( $this->has_post_options && !get_option( $this->get_value('post-fields-option-name') ) ) 
-			{
-				add_option( $this->get_value('post-fields-option-name'), $this->get_value('post_fields') );
-			}//end if
-
-			// if option was not found this means the plugin is being installed
-			if( $this->has_term_options && !get_option( $this->get_value('term-fields-option-name') ) ) 
-			{
-				add_option( $this->get_value('term-fields-option-name'), $this->get_value('term_fields') );
-				add_option( $this->get_value('term-data-option-name'), null );
-			}//end if
-
 			// if option was not found this means the plugin is being installed
 			if( $this->has_widget_options && !get_option( $this->get_value('widget-fields-option-name') ) ) 
 			{
 				add_option( $this->get_value('widget-fields-option-name'), $this->get_value('widget_fields') );
+			}//end if
+
+			// if option was not found this means the plugin is being installed
+			if( $this->has_shortcode_options && !get_option( $this->get_value('shortcode-fields-option-name') ) ) 
+			{
+				add_option( $this->get_value('shortcode-fields-option-name'), $this->get_value('shortcode_fields') );
 			}//end if
 
 			// if option was not found this means the plugin is being installed
@@ -142,7 +126,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 		/**
 		 * Remove settings entry in database
 		 *
-		 * @ignore - Must be public because used in WordPress hooks
+		 * @ignore
 		 *
 		 * @since 1.0
 		 *
@@ -152,32 +136,22 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 		 */
 		public function deregister_options ()
 		{
-			// delete Post fields & data
-			if( $this->has_post_options && get_option( $this->get_value('option_prefix').'-post-fields' ) ) 
-			{
-				delete_option( $this->get_value('option_prefix').'-post-fields' );
-				delete_option( $this->get_value('option_prefix').'-post-data' );
-			}//end if
-
-			// delete Category/Term fields & data
-			if( $this->has_term_options && get_option( $this->get_value('option_prefix').'-term-fields' ) ) 
-			{
-				delete_option( $this->get_value('option_prefix').'-term-fields' );
-				delete_option( $this->get_value('option_prefix').'-term-data' );
-			}//end if
-
 			// delete widget fields & data
-			if( $this->has_widget_options && get_option( $this->get_value('option_prefix').'-widget-fields' ) ) 
+			if( $this->has_widget_options && get_option( $this->get_value( 'widget-fields-option-name' ) ) ) 
 			{
-				delete_option( $this->get_value('option_prefix').'-widget-fields' );
-				delete_option( $this->get_value('option_prefix').'-widget-data' );
+				delete_option( $this->get_value( 'widget-fields-option-name' ) );
+			}//end if
+
+			// delete shortcode fields & data
+			if( $this->has_shortcode_options && get_option( $this->get_value( 'shortcode-fields-option-name' ) ) ) 
+			{
+				delete_option( $this->get_value( 'shortcode-fields-option-name' ) );
 			}//end if
 
 			// delete settings fields & data
-			if( $this->has_settings_options && get_option( $this->get_value('option_prefix').'-settings-fields' ) ) 
+			if( $this->has_settings_options && get_option( $this->get_value( 'settings-fields-option-name' ) ) )
 			{
-				delete_option( $this->get_value('option_prefix').'-settings-fields' );
-				delete_option( $this->get_value('option_prefix').'-settings-data' );
+				delete_option( $this->get_value( 'settings-fields-option-name' ) );
 			}//end if
 		}//end deregister_options
 

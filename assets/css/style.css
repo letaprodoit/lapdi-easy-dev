@@ -1,17 +1,3 @@
-.tspep_form_element label{
-	width: 300px;
-	float: left;
-	clear: left;
-}
-
-.tspep_form_element {
-	padding-bottom: 5px;
-}
-
-.tspep_container fieldset{
-	padding-top: 20px;
-}
-
 /* Alert Styles */
 div.note, div.alert, div.info, div.email, div.download, div.warn, div.idea, div.accept, div.accept, div.secure, div.author, div.time, div.mycomment, div.tools {
 	text-align: left;

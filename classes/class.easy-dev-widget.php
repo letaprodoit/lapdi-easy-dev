@@ -210,8 +210,8 @@ if ( !class_exists( 'TSP_Easy_Dev_Widget' ) )
 			if ( is_feed() )
 				return '[' . $this->options->get_value('name') . ']';
 						
-			$widget_fields = get_option( $this->options->get_value('widget-fields-option-name') );
-			$defaults = new TSP_Easy_Dev_Data ( $widget_fields );
+			$shortcode_fields = get_option( $this->options->get_value('shortcode-fields-option-name') );
+			$defaults = new TSP_Easy_Dev_Data ( $shortcode_fields );
 
 			if (! empty ( $attributes) )
 			{

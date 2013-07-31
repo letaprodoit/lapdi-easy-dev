@@ -154,13 +154,20 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 			if ( $this->options )
 			{
 				if ( $this->widget )
+				{
 					$this->options->has_widget_options = true;
+				}//end if
 									
 				if ( $this->uses_shortcodes )
+				{
+					$this->options->has_shortcode_options = true;
 					$this->options->set_value( 'shortcodes', $this->shortcodes );
+				}//end if
 
 				if ( !empty( $this->plugin_icon ))
+				{
 					$this->options->set_value( 'plugin_icon', $this->plugin_icon );
+				}//end if
 
 				$this->options->has_settings_options = true;
 

@@ -20,5 +20,6 @@ $easy_dev_settings['plugin_options']	= array(
 	'post_fields'				=> array(),
 	'widget_fields'				=> array(),
 	'settings_fields'			=> array(),
+	'shortcode_fields'			=> array(),
 );
 ?>
