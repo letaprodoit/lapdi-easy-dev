@@ -19,6 +19,7 @@ The Software People's (TSP) Easy Dev for WordPress is an API for WordPress plugi
 Upgrades will include fixes only, no new functionality
 
 * Create functional plugins in as little as 5 lines of code
+* Add additional `external URL links` to your plugins description
 * Use on as many plugin projects as necessary
 * Add a `settings page` menu for your plugin, and for future plugins
 * Supports the usage of your own `custom shortcodes`
@@ -32,7 +33,6 @@ Upgrades will include fixes only, no new functionality
 Includes all of the features of the standard version AND…
 
 * Checks for browser type and version (currently supports Chrome, Firefox, Safari, Opera and IE detection)
-* Add additional `external URL links` to your plugins description
 * Add form fields (metadata) to posts
 * Add form fields (metadata) to categories
 * Check for `incompatible plugins` on activate

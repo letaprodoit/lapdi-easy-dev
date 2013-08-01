@@ -78,6 +78,12 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 		 */
 		public $widget; //TODO: There was no way to aggregate a class for widget it has to be handled by WordPress via a hook, look into this with newer versions of WordPress
 		/**
+		 * An array of links that will be displayed in the description
+		 *
+		 * @var array
+		 */
+		private $meta_links 		= array();
+		/**
 		 * An array of CSS URLs to include in the admin area
 		 *
 		 * @var array
@@ -155,6 +161,12 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 		 */
 		 public function run( $plugin )
 		 {
+			// If the user has added links add them to the plugin meta data
+			if ( !empty( $this->meta_links ))
+			{
+				add_filter( 'plugin_row_meta', 			array( $this, 'add_plugin_meta_links'), 10, 2);
+			}//endif
+
 			add_action('admin_enqueue_scripts', 	array( $this, 'enqueue_admin_scripts' ));
 			add_action('wp_enqueue_scripts', 		array( $this, 'enqueue_user_scripts' ));
 
@@ -353,6 +365,45 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 			return $this->widget;
 		}//end get_widget_handler
 
+
+		/**
+		 * Add URL links to the plugin description on the plugin list page
+		 *
+		 * @api
+		 *
+		 * @since 1.0
+		 *
+		 * @param string $title Required title for the a tag
+		 * @param string $url Required url of the a tag
+		 *
+		 * @return none
+		 */
+		 public function add_link( $title, $url )
+		 {
+			$this->meta_links[] = "<a target='_blank' href='$url'>$title</a>";
+		 }//end add_link
+
+		/**
+		 * Add additional links to the plugin description section (on plugins page)
+		 *
+		 * @ignore - Must be public, used by WordPress hooks
+		 *
+		 * @since 1.0
+		 *
+		 * @param array $links Required list of a tag links to display
+		 * @param string $file Required the name of the plugin
+		 *
+		 * @return none
+		 */
+		public function add_plugin_meta_links( $links, $file ) 
+		{
+			if ( $file == $this->plugin_base_name ) 
+			{
+				$links = array_merge( $links, $this->meta_links );
+			}//endif
+			
+			return $links;
+		} // end function register_plugin_links
 
 		/**
 		 * Add styles to the queue
