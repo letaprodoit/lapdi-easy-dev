@@ -12,7 +12,7 @@ Create plugins quickly using the our API.
 
 == Description ==
 
-The Software People's (TSP) Easy Dev for WordPress is an API for WordPress plugin development, check out some of the features below. Easy Dev makes OOD hot again and it's the engine that powers all WordPress plugins created by The Software People!
+The Software People's (TSP) Easy Dev is a WordPress API for plugin development, check out some of the features below. Easy Dev makes OOD hot again and it's the engine that powers all WordPress plugins created by The Software People!
 
 = Features Included =
 
