@@ -53,7 +53,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Widget' ) )
 	        // Get widget options
 	        $widget_options  = array(
 	            'classname'  			=> $this->options->get_value('name'),
-	            'description'   		=> __( $this->options->get_value('Description'), $this->options->get_value('name') )
+	            'description'   		=> __( strip_tags($this->options->get_value('Description')), $this->options->get_value('name') )
 	        );
 	        
 	        // Get control options

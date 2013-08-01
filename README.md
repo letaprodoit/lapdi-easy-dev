@@ -1,6 +1,6 @@
 Easy Dev for WordPress
 -------
-Easy Dev for WordPress is a WordPress API for plugin development
+Easy Dev for WordPress is WordPress API for plugin development
 
 For up-to-date installation and setup notes, visit the FAQ:
 [http://lab.thesoftwarepeople.com/tracker/wiki/wordpress-ed:MainPage](http://lab.thesoftwarepeople.com/tracker/wiki/wordpress-ed:MainPage)
