@@ -41,45 +41,4 @@ $easy_dev_settings['plugin_options']	= array(
 	'settings_fields'			=> array(),
 	'shortcode_fields'			=> array(),
 );
-
-//--------------------------------------------------------
-// Register classes
-//--------------------------------------------------------
-//set_include_path( TSP_EASY_DEV_CLASS_PATH );
-//spl_autoload_extensions( '.class.php' ); 
-//spl_autoload_register();
- 
-spl_autoload_register( 'register_classes' );
-
-/**
- * Hook implementation for spl_autoload_register
- *
- * @ignore
- *
- * @since 1.0
- *
- * @param string $class Required - the class name to include the class file for
- *
- * @return none
- */
-function register_classes( $class )
-{
-    if (file_exists( TSP_EASY_DEV_CLASS_PATH . $class . '.class.php' ))
-    {
-    	include_once TSP_EASY_DEV_CLASS_PATH . $class . '.class.php';
-    	
-    	if (file_exists( TSP_EASY_DEV_INCLUDES_PATH . $class . '.funcs.php' ))
-    	{
-    		include_once TSP_EASY_DEV_INCLUDES_PATH . $class . '.funcs.php';
-    	}//end if
-    }//end if
-    
-    if ( $class == 'Smarty' )
-    {
-	    if (file_exists( TSP_EASY_DEV_LIB_PATH . $class . DS . $class. '.class.php' ))
-	    {
-	        include_once TSP_EASY_DEV_LIB_PATH . $class . DS . $class. '.class.php';
-	    }//end if
-    }//end if
-}//end register_classes
 ?>
