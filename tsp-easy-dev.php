@@ -18,7 +18,7 @@ require_once(ABSPATH . 'wp-admin/includes/plugin.php' );
 *
 * @var string
 */
-@define('TSP_EASY_DEV_FILE', 					__FILE__ );
+define('TSP_EASY_DEV_FILE', 				__FILE__ );
 /**
 * Every plugin that uses Easy Dev must define a UNIQUE variable that holds the plugin's absolute path
 *
@@ -36,25 +36,25 @@ require_once(ABSPATH . 'wp-admin/includes/plugin.php' );
 *
 * @var string
 */
-@define('TSP_EASY_DEV_BASE_NAME', 				plugin_basename( __FILE__ ) );
+define('TSP_EASY_DEV_BASE_NAME', 			plugin_basename( __FILE__ ) );
 /**
 * Every plugin that uses Easy Dev must define a UNIQUE variable that holds the plugin's name/id
 *
 * @var string
 */
-@define('TSP_EASY_DEV_NAME', 					'tsp-easy-dev');
+define('TSP_EASY_DEV_NAME', 				'tsp-easy-dev');
 /**
 * Every plugin that uses Easy Dev must define a UNIQUE variable that holds the plugin's name (not description but plugin title)
 *
 * @var string
 */
-@define('TSP_EASY_DEV_TITLE', 					'TSP Easy Dev');
+define('TSP_EASY_DEV_TITLE', 				'TSP Easy Dev');
 /**
 * Every plugin that uses Easy Dev must define a UNIQUE variable that holds the plugin's required wordpress version
 *
 * @var string
 */
-@define('TSP_EASY_DEV_REQ_VERSION', 			"3.5.1");
+define('TSP_EASY_DEV_REQ_VERSION', 			"3.5.1");
 
 
 global $easy_dev_settings;

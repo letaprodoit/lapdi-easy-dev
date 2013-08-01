@@ -62,7 +62,7 @@ Nothing. The script runs in real-time behind the scenes. Once installed and acti
 
 == Screenshots ==
 
-1. No need to learn WordPress API, with Easy Dev, you only have to fill in your settings and display your HTML and with Smarty, skelJS and FontAwesome built into Easy Dev it makes displaying your code a sinch! 
+1. No need to learn WordPress API, with Easy Dev, you only have to fill in your settings and display your HTML and with Smarty, skelJS and FontAwesome built into Easy Dev Pro it makes displaying your code a sinch! 
 
 
 == Changelog ==
