@@ -121,11 +121,6 @@ if ( !function_exists( 'fn_easy_dev_register_classes' ) )
 	    if (file_exists( TSP_EASY_DEV_CLASS_PATH . $class . '.class.php' ))
 	    {
 	    	include_once TSP_EASY_DEV_CLASS_PATH . $class . '.class.php';
-	    	
-	    	if (file_exists( TSP_EASY_DEV_INCLUDES_PATH . $class . '.funcs.php' ))
-	    	{
-	    		include_once TSP_EASY_DEV_INCLUDES_PATH . $class . '.funcs.php';
-	    	}//end if
 	    }//end if
 	    
 	    if ( $class == 'Smarty' )
