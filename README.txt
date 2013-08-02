@@ -4,7 +4,7 @@ Donate link: http://www.thesoftwarepeople.com/software/plugins/wordpress/easy-de
 Tags: API, OO, object oriented, learn, wordpress, add_filter, add_action, tutorial, plugin, application, interface, development, developer
 Requires at least: 3.5.1
 Tested up to: 3.6
-Stable tag: 1.1
+Stable tag: 1.2
 License: Apache v2.0
 License URI: http://www.apache.org/licenses/LICENSE-2.0
 

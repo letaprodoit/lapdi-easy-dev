@@ -174,6 +174,17 @@ if ( !class_exists( 'TSP_Easy_Dev_Widget' ) )
 			}//endelse
 						
 			$fields = $defaults->get_values( true );
+			
+			foreach ( $fields as $key => $value )
+			{
+				// since there are multiple widgets on a page it is important
+				// to make sure the id and name are unique to this particular
+				// instance of the plugin so add a unique id and name
+				// by using the get_field_id and get_field_name from the parent
+				// Widget class
+				$fields[$key]['id'] 		= parent::get_field_id( $key );
+				$fields[$key]['name'] 		= parent::get_field_name( $key );
+			}//end foreach			
 
 			$this->display_form ( $fields );
 	 	}//end form
