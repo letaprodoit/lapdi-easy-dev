@@ -78,6 +78,14 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 		 */
 		public $widget; //TODO: There was no way to aggregate a class for widget it has to be handled by WordPress via a hook, look into this with newer versions of WordPress
 		/**
+		 * The current message this plugin needs to display
+		 *
+		 * @ignore
+		 *
+		 * @var boolean
+		 */
+		protected $message 			= null;
+		/**
 		 * An array of links that will be displayed in the description
 		 *
 		 * @var array
@@ -241,14 +249,9 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 				{
 					$message .= "<br>See <a href='http://lab.thesoftwarepeople.com/tracker/wiki/wordpress-ed:MainPage' target='_blank'>docs</a> for more details.";
 
-					add_action( 'admin_notices', function (){
-						global $message;
-					    ?>
-					    <div class="error">
-					        <p><?php echo $message; ?></p>
-					    </div>
-					    <?php
-					} );
+					$this->message = $message;
+					
+					add_action( 'admin_notices', array( $this, 'display_error' ));
 					
 					return;
 				}//end
@@ -279,16 +282,9 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 				if (version_compare($wp_version, $this->required_wordpress_version, "<"))
 				{
 			
-					add_action( 'admin_notices', function (){
-						global $wp_version;
-						
-						$message =  $this->plugin_title . " requires WordPress version <strong>{$this->required_wordpress_version} or higher</strong>.<br>You have version <strong>$wp_version</strong> installed.";
-					    ?>
-					    <div class="error">
-					        <p><?php _e( $message, $this->plugin_name ); ?></p>
-					    </div>
-					    <?php
-					} );
+					$this->message =  $this->plugin_title . " requires WordPress version <strong>{$this->required_wordpress_version} or higher</strong>.<br>You have version <strong>$wp_version</strong> installed.";
+					
+					add_action( 'admin_notices', array( $this, 'display_error' ));
 					
 					deactivate_plugins( $this->plugin_base_name );
 					
@@ -586,6 +582,54 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 				wp_enqueue_script( $tag );
 			}//endforeach
 		}//end enqueue_scripts
+		
+		/**
+		 * Method to display a notice
+		 *
+		 * @api
+		 *
+		 * @since 1.2.1
+		 *
+		 * @param string $message The message to display to the admin
+		 *
+		 * @return none
+		 */
+		public function display_notice()
+		{
+		   if ( $this->message )
+		   {
+			   ?><div class="updated">
+			        <p><?php _e( $this->message, $this->plugin_name  ); ?></p>
+			    </div>
+				<?php
+			}//end if
+			
+			$this->message = null;
+		}//end display_notice
+		
+		/**
+		 * Method to display an error
+		 *
+		 * @api
+		 *
+		 * @since 1.2.1
+		 *
+		 * @param string $message The message to display to the admin
+		 *
+		 * @return none
+		 */
+		public function display_error()
+		{
+		   if ( $this->message )
+		   {
+			   ?><div class="error">
+			        <p><?php _e( $this->message, $this->plugin_name  ); ?></p>
+			    </div>
+				<?php
+			}//end if
+			
+			$this->message = null;
+		}//end display_notice
 		 				
 		/**
 		 * Optional implementation to activate plugin - can be extended by subclasses, not to be called directly but extended by subclasses
