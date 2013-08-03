@@ -125,22 +125,60 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 			$this->set_value('shortcode-fields-option-name', $prefix.'-shortcode-fields');
 			$this->set_value('settings-fields-option-name', $prefix.'-settings-fields');
 			
-			// if option was not found this means the plugin is being installed
-			if( $this->has_widget_options && !get_option( $this->get_value('widget-fields-option-name') ) ) 
+			$database_widget_fields 	= get_option( $this->get_value('widget-fields-option-name') );
+			$database_shortcode_fields 	= get_option( $this->get_value('shortcode-fields-option-name') );
+			$database_settings_fields 	= get_option( $this->get_value('settings-fields-option-name') );
+			
+			$default_widget_fields 		= $this->get_value('widget_fields');
+			$default_shortcode_fields 	= $this->get_value('shortcode_fields');
+			$default_settings_fields 	= $this->get_value('settings_fields');
+
+			// if has options and the database options != the current options
+			// then if database options are not empty copy them to the default fields and update
+			// if the database option does not exist add default
+			if( $this->has_widget_options &&  $database_widget_fields != $default_widget_fields ) 
 			{
-				add_option( $this->get_value('widget-fields-option-name'), $this->get_value('widget_fields') );
+				if (!empty ( $database_widget_fields ) )
+				{
+					$default_widget_fields = array_merge( $default_widget_fields, $database_widget_fields);
+					update_option( $this->get_value('widget-fields-option-name'), $default_widget_fields );
+				}//end if
+				else
+				{
+					add_option( $this->get_value('widget-fields-option-name'), $default_widget_fields );
+				}//end else
 			}//end if
 
-			// if option was not found this means the plugin is being installed
-			if( $this->has_shortcode_options && !get_option( $this->get_value('shortcode-fields-option-name') ) ) 
+			// if has options and the database options != the current options
+			// then if database options are not empty copy them to the default fields and update
+			// if the database option does not exist add default
+			if( $this->has_shortcode_options &&  $database_shortcode_fields != $default_shortcode_fields  ) 
 			{
-				add_option( $this->get_value('shortcode-fields-option-name'), $this->get_value('shortcode_fields') );
+				if (!empty ( $database_shortcode_fields ) )
+				{
+					$default_shortcode_fields = array_merge( $default_shortcode_fields, $database_shortcode_fields);
+					update_option( $this->get_value('shortcode-fields-option-name'), $default_shortcode_fields );
+				}//end if
+				else
+				{
+					add_option( $this->get_value('shortcode-fields-option-name'), $default_shortcode_fields );
+				}//end else
 			}//end if
 
-			// if option was not found this means the plugin is being installed
-			if( $this->has_options_page && !get_option( $this->get_value('settings-fields-option-name') ) ) 
+			// if has options and the database options != the current options
+			// then if database options are not empty copy them to the default fields and update
+			// if the database option does not exist add default
+			if( $this->has_options_page &&  $database_settings_fields != $default_settings_fields ) 
 			{
-				add_option( $this->get_value('settings-fields-option-name'), $this->get_value('settings_fields') );
+				if (!empty ( $database_settings_fields ) )
+				{
+					$default_settings_fields = array_merge( $default_settings_fields, $database_settings_fields);
+					update_option( $this->get_value('settings-fields-option-name'), $default_settings_fields );
+				}//end if
+				else
+				{
+					add_option( $this->get_value('settings-fields-option-name'), $default_settings_fields );
+				}//end else
 			}//end if
 		}//end register_options
 
