@@ -27,31 +27,31 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 		 *
 		 * @var boolean
 		 */
-		public $uses_shortcodes 	= false;
+		public $uses_shortcodes 			= false;
 		/**
 		 * A string that contains the absolute path and file name of the plugin
 		 *
 		 * @var string
 		 */
-		public $plugin_file 		= null;
+		public $plugin_file 				= null;
 		/**
 		 * A string that contains the base name (file) of the plugin
 		 *
 		 * @var string
 		 */
-		public $plugin_base_name 	= null;
+		public $plugin_base_name 			= null;
 		/**
 		 * A string that contains the title of the plugin
 		 *
 		 * @var string
 		 */
-		public $plugin_title 		= null;
+		public $plugin_title 				= null;
 		/**
 		 * A string that contains the name of the plugin
 		 *
 		 * @var string
 		 */
-		public $plugin_name 		= null;
+		public $plugin_name 				= null;
 		/**
 		 * Does the plugin require Smarty?
          *
@@ -59,7 +59,7 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 		 *
 		 * @var boolean
 		 */
-		public $uses_smarty 		= false;
+		public $uses_smarty 				= false;
 		/**
 		 * The extended TSP_Easy_Dev_Options class, must be instantiated (ie $my_plugin->set_options_handler ( new TSP_Easy_Dev_Options_MY_PLUGIN() ))
          * 
@@ -84,49 +84,55 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 		 *
 		 * @var boolean
 		 */
-		protected $message 			= null;
+		protected $message 					= null;
 		/**
 		 * An array of links that will be displayed in the description
 		 *
 		 * @var array
 		 */
-		private $meta_links 		= array();
+		private $meta_links 				= array();
 		/**
 		 * An array of CSS URLs to include in the admin area
 		 *
 		 * @var array
 		 */
-		private $admin_css_files	= array();
+		private $admin_css_files			= array();
 		/**
 		 * An array of JS URLs to include in the admin area
 		 *
 		 * @var array
 		 */
-		private $admin_js_files		= array();
+		private $admin_js_files				= array();
 		/**
 		 * An array of CSS URLs to include in the user front-end
 		 *
 		 * @var array
 		 */
-		private $user_css_files		= array();
+		private $user_css_files				= array();
 		/**
 		 * An array of JS URLs to include in the user front-end
 		 *
 		 * @var array
 		 */
-		private $user_js_files		= array();
+		private $user_js_files				= array();
+		/**
+		 * An array of script tags to deregister
+		 *
+		 * @var array
+		 */
+		private $script_tags_to_deregister	= array();
 		/**
 		 * An array of short codes that this plugin will process
 		 *
 		 * @var array
 		 */
-		private $shortcodes			= array();
+		private $shortcodes					= array();
 		/**
 		 * This plugin's icon URL
 		 *
 		 * @var string
 		 */
-		private $plugin_icon		= null;
+		private $plugin_icon				= null;
 		/**
 		 * A boolean to turn debugging on for this class
 		 *
@@ -134,7 +140,7 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 		 *
 		 * @var boolean
 		 */
-		private $debugging 			= false;
+		private $debugging 					= false;
 						
 		/**
 		 * Constructor
@@ -175,6 +181,7 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 				add_filter( 'plugin_row_meta', 			array( $this, 'add_plugin_meta_links'), 10, 2);
 			}//endif
 
+			add_action('init', 						array( $this, 'deregister_scripts' ));
 			add_action('admin_enqueue_scripts', 	array( $this, 'enqueue_admin_scripts' ));
 			add_action('wp_enqueue_scripts', 		array( $this, 'enqueue_user_scripts' ));
 
@@ -451,29 +458,47 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 			}//end else
 		 }//end add_css
 
-
 		/**
 		 * Remove registered scripts
+		 *
+		 * @ignore
+		 *
+		 * @since 1.2.4
+		 *
+		 * @param none
+		 *
+		 * @return none
+		 */
+		 public function deregister_scripts()
+		 {
+			if (!empty( $this->script_tags_to_deregister ))
+			{
+				foreach ( $this->script_tags_to_deregister as $tag )
+				{
+					wp_deregister_script( $tag );
+				}//end foreach
+			}//end if
+		 }//end deregister_scripts
+
+
+		/**
+		 * Store registered scripts
 		 *
 		 * @api
 		 *
 		 * @since 1.0
 		 *
-		 * @param array $tags Optonal - Array of registered script tags (ie 'autosave')
+		 * @param array $tags Optional - Array of registered script tags to store (ie 'autosave')
 		 *
 		 * @return none
 		 */
 		 public function remove_registered_scripts( $tags )
 		 {
-			foreach ( $tags as $tag )
+			if (!empty( $tags ))
 			{
-				add_action( 'init', function(){
-					global $tag;
-					
-					wp_deregister_script( $tag );
-				});
-			}//end foreach
-		 }//end add_css
+				$this->script_tags_to_deregister = $tags;
+			}//end if
+		 }//end remove_registered_scripts
 
 		/**
 		 * Add short codes for processing
