@@ -221,10 +221,11 @@ if ( !class_exists( 'TSP_Easy_Dev_Widget' ) )
 		 * @since 1.0
 		 *
 		 * @param array $attributes Optional the arguments passed to the shortcode
+		 * @param string $content Optional The content that the shortcode contains. Stored to fields[shortcode_content]
 		 *
 		 * @return none
 		 */
-		public function process_shortcode( $attributes )
+		public function process_shortcode( $attributes, $content = null )
 		{
 			if ( is_feed() )
 				return '[' . $this->options->get_value('name') . ']';
@@ -269,6 +270,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Widget' ) )
 			}//endelse
 			
 			$fields = $defaults->get_values();
+			$fields['shortcode_content'] = $content;
 
 			$output = $this->display_widget( $fields, false );
 			
