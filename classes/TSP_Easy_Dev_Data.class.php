@@ -8,7 +8,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Data' ) )
 	 * @author 		Sharron Denice, The Software People
 	 * @copyright 	2013 The Software People
 	 * @license 	APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
-	 * @version 	1.0.1
+	 * @version 	1.0.2
 	 */
 	final class TSP_Easy_Dev_Data
 	{
@@ -168,30 +168,33 @@ if ( !class_exists( 'TSP_Easy_Dev_Data' ) )
 				
 			}//endif
 			
-			foreach ( $this->fields as $key => $opts )
+			if (!empty($this->fields))
 			{
-                $value = null;
-
-                if (is_array($opts['value']))
-                    $value = $opts['value'];
-                else
-        		    $value = $this->decode_html ( $opts['value'] );
-	        		        		
-	        	// in addition to updating the value we also
-	        	// need to add an id and a name for form fields
-	        	if ( $include_options )
-	        	{
-					$fields[$key]['id'] 	= $key;
-					$fields[$key]['name'] 	= $key;
-					$fields[$key]['value'] 	= $value;
-	        	}//endif
-	        	else
-	        	{	
-	        		$fields[$key] = $value;
-	        	}//endelse
-	        	
-			}//end foreach
-								
+				foreach ( $this->fields as $key => $opts )
+				{
+					$value = null;
+				
+					if (is_array($opts['value']))
+						$value = $opts['value'];
+					else
+						$value = $this->decode_html ( $opts['value'] );
+						
+					// in addition to updating the value we also
+					// need to add an id and a name for form fields
+					if ( $include_options )
+					{
+						$fields[$key]['id'] 	= $key;
+						$fields[$key]['name'] 	= $key;
+						$fields[$key]['value'] 	= $value;
+					}//endif
+					else
+					{
+						$fields[$key] = $value;
+					}//endelse
+				
+				}//end foreach
+			}
+											
 			return $fields;
 		}//end get_values
 
