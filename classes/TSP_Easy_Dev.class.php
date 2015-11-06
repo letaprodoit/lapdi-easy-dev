@@ -8,7 +8,7 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 	 * @author 		Sharron Denice, The Software People
 	 * @copyright 	2013 The Software People
 	 * @license 	APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
-	 * @version 	1.0
+	 * @version 	1.1
 	 */
 	class TSP_Easy_Dev
 	{
@@ -128,6 +128,12 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 		 */
 		private $shortcodes					= array();
 		/**
+		 * An array of listeners that this plugin will process
+		 *
+		 * @var array
+		 */
+		private $listeners					= array();
+		/**
 		 * This plugin's icon URL
 		 *
 		 * @var string
@@ -185,6 +191,22 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 			add_action('admin_enqueue_scripts', 	array( $this, 'enqueue_admin_scripts' ));
 			add_action('wp_enqueue_scripts', 		array( $this, 'enqueue_user_scripts' ));
 
+		 	// If the user added listeners add them
+			if (!empty($this->listeners))
+			{
+				foreach ($this->listeners as $index => $data)
+				{
+					if ($data['type'] == 'action')
+					{
+						add_action ($data['tag'], $data['func'], $data['priority'], $data['arg_count']);
+					}//end if
+					else if ($data['type'] == 'filter')
+					{
+						add_filter ($data['tag'], $data['func'], $data['priority'], $data['arg_count']);
+					}//end elseif
+				}//end foreach
+			}//end if
+			
 			// If the plugin uses settings add them
 			if ( $this->options )
 			{
@@ -386,6 +408,35 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 			$this->meta_links[] = "<a target='_blank' href='$url'>$title</a>";
 		 }//end add_link
 
+		 /**
+		  * Add listener
+		  *
+		  * @api
+		  *
+		  * @since 1.1
+		  *
+		  * @param string $tag Required - The tag
+		  * @param array $func Required - The parent class (first arg) and the function (second arg)
+		  * @param string $type Required - The type of listener, action or filter
+		  * @param int $priority optional - Used to specify the order in which the functions 
+		  * 	associated with a particular action are executed. Lower numbers correspond 
+		  * 	with earlier execution, and functions with the same priority are executed in 
+		  * 	the order in which they were added to the filter.
+		  * @param int $arg_count optional - The number of arguments the function(s) accept(s)
+		  *
+		  * @return none
+		  */
+		 public function add_listener( $tag, $type, $func, $priority = 10, $arg_count = 1 )
+		 {
+		 	$this->listeners[] = array(
+		 		'tag' => $tag,
+		 		'type' => $type,
+		 		'func' => $func,
+		 		'priority' => $priority,
+		 		'arg_count' => $arg_count,
+		 	);
+		 }//end add_listener
+		 		
 		/**
 		 * Add additional links to the plugin description section (on plugins page)
 		 *

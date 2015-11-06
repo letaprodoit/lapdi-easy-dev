@@ -8,7 +8,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Widget' ) )
 	 * @author 		Sharron Denice, The Software People
 	 * @copyright 	2013 The Software People
 	 * @license 	APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
-	 * @version 	1.0
+	 * @version 	1.0.1
 	 */
 	abstract class TSP_Easy_Dev_Widget extends WP_Widget 
 	{
@@ -50,23 +50,26 @@ if ( !class_exists( 'TSP_Easy_Dev_Widget' ) )
 		{
 			$this->options = $options;
 			
-	        // Get widget options
-	        $widget_options  = array(
-	            'classname'  			=> $this->options->get_value('name'),
-	            'description'   		=> __( strip_tags($this->options->get_value('Description')), $this->options->get_value('name') )
-	        );
-	        
-	        // Get control options
-	        $control_options = array(
-	            'width' 				=> $this->options->get_value('widget_width'),
-	            'height'				=> $this->options->get_value('widget_height'),
-	            'id_base' 				=> $this->options->get_value('name'),
-	        );
-
-			$this->load_shortcodes();
-
-	        // Create the widget
-			parent::__construct( $this->options->get_value('name'), __( $this->options->get_value('Name'), $this->options->get_value('name') ) , $widget_options, $control_options);
+            if (!empty($this->options))
+            {
+    	        // Get widget options
+    	        $widget_options  = array(
+    	            'classname'  			=> $this->options->get_value('name'),
+    	            'description'   		=> __( strip_tags($this->options->get_value('Description')), $this->options->get_value('name') )
+    	        );
+    	        
+    	        // Get control options
+    	        $control_options = array(
+    	            'width' 				=> $this->options->get_value('widget_width'),
+    	            'height'				=> $this->options->get_value('widget_height'),
+    	            'id_base' 				=> $this->options->get_value('name'),
+    	        );
+    
+    			$this->load_shortcodes();
+    
+    	        // Create the widget
+    			parent::__construct( $this->options->get_value('name'), __( $this->options->get_value('Name'), $this->options->get_value('name') ) , $widget_options, $control_options);
+            }
 		}//end __construct
 	
 		/**
