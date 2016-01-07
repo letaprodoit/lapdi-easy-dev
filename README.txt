@@ -4,7 +4,7 @@ Donate link: http://www.thesoftwarepeople.com/software/plugins/wordpress/easy-de
 Tags: API, OO, object oriented, learn, wordpress, add_filter, add_action, tutorial, plugin, application, interface, development, developer
 Requires at least: 3.5.1
 Tested up to: 4.3.1
-Stable tag: 1.2.6
+Stable tag: 1.2.8
 License: Apache v2.0
 License URI: http://www.apache.org/licenses/LICENSE-2.0
 
@@ -83,6 +83,9 @@ Nothing. The script runs in real-time behind the scenes. Once installed, there a
 
 == Changelog ==
 
+= 1.2.8 =
+* Fixed bug to handle null options
+
 = 1.2.7 =
 * Feature enhancement. Added in a listner function to handle actions and filters
 * Fixed bug to handle null options
@@ -116,6 +119,9 @@ Nothing. The script runs in real-time behind the scenes. Once installed, there a
 * Launch
 
 == Upgrade notice ==
+
+= 1.2.8 =
+Fixed bug to handle null options
 
 = 1.2.7 =
 Feature enhancement. Added in a listner function to handle actions and filters

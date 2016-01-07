@@ -82,7 +82,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Data' ) )
 		 */
 		public function set_values ( $fields )
 		{
-			if (!empty ( $fields ))
+			if (!empty( $fields ) && !empty( $this->fields) )
 			{
 				// don't just assign the settings to global
 				// process it to make sure its formatted correctly
