@@ -8,7 +8,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Smarty' ) )
 	 * @author 		Sharron Denice, The Software People
 	 * @copyright 	2013 The Software People
 	 * @license 	APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
-	 * @version 	1.0
+	 * @version 	1.2.9
 	 */
 	class TSP_Easy_Dev_Smarty extends Smarty
 	{
@@ -48,8 +48,8 @@ if ( !class_exists( 'TSP_Easy_Dev_Smarty' ) )
 			if ( $form )
 			{
 				$this->assign( 'EASY_DEV_FORM_FIELDS',	'easy-dev-form-fields.tpl' );
-			    $this->assign( 'field_prefix',			'tspedev' );
-				$this->assign( 'class',					'');
+				$this->assign( 'field_prefix',		'tspedev' );
+				$this->assign( 'class',			'');
 			}//end if
 		}//end __construct
 	}//end TSP_Easy_Dev_Smarty

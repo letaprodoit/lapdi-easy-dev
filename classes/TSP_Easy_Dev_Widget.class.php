@@ -8,7 +8,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Widget' ) )
 	 * @author 		Sharron Denice, The Software People
 	 * @copyright 	2013 The Software People
 	 * @license 	APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
-	 * @version 	1.0.1
+	 * @version 	1.2.9
 	 */
 	abstract class TSP_Easy_Dev_Widget extends WP_Widget 
 	{
@@ -87,7 +87,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Widget' ) )
 		public function update( $new_instance, $old_instance ) 
 		{
 			$widget_fields = get_option( $this->options->get_value('widget-fields-option-name') );
-			$defaults = new TSP_Easy_Dev_Data ( $widget_fields );
+			$defaults = new TSP_Easy_Dev_Data ( $widget_fields, 'widget' );
 
 			if ( !empty ( $new_instance ))
 			{
@@ -118,7 +118,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Widget' ) )
 		public function widget( $args, $instance )
 		{
 			$widget_fields = get_option( $this->options->get_value('widget-fields-option-name') );
-			$defaults = new TSP_Easy_Dev_Data ( $widget_fields );
+			$defaults = new TSP_Easy_Dev_Data ( $widget_fields, 'widget' );
 			
 			if ( !empty ( $instance ))
 			{
@@ -165,7 +165,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Widget' ) )
 	 	public function form( $instance )
 	 	{
 			$widget_fields = get_option( $this->options->get_value('widget-fields-option-name') );
-			$defaults = new TSP_Easy_Dev_Data ( $widget_fields );
+			$defaults = new TSP_Easy_Dev_Data ( $widget_fields, 'widget' );
 
 			if ( !empty ( $instance ) )
 			{
@@ -234,7 +234,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Widget' ) )
 				return '[' . $this->options->get_value('name') . ']';
 						
 			$shortcode_fields = get_option( $this->options->get_value('shortcode-fields-option-name') );
-			$defaults = new TSP_Easy_Dev_Data ( $shortcode_fields );
+			$defaults = new TSP_Easy_Dev_Data ( $shortcode_fields, 'shortcode' );
 
 			if (! empty ( $attributes) )
 			{

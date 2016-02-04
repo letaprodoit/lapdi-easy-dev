@@ -1,4 +1,17 @@
 <?php
+/*
+Name: 			TSP Easy Dev
+URI: 			http://www.thesoftwarepeople.com/software/plugins/wordpress/easy-dev-for-wordpress.html
+Description: 	Easy Dev is a <strong>WordPress API library</strong> with advanced features. See <a target="_blank" href="http://lab.thesoftwarepeople.com/tracker/wiki/wordpress-ed:MainPage">API Docs</a> for information and instructions. <a target="_blank" href="https://twitter.com/#bringbackOOD">#bringbackOOD</a> 
+Author: 		The Software People
+Author URI: 	http://www.thesoftwarepeople.com/
+Version: 		1.0.3
+Copyright: 		Copyright © 2013 The Software People, LLC (www.thesoftwarepeople.com). All rights reserved
+License: 		APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
+*/
+
+require_once(ABSPATH . 'wp-admin/includes/plugin.php' );
+
 /**
 * Every plugin that uses Easy Dev must define a UNIQUE variable that holds the plugin's absolute path
 *

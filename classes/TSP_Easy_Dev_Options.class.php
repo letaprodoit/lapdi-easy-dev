@@ -8,7 +8,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 	 * @author 		Sharron Denice, The Software People
 	 * @copyright 	2013 The Software People
 	 * @license 	APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
-	 * @version 	1.0
+	 * @version 	1.2.9
 	 */
 	abstract class TSP_Easy_Dev_Options
 	{
@@ -36,6 +36,39 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 		 * @var boolean
 		 */
 		public $has_shortcode_options 	= false;
+		/**
+		 * Does the plugin save post options?
+		 *
+		 * @since 1.2.9
+		 *
+		 * @var boolean
+		 */
+		public $has_post_options = false;
+		/**
+		 * Does the plugin save term/category options?
+		 *
+		 * @since 1.2.9
+		 *
+		 * @var boolean
+		 */
+		public $has_term_options = false;
+		
+		/**
+		 * A reference to the TSP_Easy_Dev_Posts object
+		 *
+		 * @since 1.2.9
+		 *
+		 * @var object
+		 */
+		private $pro_post 		= null;
+		/**
+		 * A reference to the TSP_Easy_Dev_Terms object
+		 *
+		 * @since 1.2.9
+		 *
+		 * @var object
+		 */
+		private $pro_term 		= null;
 		/**
 		 * The URL link to the settings menu icon
 		 *
@@ -97,6 +130,16 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 				add_filter( 'plugin_action_links', 	array( $this, 'add_settings_link'), 10, 2 );
 			}//end if
 			
+			if ( $this->has_term_options )
+			{
+				$this->pro_term = new TSP_Easy_Dev_Terms( $this );
+			}//endif
+						
+			if ( $this->has_post_options )
+			{
+				$this->pro_post = new TSP_Easy_Dev_Posts( $this );
+			}//endif
+			
 			self::register_options();
 		}//end register_options
 					
@@ -122,16 +165,27 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 			$prefix = $this->get_value('option_prefix');
 			
 			$this->set_value('widget-fields-option-name', 	$prefix.'-widget-fields');
-			$this->set_value('shortcode-fields-option-name', $prefix.'-shortcode-fields');
+			$this->set_value('shortcode-fields-option-name',$prefix.'-shortcode-fields');
 			$this->set_value('settings-fields-option-name', $prefix.'-settings-fields');
 			
+			$this->set_value('term-fields-option-name', 	$prefix.'-term-fields');
+			$this->set_value('term-data-option-name', 	$prefix.'-term-data');
+			
+			$this->set_value('post-fields-option-name', 	$prefix.'-post-fields');
+
 			$database_widget_fields 	= get_option( $this->get_value('widget-fields-option-name') );
 			$database_shortcode_fields 	= get_option( $this->get_value('shortcode-fields-option-name') );
 			$database_settings_fields 	= get_option( $this->get_value('settings-fields-option-name') );
 			
+			$database_post_fields 	= get_option( $this->get_value('post-fields-option-name') );
+			$database_term_fields 	= get_option( $this->get_value('term-fields-option-name') );
+
 			$default_widget_fields 		= $this->get_value('widget_fields');
 			$default_shortcode_fields 	= $this->get_value('shortcode_fields');
 			$default_settings_fields 	= $this->get_value('settings_fields');
+			
+			$default_post_fields 	= $this->get_value('post_fields');
+			$default_term_fields 	= $this->get_value('category_fields');
 
 			// if has options and the database options != the current options
 			// then if database options are not empty copy them to the default fields and update
@@ -180,6 +234,45 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 					add_option( $this->get_value('settings-fields-option-name'), $default_settings_fields );
 				}//end else
 			}//end if
+			
+			// if has options and the database options != the current options
+			// then if database options are not empty copy them to the default fields and update
+			// if the database option does not exist add default
+			if( $this->has_post_options &&  $database_post_fields != $default_post_fields ) 
+			{
+				if (!empty ( $database_post_fields ) )
+				{
+					$default_post_fields = array_merge( $default_post_fields, $database_post_fields);
+					update_option( $this->get_value('post-fields-option-name'), $default_post_fields, 'yes' );
+				}//end if
+				else
+				{
+					add_option( $this->get_value('post-fields-option-name'), $default_post_fields, '', 'yes' );
+				}//end else
+			}//end if
+
+			// if has options and the database options != the current options
+			// then if database options are not empty copy them to the default fields and update
+			// if the database option does not exist add default
+			if( $this->has_term_options &&  $database_term_fields != $default_term_fields ) 
+			{
+				if (!empty ( $database_term_fields ) )
+				{
+					$default_term_fields = array_merge( $default_term_fields, $database_term_fields);
+					update_option( $this->get_value('term-fields-option-name'), $default_term_fields, 'yes' );
+				}//end if
+				else
+				{
+					add_option( $this->get_value('term-fields-option-name'), $default_term_fields, '', 'yes' );
+				}//end else
+			}//end if
+
+			// if option was not found this means the plugin is being installed
+			// ONLY overwrite the user data if none is stored
+			if( $this->has_term_options && !get_option( $this->get_value('term-data-option-name') ) ) 
+			{
+				add_option( $this->get_value('term-data-option-name'), null, '', 'yes' );
+			}//end if
 		}//end register_options
 
 					
@@ -213,7 +306,54 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 			{
 				delete_option( $this->get_value( 'settings-fields-option-name' ) );
 			}//end if
+			
+			// delete post fields & data
+			if( $this->has_post_options && get_option( $this->get_value('post-fields-option-name') ) ) 
+			{
+				delete_option( $this->get_value('post-fields-option-name') );
+			}//end if
+
+			// delete category fields & data
+			if( $this->has_term_options && get_option( $this->get_value('term-fields-option-name') ) ) 
+			{
+				delete_option( $this->get_value('term-fields-option-name') );
+				delete_option( $this->get_value('term-data-option-name') );
+			}//end if
 		}//end deregister_options
+		
+		
+		/**
+		 * Get reference to pro post options object
+		 *
+		 * @api
+		 *
+		 * @since 1.2.9
+		 *
+		 * @param none
+		 *
+		 * @return TSP_Easy_Dev_Posts reference to TSP_Easy_Dev_Posts object
+		 */
+		public function get_pro_post()
+		{
+			return $this->pro_post;
+		}//end get_pro_post
+		
+
+		/**
+		 * Get reference to pro terms options object
+		 *
+		 * @api
+		 *
+		 * @since 1.2.9
+		 *
+		 * @param none
+		 *
+		 * @return TSP_Easy_Dev_Terms reference to TSP_Easy_Dev_Terms object
+		 */
+		public function get_pro_term()
+		{
+			return $this->pro_term;
+		}//end get_term_post
 
 		/**
 		 * Add settings links to the plugin option links (on plugins page)

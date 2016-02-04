@@ -8,7 +8,7 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 	 * @author 		Sharron Denice, The Software People
 	 * @copyright 	2013 The Software People
 	 * @license 	APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
-	 * @version 	1.1
+	 * @version 	1.2.9
 	 */
 	class TSP_Easy_Dev
 	{
@@ -147,6 +147,26 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 		 * @var boolean
 		 */
 		private $debugging 					= false;
+		/**
+		 * Array of required plugins
+		 *
+		 * @since 1.2.9
+		 *
+		 * @ignore
+		 *
+		 * @var array
+		 */
+		private $required_plugins 		= false;
+		/**
+		 * Array of incompatible plugins
+		 *
+		 * @since 1.2.9
+		 *
+		 * @ignore
+		 *
+		 * @var array
+		 */
+		private $incompatiable_plugins 	= false;
 						
 		/**
 		 * Constructor
@@ -162,9 +182,9 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 			$this->required_wordpress_version = $required_wordpress_version;
 			
 			// register install/uninstall hooks
-			register_activation_hook( $plugin, 		array( $this, 'activate') );
+			register_activation_hook( $plugin, 	array( $this, 'activate') );
 			register_deactivation_hook( $plugin, 	array( $this, 'deactivate') );
-			register_uninstall_hook( $plugin, 		$this->uninstall() );
+			register_uninstall_hook( $plugin, 	$this->uninstall() );
 		}//end __construct
 		
 
@@ -256,22 +276,22 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 				//Check to make sure that the required variables are set
 				if ( !isset ($this->plugin_title) )
 				{
-					$message .= "Since you are not extending the `TSP_Easy_Dev_Options` or `TSP_Easy_Dev_Pro_Options` classes, you must set <strong>plugin_title</strong> in your plugins file (Example: \$my_plugin->plugin_title = 'My Plugin').";
+					$message .= "Since you are not extending the `TSP_Easy_Dev_Options` class, you must set <strong>plugin_title</strong> in your plugins file (Example: \$my_plugin->plugin_title = 'My Plugin').";
 				}//end if
 				
 				if ( !isset ($this->plugin_name) )
 				{
-					$message .= "Since you are not extending the `TSP_Easy_Dev_Options` or `TSP_Easy_Dev_Pro_Options` classes, you must set <strong>plugin_name</strong> in your plugins file (Example: \$my_plugin->plugin_name = 'my-plugin').";
+					$message .= "Since you are not extending the `TSP_Easy_Dev_Options` class, you must set <strong>plugin_name</strong> in your plugins file (Example: \$my_plugin->plugin_name = 'my-plugin').";
 				}//end if
 				
 				if ( !isset ($this->plugin_file) )
 				{
-					$message .= "Since you are not extending the `TSP_Easy_Dev_Options` or `TSP_Easy_Dev_Pro_Options` classes, you must set <strong>plugin_file</strong> in your plugins file (Example: \$my_plugin->plugin_name = __FILE__ ).";
+					$message .= "Since you are not extending the `TSP_Easy_Dev_Options` class, you must set <strong>plugin_file</strong> in your plugins file (Example: \$my_plugin->plugin_name = __FILE__ ).";
 				}//end if
 				
 				if ( !isset ($this->plugin_base_name) )
 				{
-					$message .= "Since you are not extending the `TSP_Easy_Dev_Options` or `TSP_Easy_Dev_Pro_Options` classes, you must set <strong>plugin_base_name</strong> in your plugins file (Example: \$my_plugin->plugin_base_name = plugin_basename( __FILE__ ) ).";
+					$message .= "Since you are not extending the `TSP_Easy_Dev_Options` class, you must set <strong>plugin_base_name</strong> in your plugins file (Example: \$my_plugin->plugin_base_name = plugin_basename( __FILE__ ) ).";
 				}//end if
 				
 				if (!empty( $message ))
@@ -287,9 +307,11 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 				
 			}//end else
 			
-			add_action( 'admin_init', 				array( $this, 'init' ) );
+			add_action('admin_init', 	array( $this, 'init' ) );
+			add_action('admin_init', 	array( $this, 'process_incompatible_plugins' ));
+			add_action('admin_init', 	array( $this, 'process_required_plugins' ));
 		 }//end setup
-
+		
 
 		/**
 		 * Function to initialize the plugin on install or activation
@@ -808,6 +830,96 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 				$this->options->deregister_options();
 			}//end if
 		}//end uninstall
+		/**
+		 *  Implementation to deactivate incompatible plugins
+		 *
+		 * @api
+		 *
+		 * @since 1.2.9
+		 *
+		 * @param array $plugins_list ($plugin_name => $plugin_title) Required array of plugins to deactivate
+		 *
+		 * @return none
+		 */
+		public function incompatible_plugins ( $plugins_list )
+		{
+			$this->incompatiable_plugins = $plugins_list;
+		}//end incompatible_plugins
+
+		/**
+		 *  Implementation to deactivate self if required plugins not installed
+		 *
+		 * @api
+		 *
+		 * @since 1.2.9
+		 *
+		 * @param array $plugins_list ($key => $value) Required array of plugins to deactivate
+		 *
+		 * @return none
+		 */
+		public function required_plugins ( $plugins_list )
+		{
+			$this->required_plugins = $plugins_list;
+		}//end required_plugins
+
+
+		/**
+		 * Process the incompatible plugins
+		 *
+		 * @ignore
+		 *
+		 * @since 1.2.9
+		 *
+		 * @param none
+		 *
+		 * @return none
+		 */
+		public function process_incompatible_plugins ()
+		{
+			if ( !empty( $this->incompatiable_plugins ) )
+			{
+				foreach ( $this->incompatiable_plugins as $a_plugin => $a_plugin_title )
+				{
+					if( is_plugin_active( $a_plugin . DS . $a_plugin . '.php' ) ) 
+					{
+						$this->message = $a_plugin_title . " <strong>was deactivated</strong>, this plugin is not compatible with {$this->plugin_title}.";
+																
+						add_action( 'admin_notices', array ( $this, 'display_notice') );
+
+						deactivate_plugins( $a_plugin . DS . $a_plugin . '.php' );
+					}//endif
+				}//endforeach
+			}//end if
+		}//end process_incompatible_plugins
+
+		/**
+		 * Process the required plugins
+		 *
+		 * @ignore
+		 *
+		 * @since 1.2.9
+		 *
+		 * @param none
+		 *
+		 * @return none
+		 */
+		public function process_required_plugins ()
+		{
+			if ( !empty( $this->required_plugins ) )
+			{
+				foreach ( $this->required_plugins as $req_plugin => $req_plugin_title )
+				{
+					if( !is_plugin_active( $req_plugin . DS . $req_plugin . '.php' ) ) 
+					{
+						$this->message = $this->plugin_title . " <strong>was not installed</strong>, plugin requires the installation and activation of <a href='plugin-install.php?tab=search&type=term&s={$req_plugin}'>{$req_plugin}</a>.";
+																
+						add_action( 'admin_notices', array ( $this, 'display_error') );
+	
+						deactivate_plugins( $this->plugin_name . DS . $this->plugin_name.'.php' );
+					}//endif
+				}//endforeach
+			}//end if
+		}//end process_required_plugins
 	}//end TSP_Easy_Dev
 }//endif	
 ?>

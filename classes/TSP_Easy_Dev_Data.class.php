@@ -8,7 +8,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Data' ) )
 	 * @author 		Sharron Denice, The Software People
 	 * @copyright 	2013 The Software People
 	 * @license 	APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
-	 * @version 	1.0.2
+	 * @version 	1.2.9
 	 */
 	final class TSP_Easy_Dev_Data
 	{
@@ -47,8 +47,9 @@ if ( !class_exists( 'TSP_Easy_Dev_Data' ) )
 		 *
 		 * @return none
 		 */
-		public function __construct( $fields ) 
+		public function __construct( $fields, $field_type ) 
 		{
+			$this->update_realtime_fields( $fields, $field_type );
 			$this->set( $fields );
 
 		}//end __construct
@@ -68,7 +69,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Data' ) )
 		{
 			$this->fields = $fields;
 		}//end set
-		
+
 		/**
 		 * Set and process field values
 		 *
@@ -349,6 +350,33 @@ if ( !class_exists( 'TSP_Easy_Dev_Data' ) )
         	return $html_ok;
 		}//end html_ok
 
+		/**
+		 * Update fields that have realtime data updates
+		 *
+		 * @api
+		 *
+		 * @since 1.2.9
+		 *
+		 * @param array $fields Required - The fields array
+		 * @param string $field_type Required - The field type - post, cateogry, shortcode or widget
+		 *
+		 * @return none
+		 */
+		private function update_realtime_fields ( &$fields, $field_type )
+		{
+			global $easy_dev_settings;
+		
+			if (!empty($fields))
+			{
+				foreach ($fields as $key => $value)
+				{
+					if (is_array($value) && isset($value['realtime']))
+					{
+						$fields[$key]['options'] = $easy_dev_settings['plugin_options'][$field_type . '_fields'][$key]['options'];
+					}//end if
+				}//end foreach
+			}//end if
+		}//end update_realtime_fields
 	}//end TSP_Easy_Dev_Data
 }//endif
 ?>
