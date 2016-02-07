@@ -1,13 +1,4 @@
 <style>
-.{$field_prefix}_form_element label{
-	width: 220px;
-	float: left;
-	clear: left;
-}
-
-.{$field_prefix}_form_element {
-	padding-bottom: 5px;
-}
 .{$field_prefix}_url_display {
     width: 100%; 
     background-color: #FFFFFF; 
@@ -21,21 +12,22 @@
     margin-left: 220px;
  }
 </style>
-<div class="{$field_prefix}_form_element" id="{$field.name}_container_div" style="">
-	<label for="{$field.id}">{$field.label}</label>
+<div class="form-group {$field_prefix}_form_element" id="{$field.name}_container_div" style="">
+	<label for="{$field.id}" class="col-sm-3 control-label">{$field.label}</label>
+	<div class="col-sm-9">
 	{if $field.type == 'INPUT'}
-	   <input class="{$class}" id="{$field.id}" name="{$field.name}" value="{$field.value}" />
+	   <input class="{$class} form-control" id="{$field.id}" name="{$field.name}" value="{$field.value}" />
 	{elseif $field.type == 'TEXTAREA'}
-	   <textarea class="{$class}" id="{$field.id}" name="{$field.name}">{$field.value}</textarea>
+	   <textarea class="{$class} form-control" id="{$field.id}" name="{$field.name}">{$field.value}</textarea>
 	{elseif $field.type == 'CHECKBOX'}
 		{foreach $field.options as $okey => $ovalue}
             {if $okey > 0}
                 <label for="{$field.id}">&nbsp;</label>
             {/if}
-	   		<input type="checkbox" class="level-0" id="{$field.id}[]" name="{$field.name}[]" value="{$ovalue}" {if $field.value|is_array && $ovalue|in_array:$field.value}checked{/if}>{$ovalue}<br/>
+	   		<input type="checkbox" class="level-0 form-control" id="{$field.id}[]" name="{$field.name}[]" value="{$ovalue}" {if $field.value|is_array && $ovalue|in_array:$field.value}checked{/if}>{$ovalue}<br/>
 		{/foreach}
 	{elseif $field.type == 'SELECT'}
-	   <select class="{$class}" id="{$field.id}" name="{$field.name}" >
+	   <select class="{$class} form-control" id="{$field.id}" name="{$field.name}" >
 	   		{foreach $field.options as $okey => $ovalue}
 	   			<option class="level-0" value="{$ovalue}" {if $field.value == $ovalue}selected='selected'{/if}>{$okey}</option>
 	   		{/foreach}
@@ -81,6 +73,7 @@
 			{/literal}
 		</script>
 	{/if}
+	</div>
 	<div class="clear"></div>
 	<div id="error-message-name"></div>
 </div>

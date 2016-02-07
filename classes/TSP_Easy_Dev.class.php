@@ -8,7 +8,7 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 	 * @author 		Sharron Denice, The Software People
 	 * @copyright 	2013 The Software People
 	 * @license 	APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
-	 * @version 	1.2.9
+	 * @version 	1.3.0
 	 */
 	class TSP_Easy_Dev
 	{
@@ -412,6 +412,20 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 			return $this->widget;
 		}//end get_widget_handler
 
+		/**
+		 * Method to get the meta links
+		 *
+		 * @since 1.3.0
+		 *
+		 * @param none
+		 *
+		 * @return array meta_links
+		 */
+		public function get_meta_links()
+		{
+			return $this->meta_links;
+		}//end get_widget_handler
+		
 
 		/**
 		 * Add URL links to the plugin description on the plugin list page

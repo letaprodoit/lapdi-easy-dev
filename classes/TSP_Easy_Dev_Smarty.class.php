@@ -48,8 +48,8 @@ if ( !class_exists( 'TSP_Easy_Dev_Smarty' ) )
 			if ( $form )
 			{
 				$this->assign( 'EASY_DEV_FORM_FIELDS',	'easy-dev-form-fields.tpl' );
-				$this->assign( 'field_prefix',		'tspedev' );
-				$this->assign( 'class',			'');
+				$this->assign( 'field_prefix',			'tspedev' );
+				$this->assign( 'class',					'');
 			}//end if
 		}//end __construct
 	}//end TSP_Easy_Dev_Smarty
