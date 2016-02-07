@@ -24,12 +24,12 @@ body {
 #tsp_wrapper {
     background: #32373C;
     margin: 15px;
+    min-width: 500px;
 }
 #tsp_content{
     position: relative;
 }
 #tsp_header {
-	height: 130px;
     padding: 15px 15px;
 	background: #003367;
     background: -moz-linear-gradient(top, #000 0%, #003367 100%);

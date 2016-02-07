@@ -1,5 +1,7 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 <div id="tsp_wrapper">
@@ -23,15 +25,15 @@
                     <div id="tabs-1">
                      	<form method="post" action="admin.php?page={$plugin_name}.php" class="form-horizontal">
 	                        <div id="tsp_top_bar" class="row">
-						        <div id="tsp_bar_title" class="col-sm-9"><h2>Shortcode Defaults</h2></div>
-						        <div id="tsp_bar_button" class="col-sm-3">
+						        <div id="tsp_bar_title" class="col-sm-8"><h2>Shortcode Defaults</h2></div>
+						        <div id="tsp_bar_button" class="col-sm-4">
 									  <div class="form-group">
-										<button type="submit" class="btn btn-default">Save Changes</button>
+										<button type="submit" class="btn btn-primary">Save Changes</button>
 									  </div>
 						        </div>
 	                        </div>                       
-	                    	<div class="updated notice fade row" {if !$form || $error != ""}style="display:none;"{/if}><p><strong>{$message}</strong></p></div>
-	                    	<div class="error row" {if !$error}style="display:none;"{/if}><p><strong>{$error}</strong></p></div>
+	                    	<div role="alert" class="alert alert-success" {if !$form || $error != ""}style="display:none;"{/if}><p><strong>{$message}</strong></p></div>
+	                    	<div role="alert" class="alert alert-danger" {if !$error}style="display:none;"{/if}><p><strong>{$error}</strong></p></div>
 	                    	<fieldset>
 	                    		{foreach $form_fields as $field}
 	                    			{include file="$EASY_DEV_FORM_FIELDS" field=$field}
@@ -39,10 +41,10 @@
                     		</fieldset>
                     		<input type="hidden" name="{$plugin_name}_form_submit" value="submit" />
 	                        <div id="tsp_bottom_bar" class="row">
-						        <div id="tsp_bar_title" class="col-sm-9"></div>
-						        <div id="tsp_bar_button" class="col-sm-3">
+						        <div id="tsp_bar_title" class="col-sm-8"></div>
+						        <div id="tsp_bar_button" class="col-sm-4">
 									  <div class="form-group">
-										<button type="submit" class="btn btn-default">Save Changes</button>
+										<button type="submit" class="btn btn-primary">Save Changes</button>
 									  </div>
 						        </div>
 	                        </div>                       
