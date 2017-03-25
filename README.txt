@@ -3,8 +3,8 @@ Contributors: thesoftwarepeople,sharrondenice
 Donate link: http://www.thesoftwarepeople.com/software/plugins/wordpress/easy-dev-for-wordpress.html
 Tags: API, OO, object oriented, learn, wordpress, add_filter, add_action, tutorial, plugin, application, interface, development, developer
 Requires at least: 3.5.1
-Tested up to: 4.4.2
-Stable tag: 1.3.1
+Tested up to: 4.7.3
+Stable tag: 1.3.4
 License: Apache v2.0
 License URI: http://www.apache.org/licenses/LICENSE-2.0
 
@@ -83,6 +83,17 @@ Nothing. The script runs in real-time behind the scenes. Once installed, there a
 
 == Changelog ==
 
+= 1.3.4 =
+* Fix: Allow script versioning for easy updates of javascripts
+
+= 1.3.3 =
+* Bug: Update from version 1.3.2 required
+* Enhancement: Allow script versioning for easy updates of javascripts
+
+= 1.3.2 =
+* Enhancement: Deregister and dequeue all scripts and style on deactivate
+* Feature: Allow registering scripts in the footer of a theme
+
 = 1.3.1 =
 * Enhancement: Additional style changes
 
@@ -128,6 +139,17 @@ Nothing. The script runs in real-time behind the scenes. Once installed, there a
 * Launch
 
 == Upgrade notice ==
+
+= 1.3.4 =
+Fix: Allow script versioning for easy updates of javascripts
+
+= 1.3.3 =
+Bug: Update from version 1.3.2 required
+Enhancement: Allow script versioning for easy updates of javascripts
+
+= 1.3.2 =
+Enhancement: Deregister and dequeue all scripts and style on deactivate
+Feature: Allow registering scripts in the footer of a theme
 
 = 1.3.1 =
 Enhancement: Additional style changes

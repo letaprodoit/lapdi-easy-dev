@@ -8,7 +8,7 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 	 * @author 		Sharron Denice, The Software People
 	 * @copyright 	2013 The Software People
 	 * @license 	APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
-	 * @version 	1.3.0
+	 * @version 	1.3.2
 	 */
 	class TSP_Easy_Dev
 	{
@@ -529,19 +529,29 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 		 *
 		 * @param string $script Required - The full URL of the script file
 		 * @param array $required_scripts Optonal - Array of required script tags (ie 'jquery','jquery-ui-widget')
-		 * @param boolean $admin Optonal - Is the style for the admin or user interface
+		 * @param boolean $admin Optonal - Is the script for the admin or user interface
+		 * @param boolean $footer Optonal - Will the script be loaded in the footer
+		 * @param varies $version Optonal - Script version number or false if none
 		 *
 		 * @return none
 		 */
-		 public function add_script( $script, $required_scripts = array(), $admin = false )
+		 public function add_script( $script, $required_scripts = array(), $admin = false, $footer = false, $version = false )
 		 {
 			if ( $admin )
 			{
-				$this->admin_js_files[$script] 	= $required_scripts;
+				$this->admin_js_files[$script] 	= array(
+					'required' => $required_scripts,
+					'footer' => $footer,
+					'version' => $version,
+				);
 			}//endif
 			else
 			{
-				$this->user_js_files[$script] 	= $required_scripts;
+				$this->user_js_files[$script] 	= array(
+					'required' => $required_scripts,
+					'footer' => $footer,
+					'version' => $version,
+				);
 			}//end else
 		 }//end add_css
 
@@ -646,15 +656,52 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 				wp_enqueue_style( $tag );
 			}//endforeach
 			
-			foreach ($this->user_js_files as $script => $requires)
+			foreach ($this->user_js_files as $script => $data)
 			{
 				$tag = basename($script);
 				$tag = preg_replace( "/\.js/", "", $tag);
 				$tag = preg_replace( "/-|\./", "_", $tag);
 				$tag = "tsp_js_" . $tag;
 				
-				wp_register_script( $tag, $script, $requires );
+				wp_register_script( $tag, $script, $data['required'], $data['version'], $data['footer'] );
 				wp_enqueue_script( $tag );
+			}//endforeach
+
+		}//end  enqueue_styles
+		
+		/**
+		 *  Implementation to dequeue user scripts and stylesheets
+		 *
+		 * @ignore - Must be public because used in WordPress hooks
+		 *
+		 * @since 1.3.2
+		 *
+		 * @param none
+		 *
+		 * @return none
+		 */
+		public function dequeue_user_scripts()
+		{
+			foreach ($this->user_css_files as $style)
+			{
+				$tag = basename($style);
+				$tag = preg_replace( "/\.css/", "", $tag);
+				$tag = preg_replace( "/-|\./", "_", $tag);
+				$tag = "tsp_css_" . $tag;
+				
+				wp_deregister_style( $tag, $style );
+				wp_dequeue_style( $tag );
+			}//endforeach
+			
+			foreach ($this->user_js_files as $script => $data)
+			{
+				$tag = basename($script);
+				$tag = preg_replace( "/\.js/", "", $tag);
+				$tag = preg_replace( "/-|\./", "_", $tag);
+				$tag = "tsp_js_" . $tag;
+				
+				wp_deregister_script( $tag, $script, $data['required'] );
+				wp_dequeue_script( $tag );
 			}//endforeach
 
 		}//end  enqueue_styles
@@ -683,15 +730,52 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 				wp_enqueue_style( $tag );
 			}//endforeach
 			
-			foreach ($this->admin_js_files as $script => $requires)
+			foreach ($this->admin_js_files as $script => $data)
 			{
 				$tag = basename($script);
 				$tag = preg_replace( "/\.js/", "", $tag);
 				$tag = preg_replace( "/-|\./", "_", $tag);
 				$tag = "tsp_js_" . $tag;
 				
-				wp_register_script( $tag, $script, $requires );
+				wp_register_script( $tag, $script, $data['required'], $data['version'], $data['footer']);
 				wp_enqueue_script( $tag );
+			}//endforeach
+		}//end enqueue_scripts
+		
+		
+		/**
+		 *  Implementation to dequeue admin scripts and stylesheets
+		 *
+		 * @ignore - Must be public because used in WordPress hooks
+		 *
+		 * @since 1.3.2
+		 *
+		 * @param none
+		 *
+		 * @return none
+		 */
+		public function dequeue_admin_scripts()
+		{
+			foreach ($this->admin_css_files as $style)
+			{
+				$tag = basename($style);
+				$tag = preg_replace( "/\.css/", "", $tag);
+				$tag = preg_replace( "/-|\./", "_", $tag);
+				$tag = "tsp_css_" . $tag;
+				
+				wp_deregister_style( $tag, $style );
+				wp_dequeue_style( $tag );
+			}//endforeach
+			
+			foreach ($this->admin_js_files as $script => $data)
+			{
+				$tag = basename($script);
+				$tag = preg_replace( "/\.js/", "", $tag);
+				$tag = preg_replace( "/-|\./", "_", $tag);
+				$tag = "tsp_js_" . $tag;
+				
+				wp_deregister_script( $tag, $script, $data['required'] );
+				wp_dequeue_script( $tag );
 			}//endforeach
 		}//end enqueue_scripts
 		
@@ -822,6 +906,10 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 				}//end if
 			}//end if
 			
+			
+			$this->dequeue_admin_scripts();
+			$this->dequeue_user_scripts();
+			
 			return $message;
 		}//end deactivate
 		
@@ -843,6 +931,8 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 			{
 				$this->options->deregister_options();
 			}//end if
+			
+			$this->deactivate();
 		}//end uninstall
 		/**
 		 *  Implementation to deactivate incompatible plugins
