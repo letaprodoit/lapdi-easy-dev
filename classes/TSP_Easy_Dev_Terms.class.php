@@ -40,8 +40,8 @@ if ( !class_exists( 'TSP_Easy_Dev_Terms' ) )
 		{
 			$this->options = $options;
 			
-			add_action( 'created_term', 			array( $this, 'update_term_metadata'));
-			add_action( 'edit_term', 				array( $this, 'update_term_metadata'));
+			add_action( 'created_term', 			array( $this, 'update_term_metadata', 10, 3));
+			add_action( 'edit_term', 				array( $this, 'update_term_metadata', 10, 3));
 			add_action( 'edit_category_form', 		array( $this, 'load_term_metadata_box'));
 		}//end __construct
 	
@@ -66,7 +66,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Terms' ) )
 			}//end if
 				
 			$term_fields = get_option( $this->options->get_value('term-fields-option-name') );
-			$defaults = new TSP_Easy_Dev_Data ( $term_fields, 'category' );
+			$defaults = new TSP_Easy_Dev_Data ( $term_fields, $term->taxonomy );
 
 		    $default_fields = $defaults->get_values();
 		    
@@ -120,15 +120,17 @@ if ( !class_exists( 'TSP_Easy_Dev_Terms' ) )
 		 * @since 1.0
 		 *
 		 * @param integer $term_ID Required the id of the term/category to update
+         * @param int $taxonomy_ID Required the id of the taxonomy
+         * @param string $taxonomy Required the term taxonomy
 		 *
 		 * @return none
 		 */
-		public function update_term_metadata ( $term_ID )
+		public function update_term_metadata ( $term_ID, $taxonomy_ID, $taxonomy )
 		{
 		    if (!empty ( $term_ID ))
 		    {
 				$term_fields = get_option( $this->options->get_value('term-fields-option-name') );
-				$defaults = new TSP_Easy_Dev_Data ( $term_fields, 'category' );
+				$defaults = new TSP_Easy_Dev_Data ( $term_fields, $taxonomy );
 	
 			   	$defaults->set_values( $_POST );
 			    
@@ -162,15 +164,16 @@ if ( !class_exists( 'TSP_Easy_Dev_Terms' ) )
 		 * @since 1.0
 		 *
 		 * @param int $ID  - the post's ID
+         * @param string $taxonomy  - the term's taxonomy
 		 *
 		 * @return array $post_fields return an array of fiels stored in the post
 		 */
-		public function get_term_fields( $ID )
+		public function get_term_fields( $ID, $taxonomy = 'category' )
 		{
 			$new_term_fields = array();
 			       
 			$term_fields = get_option( $this->options->get_value('term-fields-option-name') );
-			$defaults = new TSP_Easy_Dev_Data ( $term_fields, 'category' );
+			$defaults = new TSP_Easy_Dev_Data ( $term_fields, $taxonomy );
 			
 			$fields = $defaults->get_values();
 	
