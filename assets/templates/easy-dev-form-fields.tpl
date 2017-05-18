@@ -32,6 +32,19 @@
 	   			<option class="level-0" value="{$ovalue}" {if $field.value == $ovalue}selected='selected'{/if}>{$okey}</option>
 	   		{/foreach}
 	   </select>
+	{elseif $field.type == 'SELECT_PAGES'}
+	   <div id="{$field.name}-box">
+	   <select class="{$class} form-control" id="{$field.id}" name="{$field.name}{if $field.multiple}[]{/if}" {if $field.size}size="{$field.size}"{/if} {if $field.multiple}multiple{/if} {if $field.other}{$field.other}{/if}>
+	   		{foreach $field.options as $okey => $ovalue}
+			    {if $field.multiple}
+	   			<option class="level-0" value="{$okey}" {if $okey|in_array:$field.value}selected='selected'{/if}>{$ovalue}</option>
+				{else}
+	   			<option class="level-0" value="{$okey}" {if $field.value == {$okey}}selected='selected'{/if}>{$ovalue}</option>
+				{/if}
+				
+	   		{/foreach}
+	   </select>
+	   </div>
 	{elseif $field.type == 'IMAGE'}
 		<input type="hidden" id="{$field.id}" name="{$field.name}" value="{$field.value}" />
 		<input type="hidden" id="{$field.id}_prefix" name="{$field.name}_prefix" value="{$field_prefix}_{$field.name}" />

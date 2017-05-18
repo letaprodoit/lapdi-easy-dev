@@ -8,7 +8,7 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 	 * @author 		Sharron Denice, The Software People
 	 * @copyright 	2013 The Software People
 	 * @license 	APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
-	 * @version 	1.3.2
+	 * @version 	1.3.3
 	 */
 	class TSP_Easy_Dev
 	{
@@ -134,6 +134,12 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 		 */
 		private $listeners					= array();
 		/**
+		 * An array of listeners that this plugin will remove
+		 *
+		 * @var array
+		 */
+		private $remove_listeners			= array();
+		/**
 		 * This plugin's icon URL
 		 *
 		 * @var string
@@ -223,6 +229,22 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 					else if ($data['type'] == 'filter')
 					{
 						add_filter ($data['tag'], $data['func'], $data['priority'], $data['arg_count']);
+					}//end elseif
+				}//end foreach
+			}//end if
+
+		 	// If the user removed listeners process them
+			if (!empty($this->remove_listeners))
+			{
+				foreach ($this->remove_listeners as $index => $data)
+				{
+					if ($data['type'] == 'action')
+					{
+						remove_action ($data['tag'], $data['func'], $data['priority']);
+					}//end if
+					else if ($data['type'] == 'filter')
+					{
+						remove_filter ($data['tag'], $data['func'], $data['priority']);
 					}//end elseif
 				}//end foreach
 			}//end if
@@ -472,6 +494,33 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 		 		'arg_count' => $arg_count,
 		 	);
 		 }//end add_listener
+
+		 /**
+		  * Remove listener
+		  *
+		  * @api
+		  *
+		  * @since 1.3.3
+		  *
+		  * @param string $tag Required - The tag
+		  * @param array $func Required - The parent class (first arg) and the function (second arg)
+		  * @param string $type Required - The type of listener, action or filter
+		  * @param int $priority optional - Used to specify the order in which the functions 
+		  * 	associated with a particular action are executed. Lower numbers correspond 
+		  * 	with earlier execution, and functions with the same priority are executed in 
+		  * 	the order in which they were added to the filter.
+		  *
+		  * @return none
+		  */
+		 public function remove_listener( $tag, $type, $func, $priority = 10 )
+		 {
+		 	$this->remove_listeners[] = array(
+		 		'tag' => $tag,
+		 		'type' => $type,
+		 		'func' => $func,
+		 		'priority' => $priority,
+		 	);
+		 }//end remove_listener
 		 		
 		/**
 		 * Add additional links to the plugin description section (on plugins page)

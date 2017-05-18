@@ -8,7 +8,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Data' ) )
 	 * @author 		Sharron Denice, The Software People
 	 * @copyright 	2013 The Software People
 	 * @license 	APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
-	 * @version 	1.2.9
+	 * @version 	1.3.0
 	 */
 	final class TSP_Easy_Dev_Data
 	{
@@ -50,6 +50,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Data' ) )
 		public function __construct( $fields, $field_type ) 
 		{
 			$this->update_realtime_fields( $fields, $field_type );
+			$this->update_dynamic_fields( $fields, $field_type );
 			$this->set( $fields );
 
 		}//end __construct
@@ -377,6 +378,40 @@ if ( !class_exists( 'TSP_Easy_Dev_Data' ) )
 				}//end foreach
 			}//end if
 		}//end update_realtime_fields
+
+		/**
+		 * Update fields that have dynamic data types
+		 *
+		 * @api
+		 *
+		 * @since 1.3.0
+		 *
+		 * @param array $fields Required - The fields array
+		 * @param string $field_type Required - The field type - post, cateogry, shortcode or widget
+		 *
+		 * @return none
+		 */
+		private function update_dynamic_fields ( &$fields, $field_type )
+		{
+			global $easy_dev_settings;
+		
+			if (!empty($fields))
+			{
+				foreach ($fields as $key => $value)
+				{
+					if ($value['type'] == 'SELECT_PAGES')
+					{
+						$pages = get_pages();
+						$options = array();
+						
+						foreach ($pages as $index => $page)
+							$options[$page->ID] = $page->post_title;
+
+						$fields[$key]['options'] = $options;
+					}//end if
+				}//end foreach
+			}//end if
+		}//end update_dynamic_fields
 	}//end TSP_Easy_Dev_Data
 }//endif
 ?>
