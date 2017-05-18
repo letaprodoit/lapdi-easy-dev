@@ -36,7 +36,7 @@
 	   <div id="{$field.name}-box">
 	   <select class="{$class} form-control" id="{$field.id}" name="{$field.name}{if $field.multiple}[]{/if}" {if $field.size}size="{$field.size}"{/if} {if $field.multiple}multiple{/if} {if $field.other}{$field.other}{/if}>
 	   		{foreach $field.options as $okey => $ovalue}
-			    {if $field.multiple}
+			    {if $field.multiple && $field.value|is_array}
 	   			<option class="level-0" value="{$okey}" {if $okey|in_array:$field.value}selected='selected'{/if}>{$ovalue}</option>
 				{else}
 	   			<option class="level-0" value="{$okey}" {if $field.value == {$okey}}selected='selected'{/if}>{$ovalue}</option>

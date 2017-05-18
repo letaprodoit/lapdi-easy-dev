@@ -4,7 +4,7 @@ Donate link: http://www.thesoftwarepeople.com/software/plugins/wordpress/easy-de
 Tags: API, OO, object oriented, learn, wordpress, add_filter, add_action, tutorial, plugin, application, interface, development, developer
 Requires at least: 4.5.0
 Tested up to: 4.7.3
-Stable tag: 1.3.6
+Stable tag: 1.3.7
 License: Apache v2.0
 License URI: http://www.apache.org/licenses/LICENSE-2.0
 
@@ -83,6 +83,9 @@ Nothing. The script runs in real-time behind the scenes. Once installed, there a
 
 == Changelog ==
 
+= 1.3.7 =
+* Bug: Fixed bug related to new SELECT_PAGES option
+
 = 1.3.6 =
 * Enhancement: New field type SELECT_PAGES
 * Enhancement: Allow the removal of filters/actions
@@ -146,6 +149,9 @@ Nothing. The script runs in real-time behind the scenes. Once installed, there a
 * Launch
 
 == Upgrade notice ==
+
+= 1.3.7 =
+Bug: Fixed bug related to new SELECT_PAGES option
 
 = 1.3.6 =
 Enhancement: New field type SELECT_PAGES
