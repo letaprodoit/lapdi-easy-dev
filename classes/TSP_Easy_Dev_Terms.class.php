@@ -8,7 +8,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Terms' ) )
 	 * @author 		Sharron Denice, The Software People
 	 * @copyright 	2013 The Software People
 	 * @license 	APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
-	 * @version 	1.2.9
+	 * @version 	1.3.0
 	 */
 	final class TSP_Easy_Dev_Terms
 	{
@@ -40,8 +40,8 @@ if ( !class_exists( 'TSP_Easy_Dev_Terms' ) )
 		{
 			$this->options = $options;
 			
-			add_action( 'created_term', 			array( $this, 'update_term_metadata', 10, 3));
-			add_action( 'edit_term', 				array( $this, 'update_term_metadata', 10, 3));
+			add_action( 'created_term', 			array( $this, 'update_term_metadata'), 10, 3);
+			add_action( 'edit_term', 				array( $this, 'update_term_metadata'), 10, 3);
 			add_action( 'edit_category_form', 		array( $this, 'load_term_metadata_box'));
 		}//end __construct
 	

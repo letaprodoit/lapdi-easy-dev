@@ -8,7 +8,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Smarty' ) )
 	 * @author 		Sharron Denice, The Software People
 	 * @copyright 	2013 The Software People
 	 * @license 	APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
-	 * @version 	1.2.9
+	 * @version 	1.3.0
 	 */
 	class TSP_Easy_Dev_Smarty extends Smarty
 	{
@@ -30,9 +30,9 @@ if ( !class_exists( 'TSP_Easy_Dev_Smarty' ) )
 		 * @param boolean $form Optional are we displaying a form or not
 		 *
 		 */
-		public function __construct( $template_dirs = null, $cache_dir = null, $compiled_dir = null, $form = false ) 
+		public function __construct( $template_dirs = null, $cache_dir = null, $compiled_dir = null, $form = false )
 		{
-			$this->smarty = $this;
+			parent::__construct();
 			
 			// Only use the default globals if they are none in the database
 			
@@ -44,7 +44,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Smarty' ) )
 			
 			if ( !empty( $compiled_dir ))
 				$this->setCacheDir( $compiled_dir );
-			
+
 			if ( $form )
 			{
 				$this->assign( 'EASY_DEV_FORM_FIELDS',	'easy-dev-form-fields.tpl' );

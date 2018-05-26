@@ -11,9 +11,6 @@ if ( !class_exists( 'TSP_Easy_Dev_Options_Easy_Dev' ) )
 	 * @version $Id: [FILE] [] [DATE] [TIME] [USER] $
 	 */
 	
-	/**
-	 * @method void display_parent_page()
-	 */
 	class TSP_Easy_Dev_Options_Easy_Dev extends TSP_Easy_Dev_Options
 	{
 		/**

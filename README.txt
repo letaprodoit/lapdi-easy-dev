@@ -3,8 +3,8 @@ Contributors: thesoftwarepeople,sharrondenice
 Donate link: http://www.thesoftwarepeople.com/software/plugins/wordpress/easy-dev-for-wordpress.html
 Tags: API, OO, object oriented, learn, wordpress, add_filter, add_action, tutorial, plugin, application, interface, development, developer
 Requires at least: 4.5.0
-Tested up to: 4.7.3
-Stable tag: 1.3.7
+Tested up to: 4.9.6
+Stable tag: 1.3.8
 License: Apache v2.0
 License URI: http://www.apache.org/licenses/LICENSE-2.0
 
@@ -83,6 +83,10 @@ Nothing. The script runs in real-time behind the scenes. Once installed, there a
 
 == Changelog ==
 
+= 1.3.8 =
+* Bug: Fixed issue with term data not updating when saving category information
+* Enhancement: Updated Smarty version to 3.1.29
+
 = 1.3.7 =
 * Bug: Fixed bug related to new SELECT_PAGES option
 
@@ -149,6 +153,10 @@ Nothing. The script runs in real-time behind the scenes. Once installed, there a
 * Launch
 
 == Upgrade notice ==
+
+= 1.3.8 =
+Bug: Fixed issue with term data not updating when saving category information
+Enhancement: Updated Smarty version to 3.1.29
 
 = 1.3.7 =
 Bug: Fixed bug related to new SELECT_PAGES option
