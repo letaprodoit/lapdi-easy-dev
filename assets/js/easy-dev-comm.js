@@ -18,25 +18,12 @@ getNativeWindow().addEventListener('message', function (event) {
         if ((event.origin !== this.window.location.origin)) {
             var obj = JSON.parse(event.data);
 
-            if (event.origin == 'https://specials.sprouts.com' && obj.type && obj.type == 'analytics')
-            {
-                if ( obj.event_type && obj.event_type == 'page_view' || obj.event_type && obj.event_type == 'item_view' )
-                {
-                    if (TSPED_DEBUG)
-                        console.log('Flipp View Change Notification: ', obj);
+            if (TSPED_DEBUG)
+                console.log('Message Received: ', event);
 
-                    sfm_set_default_store(obj);
-                }
-                else if ( obj.event_type && obj.event_type == 'category_select' )
-                {
-                    if (TSPED_DEBUG)
-                        console.log('Flipp Category Change Notification: ', obj);
-                }
-                else if ( obj.event_type && obj.event_type == 'flyer_select' )
-                {
-                    if (TSPED_DEBUG)
-                        console.log('Flipp Flyer Change Notification: ', obj);
-                }
+            if (event.origin == 'https://www.abcdomain.com')
+            {
+                // TODO: Process Results
             }
         }
     }

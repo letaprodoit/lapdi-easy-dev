@@ -11,55 +11,6 @@
  */
 var TSPED_DEBUG = false;
 
-function tspedev_set_default_store( data )
-{
-    var _cms_url = window.location.protocol + '//' + window.location.host; // default to prod URL;
-
-    // cms_url is globally set
-    if (typeof cms_url !== 'undefined' && typeof cms_url !== null) {
-        _cms_url = cms_url;
-    }
-    // if data is just the store number properly store it
-    if ( !isNaN(data) )
-    {
-        data = { "store_id": data };
-    }
-
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState === 4 && this.status === 200) {
-            var response = JSON.parse(this.responseText);
-            if (response.success) {
-                var unataComm = new UnataComm();
-
-                payload = {
-                    'authenticated': true,
-                    'ext_id': response.data.store_id,
-                    'name': response.data.title,
-                    'href': response.data.permalink,
-                    'store': {
-                        'authenticated': true,
-                        'ext_id': response.data.store_id,
-                        'name': response.data.title,
-                        'external_url': response.data.permalink,
-                    }
-                };
-
-                if (TSPED_DEBUG)
-                    console.log('Flipp Store Changing to '+ response.data.store_id + ': ', response);
-
-                unataComm.send({eventType: 'unata-update-store', payload: payload}, false, null);
-
-                tspedev_set_cookie(response.data.cookie_name, response.data, 1);
-            }
-        }
-    }
-
-    xhttp.open('PUT', _cms_url + '/wp-json/spr-wp-rest/v1/store', true);
-    xhttp.setRequestHeader('Content-type','application/json; charset=utf-8');
-    xhttp.send( JSON.stringify(data) );
-}
-
 // Store the field that contains the image URL
 function tspedev_save_image_url(image_html, field_id)
 {
