@@ -4,9 +4,9 @@ if ( !class_exists( 'TSP_Easy_Dev_Smarty' ) )
 	/**
 	 * Wrapper for the Smarty class
 	 * @package 	TSP_Easy_Dev
-	 * @author 		sharrondenice, thesoftwarepeople
-	 * @author 		Sharron Denice, The Software People
-	 * @copyright 	2013 The Software People
+	 * @author 		sharrondenice, letaprodoit
+	 * @author 		Sharron Denice, Let A Pro Do IT!
+	 * @copyright 	2013 Let A Pro Do IT!
 	 * @license 	APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
 	 * @version 	1.3.0
 	 */
@@ -48,7 +48,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Smarty' ) )
 			if ( $form )
 			{
 				$this->assign( 'EASY_DEV_FORM_FIELDS',	'easy-dev-form-fields.tpl' );
-				$this->assign( 'field_prefix',			'tspedev' );
+				$this->assign( 'field_prefix',			TSP_EASY_DEV_FIELD_PREFIX );
 				$this->assign( 'class',					'');
 			}//end if
 		}//end __construct

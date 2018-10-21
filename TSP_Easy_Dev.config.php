@@ -1,7 +1,7 @@
 <?php									
 /* @group Easy Dev Package settings, all plugins use the same settings, DO NOT EDIT */
 if ( !defined( 'TSP_PARENT_NAME' )) define('TSP_PARENT_NAME', 			'tsp_plugins');
-if ( !defined( 'TSP_PARENT_TITLE' )) define('TSP_PARENT_TITLE', 		'TSP Plugins');
+if ( !defined( 'TSP_PARENT_TITLE' )) define('TSP_PARENT_TITLE', 		'LAPDI Plugins');
 if ( !defined( 'TSP_PARENT_MENU_POS' )) define('TSP_PARENT_MENU_POS', 	2617638.180);
 /* @end */
 
@@ -30,16 +30,15 @@ $easy_dev_settings['option_prefix']			= TSP_EASY_DEV_NAME . "-option";
 $easy_dev_settings['file']	 				= TSP_EASY_DEV_FILE;
 $easy_dev_settings['base_name']	 			= TSP_EASY_DEV_BASE_NAME;
 
+$easy_dev_settings['widget_width']	 	= 300;
+$easy_dev_settings['widget_height'] 		= 350;
+
 $easy_dev_settings['smarty_template_dirs']	= array( TSP_EASY_DEV_ASSETS_TEMPLATES_PATH );
 $easy_dev_settings['smarty_compiled_dir']  	= TSP_EASY_DEV_TMP_PATH . TSP_EASY_DEV_NAME . DS . 'compiled';
 $easy_dev_settings['smarty_cache_dir'] 		= TSP_EASY_DEV_TMP_PATH . TSP_EASY_DEV_NAME . DS . 'cache';
 
 //* Custom globals *//
-$easy_dev_settings['title_short']			= preg_replace("/TSP/","",$easy_dev_settings['Name']);
-$easy_dev_settings['store_url']	 			= 'http://www.thesoftwarepeople.com/software/plugins/wordpress';
-$easy_dev_settings['wp_query'] 				= '/wp-admin/plugin-install.php?tab=search&type=term&s';
-$easy_dev_settings['contact_url'] 			= 'http://www.thesoftwarepeople.com/about-us/contact-us.html';
-$easy_dev_settings['plugin_list']			= 'http://www.thesoftwarepeople.com/plugins/wordpress/plugins.json';
+$easy_dev_settings['title_short']			= preg_replace("/" .strtoupper(LAPDI_ACRONYM). "|" . strtoupper(TSP_ACRONYM). "/","",$easy_dev_settings['Name']);
 //* Custom globals *//
 
 $easy_dev_settings['plugin_options']	= array(
@@ -47,6 +46,10 @@ $easy_dev_settings['plugin_options']	= array(
 	'post_fields'				=> array(),
 	'widget_fields'				=> array(),
 	'settings_fields'			=> array(),
-	'shortcode_fields'			=> array(),
 );
-?>
+
+$easy_dev_settings['plugin_options']['shortcode_fields'] = $easy_dev_settings['plugin_options']['widget_fields'];
+$easy_dev_settings['required_plugins']	     = array();
+$easy_dev_settings['incompatible_plugins']	 = array();
+$easy_dev_settings['automations']	         = array();
+$easy_dev_settings['endpoints']	             = array();

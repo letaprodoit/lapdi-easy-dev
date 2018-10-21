@@ -1,0 +1,8 @@
+{
+    "require": {
+        "smarty/smarty": "^3.1",
+        "letaprodoit/helpers": "^2.0",
+        "twbs/bootstrap": "3.3.6",
+        "fortawesome/font-awesome": "^4.7"
+    }
+}

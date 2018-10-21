@@ -2,11 +2,11 @@
 if ( !class_exists( 'TSP_Easy_Dev_Terms' ) )
 {
 	/**
-	 * API implementations for TSP Easy Dev Pro's Terms class - Manages term fields and data
+	 * API implementations for LAPDI Easy Dev Pro's Terms class - Manages term fields and data
 	 * @package 	TSP_Easy_Dev
-	 * @author 		sharrondenice, thesoftwarepeople
-	 * @author 		Sharron Denice, The Software People
-	 * @copyright 	2013 The Software People
+	 * @author 		sharrondenice, letaprodoit
+	 * @author 		Sharron Denice, Let A Pro Do IT!
+	 * @copyright 	2013 Let A Pro Do IT!
 	 * @license 	APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
 	 * @version 	1.3.0
 	 */
@@ -34,7 +34,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Terms' ) )
 		 *
 		 * @param object $options Required - reference to the TSP_Easy_Dev_Options class
 		 *
-		 * @return none
+		 * @return void
 		 */
 		public function __construct( $options )
 		{
@@ -108,7 +108,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Terms' ) )
 		    	$smarty->assign( 'ID', 				$term_ID );
 		    	$smarty->assign( 'name', 			$this->options->get_value('name') );
 		    	$smarty->assign( 'title', 			$this->options->get_value('title') );
-				$smarty->display( 'easy-dev-default-form-with-wrapper.tpl' );
+			    $smarty->display( 'easy-dev-shortcode-form-with-wrapper.tpl' );
 		    }//end if
 		}//end add_term_metadata_fields
 	
@@ -123,7 +123,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Terms' ) )
          * @param int $taxonomy_ID Required the id of the taxonomy
          * @param string $taxonomy Required the term taxonomy
 		 *
-		 * @return none
+		 * @return void
 		 */
 		public function update_term_metadata ( $term_ID, $taxonomy_ID, $taxonomy )
 		{
@@ -214,7 +214,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Terms' ) )
 		 *
 		 * @since 1.0
 		 *
-		 * @param none
+		 * @param void
 		 *
 		 * @return array - Data stored for the all terms
 		 */

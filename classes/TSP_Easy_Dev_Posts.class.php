@@ -2,11 +2,11 @@
 if ( !class_exists( 'TSP_Easy_Dev_Posts' ) )
 {
 	/**
-	 * API implementations for TSP Easy Dev Pro's Posts class - Manages post fields and data
+	 * API implementations for LAPDI Easy Dev Pro's Posts class - Manages post fields and data
 	 * @package 	TSP_Easy_Dev
-	 * @author 		sharrondenice, thesoftwarepeople
-	 * @author 		Sharron Denice, The Software People
-	 * @copyright 	2013 The Software People
+	 * @author 		sharrondenice, letaprodoit
+	 * @author 		Sharron Denice, Let A Pro Do IT!
+	 * @copyright 	2013 Let A Pro Do IT!
 	 * @license 	APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
 	 * @version 	1.2.9
 	 */
@@ -34,7 +34,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Posts' ) )
 		 *
 		 * @param object $options Required - reference to the TSP_Easy_Dev_Options class
 		 *
-		 * @return none
+		 * @return void
 		 */
 		public function __construct( $options )
 		{
@@ -52,7 +52,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Posts' ) )
 		 *
 		 * @since 1.0
 		 *
-		 * @param none
+		 * @param void
 		 *
 		 * @return output to screen
 		 */
@@ -87,7 +87,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Posts' ) )
 						
 			    	$smarty->assign( 'form_fields', $form_fields );
 			    	$smarty->assign( 'class', 'widefat' );
-					$smarty->display( 'default_form.tpl' );
+				    $smarty->display( 'easy-dev-shortcode-form.tpl' );
 			    }//end if
 			}//end if
 		}//end add_post_metadata_fields
@@ -100,9 +100,9 @@ if ( !class_exists( 'TSP_Easy_Dev_Posts' ) )
 		 *
 		 * @since 1.0
 		 *
-		 * @param none
+		 * @param void
 		 *
-		 * @return none
+		 * @return void
 		 */
 		public function load_post_metadata_box ()
 		{
@@ -123,7 +123,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Posts' ) )
 		 *
 		 * @param integer $post_ID Required the id of the post to update
 		 *
-		 * @return none
+		 * @return void
 		 */
 		public function update_post_metadata ( $post_ID )
 		{

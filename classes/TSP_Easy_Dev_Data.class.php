@@ -4,9 +4,9 @@ if ( !class_exists( 'TSP_Easy_Dev_Data' ) )
 	/**
 	 * Class to manipulate Easy Dev fields for widget_fields, post_fields, settings_fields and category_fields
 	 * @package 	TSP_Easy_Dev
-	 * @author 		sharrondenice, thesoftwarepeople
-	 * @author 		Sharron Denice, The Software People
-	 * @copyright 	2013 The Software People
+	 * @author 		sharrondenice, letaprodoit
+	 * @author 		Sharron Denice, Let A Pro Do IT!
+	 * @copyright 	2013 Let A Pro Do IT!
 	 * @license 	APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
 	 * @version 	1.3.0
 	 */
@@ -45,7 +45,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Data' ) )
 		 *
 		 * @param array $fields Required - Sets the fields
 		 *
-		 * @return none
+		 * @return void
 		 */
 		public function __construct( $fields, $field_type ) 
 		{
@@ -64,7 +64,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Data' ) )
 		 *
 		 * @param array $settings Required - Settings to store in globals
 		 *
-		 * @return none
+		 * @return void
 		 */
 		public function set ( $fields )
 		{
@@ -115,7 +115,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Data' ) )
 		 * @param string $key Required - The setting key to be set
 		 * @param string $value Optional - The value to set the key
 		 *
-		 * @return none
+		 * @return void
 		 */
 		public function set_value_by_key ( $key, $value = null )
 		{
@@ -137,7 +137,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Data' ) )
 		 *
 		 * @since 1.0
 		 *
-		 * @param none
+		 * @param void
 		 *
 		 * @return array The assigned global values
 		 */
@@ -254,9 +254,9 @@ if ( !class_exists( 'TSP_Easy_Dev_Data' ) )
 		 *
 		 * @since 1.0
 		 *
-		 * @param none
+		 * @param void
 		 *
-		 * @return none
+		 * @return void
 		 */
 		public function decode_values ()
 		{
@@ -276,9 +276,9 @@ if ( !class_exists( 'TSP_Easy_Dev_Data' ) )
 		 *
 		 * @since 1.0
 		 *
-		 * @param none
+		 * @param void
 		 *
-		 * @return none
+		 * @return void
 		 */
 		public function encode_values ()
 		{
@@ -361,7 +361,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Data' ) )
 		 * @param array $fields Required - The fields array
 		 * @param string $field_type Required - The field type - post, cateogry, shortcode or widget
 		 *
-		 * @return none
+		 * @return void
 		 */
 		private function update_realtime_fields ( &$fields, $field_type )
 		{
@@ -389,7 +389,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Data' ) )
 		 * @param array $fields Required - The fields array
 		 * @param string $field_type Required - The field type - post, cateogry, shortcode or widget
 		 *
-		 * @return none
+		 * @return void
 		 */
 		private function update_dynamic_fields ( &$fields, $field_type )
 		{

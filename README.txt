@@ -1,18 +1,18 @@
-=== TSP Easy Dev ===
-Contributors: thesoftwarepeople,sharrondenice
-Donate link: http://www.thesoftwarepeople.com/software/plugins/wordpress/easy-dev-for-wordpress.html
-Tags: API, OO, object oriented, learn, wordpress, add_filter, add_action, tutorial, plugin, application, interface, development, developer
+=== LAPDI Easy Dev ===
+Contributors: letaprodoit,sharrondenice
+Donate link: http://www.letaprodoit.com/software/plugins/wordpress/easy-dev-for-wordpress.html
+Tags: Framework, OO, object oriented, learn, wordpress, add_filter, add_action, tutorial, plugin, application, interface, development, developer
 Requires at least: 4.5.0
-Tested up to: 4.9.6
-Stable tag: 1.3.8
+Tested up to: 4.9.8
+Stable tag: 2.0.0
 License: Apache v2.0
 License URI: http://www.apache.org/licenses/LICENSE-2.0
 
-Create plugins quickly using our API.
+Create plugins quickly using our framework.
 
 == Description ==
 
-The Software People's (TSP) Easy Dev is a WordPress API for plugin development, check out some of the features below. Easy Dev makes OOD hot again and it's the engine that powers all WordPress plugins created by The Software People!
+Let A Pro Do IT!'s (LAPDI) Easy Dev is a framework for WordPress plugin development, check out some of the features below. Easy Dev makes OOD hot again and it's the engine that powers all WordPress plugins created by Let A Pro Do IT!!
 
 = Features Included =
 
@@ -43,7 +43,7 @@ Includes all of the features of the standard version AND…
 * Additional images and resources
 * `Upgrades includes fixes and new functionality from our community of developers`
 
-Visit [The Software People's Marketplace](http://www.thesoftwarepeople.com/software/) to download the [Professional Version of Easy Dev Developers](http://www.thesoftwarepeople.com/software/plugins/wordpress/easy-dev-for-wordpress.html).
+Visit [Let A Pro Do IT!'s Marketplace](http://www.letaprodoit.com/software/) to download the [Professional Version of Easy Dev Developers](http://www.letaprodoit.com/software/plugins/wordpress/easy-dev-for-wordpress.html).
 
 == Installation ==
 
@@ -52,33 +52,25 @@ Visit [The Software People's Marketplace](http://www.thesoftwarepeople.com/softw
 
 = Usage =
 
-Please see the API documentation in our lab by clicking [here](http://lab.thesoftwarepeople.com/tracker/wiki/wordpress-ed:MainPage).
+Please see the framekwork documentation in our lab by clicking [here](https://lab.letaprodoit.com/public/wiki/wordpress-ed:MainPage).
 
 == Frequently asked questions ==
 
-= What is an API? =
+= What is an Framework? =
 
-An API, or Application Programming Interface, is a set of libraries (code) that developers can use to interface with (talk to) a larger object. Easy Dev is an API for WordPress. Developers can use our simple API instead of learning how to interface directly with WordPress. Easy Dev's API does all the hard work for you behind the scenes.
+A framework provides a method of building software applications. Easy Dev is a framework for WordPress plugin development. Developers can use our simple framework instead of learning how to interface directly with WordPress. Easy Dev's framework does all the hard work for you behind the scenes.
 
-= How do I use the API? Where do I begin? =
+= How do I use the framework? Where do I begin? =
 
-In our [documentation](http://lab.thesoftwarepeople.com/tracker/wiki/wordpress-ed:MainPage), we have included real plugin examples that are using Easy Dev. Our [complete API](http://lab.thesoftwarepeople.com/docs/tsp-easy-dev/) is also available.
+In our [documentation](https://lab.letaprodoit.com/public/wiki/wordpress-ed:MainPage), we have included real plugin examples that are using Easy Dev. Our [complete framework](https://lab.letaprodoit.com/docs/tsp-easy-dev/) is also available.
 
-= How do I request new features for Easy Dev? =
+= I've installed the plugin but nothing happens. What did I do wrong? =
 
-Unfortunately, the standard version of Easy Dev (this plugin) will not be updated with new features. For most developers, the standard version of Easy Dev will be enough. However, only the Professional version of Easy Dev will be updated with new features per request. The standard version of Easy Dev updates will include fixes only, no new features.
-
-= Well how do I get Easy Dev Professional? =
-
-Currently, you can get [Easy Dev Professional](http://www.thesoftwarepeople.com/software/plugins/wordpress/easy-dev-for-wordpress.html) from [The Software People's Marketplace](http://www.thesoftwarepeople.com/software/).
-
-= I've installed the script but nothing happens. What did I do wrong? =
-
-Nothing. The script runs in real-time behind the scenes. Once installed, there are no other steps to take.
+Nothing. The plugin runs in real-time behind the scenes. Once installed, there are no other steps to take. You use our plugin to build your own plugins.
 
 == Screenshots ==
 
-1. No need to learn WordPress API, with Easy Dev, you only have to fill in your settings and display your HTML and with Smarty, skelJS and FontAwesome built into Easy Dev Pro it makes displaying your code a sinch! 
+1. No need to learn WordPress plugin development, with Easy Dev, you only have to fill in your settings and display your HTML and with Smarty, skelJS and FontAwesome built into Easy Dev Pro it makes displaying your code a sinch!
 
 
 == Changelog ==

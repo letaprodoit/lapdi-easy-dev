@@ -1,30 +1,21 @@
-<style>
-.{$field_prefix}_url_display {
-    width: 100%; 
-    background-color: #FFFFFF; 
-    padding: 3px; 
-    border: #c6d9e9 1px solid; 
-    font-size: 13px;
-}
-.{$field_prefix}_image_info
- {
-	position: relative;
-    margin-left: 220px;
- }
-</style>
-<div class="form-group {$field_prefix}_form_element" id="{$field.name}_container_div" style="">
-	<label for="{$field.id}" class="col-sm-3 control-label">{$field.label}</label>
-	<div class="col-sm-9">
+{function name=getField level=0}          {* short-hand *}
 	{if $field.type == 'INPUT'}
 	   <input class="{$class} form-control" id="{$field.id}" name="{$field.name}" value="{$field.value}" />
 	{elseif $field.type == 'TEXTAREA'}
 	   <textarea class="{$class} form-control" id="{$field.id}" name="{$field.name}">{$field.value}</textarea>
+    {elseif $field.type == 'BLANK'}
+        &nbsp;
+    {elseif $field.type == 'HEADER'}
+        <h5>{$field.label}</h5>
+        <p>{$field.value}</p>
 	{elseif $field.type == 'CHECKBOX'}
 		{foreach $field.options as $okey => $ovalue}
-            {if $okey > 0}
-                <label for="{$field.id}">&nbsp;</label>
-            {/if}
-	   		<input type="checkbox" class="level-0 form-control" id="{$field.id}[]" name="{$field.name}[]" value="{$ovalue}" {if $field.value|is_array && $ovalue|in_array:$field.value}checked{/if}>{$ovalue}<br/>
+            <fieldset style="margin-top: 0px;">
+                <label for="{$field.id}">
+                    <input type="checkbox" {if !$field.enabled}disabled{/if} class="level-0 form-control" id="{$field.id}[]" name="{$field.name}[]" value="{$ovalue}" {if (!$field.value|is_array && $field.value == $ovalue) || ($field.value|is_array && $ovalue|in_array:$field.value)}checked{/if}>
+                    {$okey}
+                </label>
+            </fieldset>
 		{/foreach}
 	{elseif $field.type == 'SELECT'}
 	   <select class="{$class} form-control" id="{$field.id}" name="{$field.name}" >
@@ -73,20 +64,33 @@
 			jQuery(document).ready(function() {
 			 
 				window.send_to_editor = function(html) {
-				  
-					imgurl = jQuery('img',html).attr('src');
 			{/literal}
-					field_id = "{$field.id}";
+                                var field_id = "{$field.id}";
 			{literal}
-					tspedev_save_image_url(imgurl, field_id);
-					tb_remove();
-				}
-			 
-			})
+                                tspedev_save_image_url(html, field_id);
+				tb_remove();
+			   }
+			});
 			{/literal}
 		</script>
 	{/if}
+{/function}
+<div class="form-group {$field_prefix}_form_element" id="{$field.name}_container_div" style="">
+	{if 'reverse_view'|array_key_exists:$field}
+		<div class="col-sm-1">
+            {getField field=$field}
 	</div>
+        {if $field.type != 'HEADER'}
+            <label for="{$field.id}" class="col-sm-11 control-label">{$field.label}{if 'tag'|array_key_exists:$field}&nbsp;<span class="{$field.tag_class}">{$field.tag}</span>{/if}</label>
+        {/if}
+	{else}
+        {if $field.type != 'HEADER'}
+            <label for="{$field.id}" class="col-sm-3 control-label">{$field.label}{if 'tag'|array_key_exists:$field}&nbsp;<span class="{$field.tag_class}">{$field.tag}</span>{/if}</label>
+        {/if}
+        <div class="col-sm-9">
+            {getField field=$field}
+        </div>
+	{/if}
 	<div class="clear"></div>
 	<div id="error-message-name"></div>
 </div>

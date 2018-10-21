@@ -4,9 +4,9 @@ if ( !class_exists( 'TSP_Easy_Dev_Widget' ) )
 	/**
 	 * Class to extend WP_Widget to show widget fields, save and load settings
 	 * @package 	TSP_Easy_Dev
-	 * @author 		sharrondenice, thesoftwarepeople
-	 * @author 		Sharron Denice, The Software People
-	 * @copyright 	2013 The Software People
+	 * @author 		sharrondenice, letaprodoit
+	 * @author 		Sharron Denice, Let A Pro Do IT!
+	 * @copyright 	2013 Let A Pro Do IT!
 	 * @license 	APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
 	 * @version 	1.2.9
 	 */
@@ -44,7 +44,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Widget' ) )
 		 *
 		 * @param array $globals Required - Sets the global settings for the widget
 		 *
-		 * @return none
+		 * @return void
 		 */
 		public function __construct( $options ) 
 		{
@@ -111,9 +111,9 @@ if ( !class_exists( 'TSP_Easy_Dev_Widget' ) )
 		 *
 		 * @since 1.0
 		 *
-		 * @param none
+		 * @param void
 		 *
-		 * @return none
+		 * @return void
 		 */
 		public function widget( $args, $instance )
 		{
@@ -160,7 +160,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Widget' ) )
 		 *
 		 * @param array $instance Required - Data to be displayed on the form
 		 *
-		 * @return none
+		 * @return void
 		 */
 	 	public function form( $instance )
 	 	{
@@ -197,9 +197,9 @@ if ( !class_exists( 'TSP_Easy_Dev_Widget' ) )
 		 *
 		 * @since 1.0
 		 *
-		 * @param none
+		 * @param void
 		 *
-		 * @return none
+		 * @return void
 		 */
 	 	private function load_shortcodes()
 	 	{
@@ -225,10 +225,11 @@ if ( !class_exists( 'TSP_Easy_Dev_Widget' ) )
 		 *
 		 * @param array $attributes Optional the arguments passed to the shortcode
 		 * @param string $content Optional The content that the shortcode contains. Stored to fields[shortcode_content]
+		 * @param string $tag Optional The shortcode tag
 		 *
-		 * @return none
+		 * @return void
 		 */
-		public function process_shortcode( $attributes, $content = null )
+		public function process_shortcode( $attributes, $content = null, $tag = null )
 		{
 			if ( is_feed() )
 				return '[' . $this->options->get_value('name') . ']';
@@ -275,7 +276,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Widget' ) )
 			$fields = $defaults->get_values();
 			$fields['shortcode_content'] = $content;
 
-			$output = $this->display_widget( $fields, false );
+			$output = $this->display_widget( $fields, false, $tag );
 			
 			return $output;
 		}//end process_shortcode
@@ -295,7 +296,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Widget' ) )
 		 *
 		 * @param array $settings Required global settings used by the plugin
 		 *
-		 * @return none
+		 * @return void
 		 */
 		abstract public function init( $settings );
 
@@ -308,7 +309,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Widget' ) )
 		 *
 		 * @param array $fields Required Data to display to the screen
 		 *
-		 * @return none
+		 * @return void
 		 */
 		abstract public function display_form( $fields );
 
@@ -322,10 +323,9 @@ if ( !class_exists( 'TSP_Easy_Dev_Widget' ) )
 		 * @param array $fields Required data to display to the screen
 		 * @param boolean $echo Optional if true display data to screen
 		 *
-		 * @return none
+		 * @return void
 		 */
 		abstract public function display_widget( $fields, $echo = false );
 		
 	}//end TSP_Easy_Dev_Widget
 }//endif
-?>

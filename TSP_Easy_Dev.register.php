@@ -1,150 +1,246 @@
 <?php
-/*
-Name: 			TSP Easy Dev
-URI: 			http://www.thesoftwarepeople.com/software/plugins/wordpress/easy-dev-for-wordpress.html
-Description: 	Easy Dev is a <strong>WordPress API library</strong> with advanced features. See <a target="_blank" href="http://lab.thesoftwarepeople.com/tracker/wiki/wordpress-ed:MainPage">API Docs</a> for information and instructions. <a target="_blank" href="https://twitter.com/#bringbackOOD">#bringbackOOD</a> 
-Author: 		The Software People
-Author URI: 	http://www.thesoftwarepeople.com/
-Version: 		1.0.3
-Copyright: 		Copyright © 2013 The Software People, LLC (www.thesoftwarepeople.com). All rights reserved
-License: 		APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
-*/
+    /*
+    Name: 			LAPDI Easy Dev
+    URI: 			https://www.letaprodoit.com/apps/plugins/wordpress/easy-dev-for-wordpress/
+    Description: 	Easy Dev is a <strong>Framework</strong> for WordPress Plugin development. See <a target="_blank" href="https://lab.letaprodoit.com/public/wiki/wordpress-ed:MainPage">Framework Docs</a> for information and instructions. <a target="_blank" href="https://twitter.com/#bringbackOOD">#bringbackOOD</a>
+    Author: 		Let A Pro Do IT!
+    Author URI: 	http://www.letaprodoit.com/
+    Version: 		1.0.3
+    Copyright: 		Copyright © 2013 Let A Pro Do IT!, LLC (www.letaprodoit.com). All rights reserved
+    License: 		APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
+    */
 
-require_once(ABSPATH . 'wp-admin/includes/plugin.php' );
+    require_once(ABSPATH . 'wp-admin/includes/plugin.php' );
 
-/**
-* Every plugin that uses Easy Dev must define a UNIQUE variable that holds the plugin's absolute path
-*
-* @var string
-*/
-@define('TSP_EASY_DEV_PATH',					plugin_dir_path( __FILE__ ) );
-/**
-* Every plugin that uses Easy Dev must define a UNIQUE variable that holds the plugin's URL
-*
-* @var string
-*/
-@define('TSP_EASY_DEV_URL', 					plugin_dir_url( __FILE__ ) );
-/**
- * @ignore
- */
-@define('TSP_EASY_DEV_CLASS_PATH',				TSP_EASY_DEV_PATH . 'classes/');
-/**
- * @ignore
- */
-@define('TSP_EASY_DEV_LIB_PATH',				TSP_EASY_DEV_CLASS_PATH . 'lib/');
-/**
- * @ignore
- */
-@define('TSP_EASY_DEV_INCLUDES_PATH',			TSP_EASY_DEV_CLASS_PATH . 'includes/');
+    /**
+     * Every plugin that uses Easy Dev must define a UNIQUE variable that holds the plugin's URL
+     *
+     * @var string
+     */
+    @define('TSP_EASY_DEV_URL', 				plugin_dir_url( TSP_EASY_DEV_FILE ) );
+    /**
+     * Every plugin that uses Easy Dev must define a UNIQUE variable that holds the plugin's base file name
+     *
+     * @var string
+     */
+    @define('TSP_EASY_DEV_BASE_NAME', 			plugin_basename( TSP_EASY_DEV_FILE ) );
+    /**
+     * Every plugin that uses Easy Dev must define a UNIQUE variable that holds the plugin's name/id
+     *
+     * @var string
+     */
+    @define('TSP_EASY_DEV_NAME', 				'tsp-easy-dev');
+    /**
+     * Text Domain
+     *
+     * @var string
+     */
+    @define('TSP_EASY_DEV_DOMAIN', 				'tsped');
+    /**
+     * Field Prefix
+     *
+     * @var string
+     */
+    @define('TSP_EASY_DEV_FIELD_PREFIX', 		'tspedev');
+    /**
+     * The Software People Company Acronym
+     *
+     * @var string
+     */
+    @define('TSP_ACRONYM', 				        'tsp');
+    /**
+     * The Let A Pro Do IT! Company Acronym
+     *
+     * @var string
+     */
+    @define('LAPDI_ACRONYM', 				    'lapdi');
+    /**
+     * Every plugin that uses Easy Dev must define a UNIQUE variable that holds the plugin's name (not description but plugin title)
+     *
+     * @var string
+     */
+    @define('TSP_EASY_DEV_TITLE', 				'Easy Dev');
+    /**
+     * The Company Name
+     *
+     * @var string
+     */
+    @define('TSP_COMPANY_NAME', 				'Let A Pro Do IT!');
+    /**
+     * Every plugin that uses Easy Dev must define a UNIQUE variable that holds the plugin's required wordpress version
+     *
+     * @var string
+     */
+    @define('TSP_EASY_DEV_REQ_VERSION', 			"3.5.1");
+    /**
+     * The Lab URL
+     *
+     * @var string
+     */
+    @define('TSP_LAB_URL', 			                "https://lab.letaprodoit.com/public/");
+    /**
+     * The Lab URL
+     *
+     * @var string
+     */
+    @define('TSP_LAB_BUG_URL', 			            TSP_LAB_URL . "%PLUGIN%/issues/new");
+    /**
+     * The Support URL
+     *
+     * @var string
+     */
+    @define('TSP_SUPPORT_URL', 			            "https://support.letaprodoit.com/");
+    /**
+     * The Store URL
+     *
+     * @var string
+     */
+    @define('TSP_STORE_URL', 			            "https://www.letaprodoit.com/apps/plugins/wordpress/");
+    /**
+     * The Store URL
+     *
+     * @var string
+     */
+    @define('TSP_PLUGINS_URL', 			            "https://www.letaprodoit.com/plugins/wordpress/plugins.json");
+    /**
+     * The Ratings URL
+     *
+     * @var string
+     */
+    @define('TSP_WORDPRESS_RATE_URL', 			    "https://wordpress.org/support/view/plugin-reviews/%PLUGIN%");
+    /**
+     * The FAQ URL
+     *
+     * @var string
+     */
+    @define('TSP_WORDPRESS_FAQ_URL', 			    "http://wordpress.org/extend/plugins/%PLUGIN%/faq");
+    /**
+     * @ignore
+     */
+    @define('TSP_EASY_DEV_CLASS_PATH',				TSP_EASY_DEV_PATH . 'classes/');
+    /**
+     * @ignore
+     */
+    @define('TSP_EASY_DEV_LIB_PATH',				TSP_EASY_DEV_CLASS_PATH . 'lib/');
+    /**
+     * @ignore
+     */
+    @define('TSP_EASY_DEV_INCLUDES_PATH',			TSP_EASY_DEV_CLASS_PATH . 'includes/');
 
-/* @group Assets */
-/**
- * Assets absolute path
- *
- * @ignore
- */
-@define('TSP_EASY_DEV_ASSETS_PATH',				TSP_EASY_DEV_PATH . 'assets/');
+    /**
+     * Assets absolute path
+     *
+     * @ignore
+     */
+    @define('TSP_EASY_DEV_VENDOR_PATH',				TSP_EASY_DEV_PATH . 'vendor/');
+    /* @group Assets */
+    /**
+     * Assets absolute path
+     *
+     * @ignore
+     */
+    @define('TSP_EASY_DEV_ASSETS_PATH',				TSP_EASY_DEV_PATH . 'assets/');
 
-// Absolute directory paths
-	/**
-	 * Full absolute path to the Easy Dev templates directory
-	 *
-	 * @var string
-	 */
-	@define('TSP_EASY_DEV_ASSETS_TEMPLATES_PATH',TSP_EASY_DEV_ASSETS_PATH . 'templates/');
-	/**
-	 * Full absolute path to the Easy Dev css directory
-	 *
-	 * @var string
-	 */
-	@define('TSP_EASY_DEV_ASSETS_CSS_PATH',		TSP_EASY_DEV_ASSETS_PATH . 'css/');
-	/**
-	 * Full absolute path to the Easy Dev javascript directory
-	 *
-	 * @var string
-	 */
-	@define('TSP_EASY_DEV_ASSETS_JS_PATH',		TSP_EASY_DEV_ASSETS_PATH . 'js/');
-	/**
-	 * Full absolute path to the Easy Dev images directory
-	 *
-	 * @var string
-	 */
-	@define('TSP_EASY_DEV_ASSETS_IMAGES_PATH',	TSP_EASY_DEV_ASSETS_PATH . 'images/');
+    // Absolute directory paths
+    /**
+     * Full absolute path to the Easy Dev templates directory
+     *
+     * @var string
+     */
+    @define('TSP_EASY_DEV_ASSETS_TEMPLATES_PATH',TSP_EASY_DEV_ASSETS_PATH . 'templates/');
+    /**
+     * Full absolute path to the Easy Dev css directory
+     *
+     * @var string
+     */
+    @define('TSP_EASY_DEV_ASSETS_CSS_PATH',		TSP_EASY_DEV_ASSETS_PATH . 'css/');
+    /**
+     * Full absolute path to the Easy Dev javascript directory
+     *
+     * @var string
+     */
+    @define('TSP_EASY_DEV_ASSETS_JS_PATH',		TSP_EASY_DEV_ASSETS_PATH . 'js/');
+    /**
+     * Full absolute path to the Easy Dev images directory
+     *
+     * @var string
+     */
+    @define('TSP_EASY_DEV_ASSETS_IMAGES_PATH',	TSP_EASY_DEV_ASSETS_PATH . 'images/');
 
-/**
- * Assets URL
- *
- * @ignore
- */
-@define('TSP_EASY_DEV_ASSETS_URL',				TSP_EASY_DEV_URL . 'assets/');
+    /**
+     * Vendor URL
+     *
+     * @ignore
+     */
+    @define('TSP_EASY_DEV_VENDOR_URL',				TSP_EASY_DEV_URL . 'vendor/');
+    /**
+     * Assets URL
+     *
+     * @ignore
+     */
+    @define('TSP_EASY_DEV_ASSETS_URL',				TSP_EASY_DEV_URL . 'assets/');
 
-	/**
-	 * Full URL to the Easy Dev templates directory
-	 *
-	 * @var string
-	 */
-	@define('TSP_EASY_DEV_ASSETS_TEMPLATES_URL',TSP_EASY_DEV_ASSETS_URL . 'templates/');
-	/**
-	 * Full URL to the Easy Dev css directory
-	 *
-	 * @var string
-	 */
-	@define('TSP_EASY_DEV_ASSETS_CSS_URL',		TSP_EASY_DEV_ASSETS_URL . 'css/');
-	/**
-	 * Full URL to the Easy Dev javascript directory
-	 *
-	 * @var string
-	 */
-	@define('TSP_EASY_DEV_ASSETS_JS_URL',		TSP_EASY_DEV_ASSETS_URL . 'js/');
-	/**
-	 * Full URL to the Easy Dev images directory
-	 *
-	 * @var string
-	 */
-	@define('TSP_EASY_DEV_ASSETS_IMAGES_URL',	TSP_EASY_DEV_ASSETS_URL . 'images/');
-/* @end */
+    /**
+     * Full URL to the Easy Dev templates directory
+     *
+     * @var string
+     */
+    @define('TSP_EASY_DEV_ASSETS_TEMPLATES_URL',TSP_EASY_DEV_ASSETS_URL . 'templates/');
+    /**
+     * Full URL to the Easy Dev css directory
+     *
+     * @var string
+     */
+    @define('TSP_EASY_DEV_ASSETS_CSS_URL',		TSP_EASY_DEV_ASSETS_URL . 'css/');
+    /**
+     * Full URL to the Easy Dev javascript directory
+     *
+     * @var string
+     */
+    @define('TSP_EASY_DEV_ASSETS_JS_URL',		TSP_EASY_DEV_ASSETS_URL . 'js/');
+    /**
+     * Full URL to the Easy Dev images directory
+     *
+     * @var string
+     */
+    @define('TSP_EASY_DEV_ASSETS_IMAGES_URL',	TSP_EASY_DEV_ASSETS_URL . 'images/');
+    /* @end */
 
-// Store smarty cache and compiled directories
-$upload_dir	= wp_upload_dir();
-/**
- * Full absolute path to the Easy Dev temp directory
- *
- * @var string
- */
-@define('TSP_EASY_DEV_TMP_PATH',				$upload_dir['basedir'] . '/tsp_plugins/' );
+    // Store smarty cache and compiled directories
+    $upload_dir	= wp_upload_dir();
+    /**
+     * Full absolute path to the Easy Dev temp directory
+     *
+     * @var string
+     */
+    @define('TSP_EASY_DEV_TMP_PATH',				$upload_dir['basedir'] . '/tsp_plugins/' );
 
-//--------------------------------------------------------
-// Register classes
-//--------------------------------------------------------
-if ( !function_exists( 'fn_easy_dev_register_classes' ) )
-{
-	/**
-	 * Hook implementation for spl_autoload_register
-	 *
-	 * @ignore
-	 *
-	 * @since 1.0
-	 *
-	 * @param string $class Required - the class name to include the class file for
-	 *
-	 * @return none
-	 */
-	function fn_easy_dev_register_classes( $class )
-	{
-	    if (file_exists( TSP_EASY_DEV_CLASS_PATH . $class . '.class.php' ))
-	    {
-	    	include_once TSP_EASY_DEV_CLASS_PATH . $class . '.class.php';
-	    }//end if
-	    
-	    if ( $class == 'Smarty' )
-	    {
-		    if (file_exists( TSP_EASY_DEV_LIB_PATH . $class . DS . $class. '.class.php' ))
-		    {
-		        include_once TSP_EASY_DEV_LIB_PATH . $class . DS . $class. '.class.php';
-		    }//end if
-	    }//end if
-	}//end fn_easy_dev_register_classes
 
-	spl_autoload_register( 'fn_easy_dev_register_classes' );
-}//end if 
-?>
+    include( TSP_EASY_DEV_PATH . 'vendor/autoload.php');
+
+    //--------------------------------------------------------
+    // Register classes
+    //--------------------------------------------------------
+    if ( !function_exists( 'fn_easy_dev_register_classes' ) )
+    {
+        /**
+         * Hook implementation for spl_autoload_register
+         *
+         * @ignore
+         *
+         * @since 1.0
+         *
+         * @param string $class Required - the class name to include the class file for
+         *
+         * @return void
+         */
+        function fn_easy_dev_register_classes( $class )
+        {
+            if (file_exists( TSP_EASY_DEV_CLASS_PATH . $class . '.class.php' ))
+            {
+                include_once TSP_EASY_DEV_CLASS_PATH . $class . '.class.php';
+            }//end if
+        }//end fn_easy_dev_register_classes
+
+        spl_autoload_register( 'fn_easy_dev_register_classes' );
+    }//end if

@@ -3,6 +3,12 @@
   <component name="PhpIncludePathManager">
     <include_path>
       <path value="$USER_HOME$/Sites/www.thesoftwarepeople.com" />
+      <path value="$PROJECT_DIR$/vendor/smarty/smarty" />
+      <path value="$PROJECT_DIR$/vendor/twbs/bootstrap" />
+      <path value="$PROJECT_DIR$/vendor/letaprodoit/helpers" />
+      <path value="$PROJECT_DIR$/vendor/fortawesome/font-awesome" />
+      <path value="$PROJECT_DIR$/vendor/phpmailer/phpmailer" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
     </include_path>
   </component>
 </project>
