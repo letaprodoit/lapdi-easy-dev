@@ -24,7 +24,7 @@
      *
      * @var string
      */
-    @define('TSP_EASY_DEV_PATH',				plugin_dir_path( TSP_EASY_DEV_FILE ) );
+    @define('TSP_EASY_DEV_PATH',				plugin_dir_path( __FILE__ ) );
 
     global $easy_dev_settings;
 
