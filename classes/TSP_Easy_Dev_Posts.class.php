@@ -54,7 +54,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Posts' ) )
 		 *
 		 * @param void
 		 *
-		 * @return output to screen
+		 * @return void - output to screen
 		 */
 		public function add_post_metadata_fields ()
 		{

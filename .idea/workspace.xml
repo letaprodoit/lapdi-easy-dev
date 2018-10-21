@@ -2,263 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ca7ade9c-6e87-4238-8102-309f688595fe" name="Default" comment="Rebranding for LAPDI Easy Dev">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/SharronDenice.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/easy-dev-style-admin.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/images/icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/images/icon_16.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/images/icon_25.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/images/icon_long.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/easy-dev-admin-script.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/easy-dev-comm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/easy-dev-global.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/templates/easy-dev-child-page-default-instructions.tpl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/templates/easy-dev-child-page-default.tpl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/templates/easy-dev-child-page.tpl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/templates/easy-dev-shortcode-form-with-wrapper.tpl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/templates/easy-dev-shortcode-form.tpl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Plugins: Easy Dev.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Plugins: Easy Dev.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/README.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TSP_Easy_Dev.config.php" beforeDir="false" afterPath="$PROJECT_DIR$/TSP_Easy_Dev.config.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TSP_Easy_Dev.extend.php" beforeDir="false" afterPath="$PROJECT_DIR$/TSP_Easy_Dev.extend.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TSP_Easy_Dev.register.php" beforeDir="false" afterPath="$PROJECT_DIR$/TSP_Easy_Dev.register.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/admin-style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/bootstrap-theme.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/bootstrap-theme.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/bootstrap-theme.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/bootstrap-theme.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/bootstrap.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/bootstrap.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/bootstrap.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/font-awesome-ie7.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/font-awesome-ie7.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/font-awesome.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/font-awesome.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/easy-dev-style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/tsp_icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/tsp_icon_16.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/tsp_icon_25.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/tsp_icon_long.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/admin-script.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/bootstrap.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/media-upload.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/npm.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/templates/easy-dev-default-form-with-wrapper.tpl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/templates/easy-dev-form-fields.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/assets/templates/easy-dev-form-fields.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/templates/easy-dev-parent-page.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/assets/templates/easy-dev-parent-page.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/templates/easy-dev-shortcode-ui.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/assets/templates/easy-dev-shortcode-ui.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/templates/easy-dev-ui.tpl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/easy-dev-style-admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/easy-dev-style-admin.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/TSP_Easy_Dev.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/TSP_Easy_Dev.class.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/TSP_Easy_Dev_Data.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/TSP_Easy_Dev_Data.class.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/TSP_Easy_Dev_Options.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/TSP_Easy_Dev_Options.class.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/TSP_Easy_Dev_Posts.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/TSP_Easy_Dev_Posts.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/TSP_Easy_Dev_Smarty.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/TSP_Easy_Dev_Smarty.class.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/TSP_Easy_Dev_Terms.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/TSP_Easy_Dev_Terms.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/TSP_Easy_Dev_Tools.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/TSP_Easy_Dev_Tools.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/TSP_Easy_Dev_Widget.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/TSP_Easy_Dev_Widget.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/Autoloader.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/Smarty.class.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/SmartyBC.class.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/debug.tpl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/block.textformat.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/function.counter.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/function.cycle.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/function.fetch.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/function.html_checkboxes.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/function.html_image.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/function.html_options.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/function.html_radios.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/function.html_select_date.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/function.html_select_time.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/function.html_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/function.mailto.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/function.math.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/modifier.capitalize.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/modifier.date_format.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/modifier.debug_print_var.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/modifier.escape.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/modifier.regex_replace.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/modifier.replace.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/modifier.spacify.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/modifier.truncate.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/modifiercompiler.cat.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/modifiercompiler.count_characters.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/modifiercompiler.count_paragraphs.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/modifiercompiler.count_sentences.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/modifiercompiler.count_words.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/modifiercompiler.default.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/modifiercompiler.escape.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/modifiercompiler.from_charset.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/modifiercompiler.indent.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/modifiercompiler.lower.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/modifiercompiler.noprint.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/modifiercompiler.string_format.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/modifiercompiler.strip.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/modifiercompiler.strip_tags.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/modifiercompiler.to_charset.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/modifiercompiler.unescape.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/modifiercompiler.upper.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/modifiercompiler.wordwrap.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/outputfilter.trimwhitespace.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/shared.escape_special_chars.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/shared.literal_compiler_param.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/shared.make_timestamp.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/shared.mb_str_replace.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/shared.mb_unicode.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/shared.mb_wordwrap.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/plugins/variablefilter.htmlspecialchars.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_cacheresource.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_cacheresource_custom.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_cacheresource_keyvaluestore.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_data.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_cacheresource_file.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compile_append.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compile_assign.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compile_block.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compile_break.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compile_call.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compile_capture.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compile_config_load.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compile_continue.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compile_debug.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compile_eval.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compile_extends.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compile_for.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compile_foreach.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compile_function.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compile_if.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compile_include.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compile_include_php.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compile_insert.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compile_ldelim.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compile_nocache.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compile_private_block_plugin.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compile_private_foreachsection.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compile_private_function_plugin.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compile_private_modifier.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compile_private_object_block_function.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compile_private_object_function.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compile_private_php.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compile_private_print_expression.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compile_private_registered_block.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compile_private_registered_function.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compile_private_special_variable.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compile_rdelim.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compile_section.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compile_setfilter.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compile_shared_inheritance.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compile_while.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_compilebase.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_config_file_compiler.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_configfilelexer.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_configfileparser.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_data.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_debug.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_extension_clear.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_extension_handler.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_addautoloadfilters.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_adddefaultmodifiers.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_append.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_appendbyref.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_assignbyref.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_assignglobal.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_clearallassign.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_clearallcache.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_clearassign.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_clearcache.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_clearcompiledtemplate.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_clearconfig.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_compileallconfig.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_compilealltemplates.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_configload.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_createdata.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_getautoloadfilters.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_getconfigvars.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_getdebugtemplate.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_getdefaultmodifiers.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_getregisteredobject.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_getstreamvariable.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_gettags.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_gettemplatevars.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_loadfilter.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_loadplugin.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_mustcompile.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_registercacheresource.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_registerclass.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_registerdefaultconfighandler.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_registerdefaultpluginhandler.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_registerdefaulttemplatehandler.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_registerfilter.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_registerobject.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_registerplugin.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_registerresource.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_setautoloadfilters.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_setdebugtemplate.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_setdefaultmodifiers.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_unloadfilter.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_unregistercacheresource.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_unregisterfilter.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_unregisterobject.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_unregisterplugin.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_method_unregisterresource.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_nocache_insert.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_parsetree.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_parsetree_code.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_parsetree_dq.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_parsetree_dqcontent.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_parsetree_tag.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_parsetree_template.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_parsetree_text.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_resource_eval.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_resource_extends.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_resource_file.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_resource_php.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_resource_registered.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_resource_stream.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_resource_string.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_runtime_cachemodify.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_runtime_codeframe.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_runtime_filterhandler.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_runtime_foreach.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_runtime_getincludepath.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_runtime_hhvm.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_runtime_inheritance.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_runtime_subtemplate.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_runtime_tplfunction.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_runtime_updatecache.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_runtime_updatescope.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_runtime_validatecompiled.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_runtime_var.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_runtime_writefile.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_smartytemplatecompiler.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_template.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_templatebase.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_templatecompilerbase.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_templatelexer.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_templateparser.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_testinstall.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_undefined.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_resource.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_resource_custom.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_resource_recompiled.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_resource_uncompiled.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_security.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_template_cached.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_template_compiled.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_template_config.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_template_resource_base.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_template_source.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_undefined_variable.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_variable.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smartycompilerexception.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smartyexception.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/tsp-easy-dev.php" beforeDir="false" afterPath="$PROJECT_DIR$/tsp-easy-dev.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -281,43 +35,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="easy-dev-shortcode-form.tpl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/templates/easy-dev-shortcode-form.tpl">
+      <file leaf-file-name="tsp-easy-dev.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tsp-easy-dev.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="40" selection-start-line="1" selection-start-column="20" selection-end-line="1" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TSP_Easy_Dev_Smarty.class.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/classes/TSP_Easy_Dev_Smarty.class.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="49" column="32" selection-start-line="49" selection-start-column="32" selection-end-line="49" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="easy-dev-form-fields.tpl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/templates/easy-dev-form-fields.tpl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1035">
-              <caret line="69" column="39" selection-start-line="69" selection-start-column="32" selection-end-line="69" selection-end-column="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="easy-dev-shortcode-form-with-wrapper.tpl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/templates/easy-dev-shortcode-form-with-wrapper.tpl">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="easy-dev-shortcode-ui.tpl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/templates/easy-dev-shortcode-ui.tpl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="42" selection-start-line="1" selection-start-column="42" selection-end-line="1" selection-end-column="42" />
+            <state relative-caret-position="21">
+              <caret line="15" column="7" lean-forward="true" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+              <folding>
+                <element signature="e#10#752#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -326,19 +51,8 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>plugin_base_name</find>
-      <find>/images/</find>
-      <find>`(.*?)`</find>
-      <find>http://www.thesoftwarepeople.com</find>
-      <find>TSP_Easy_Dev_</find>
-      <find>admin_js_files</find>
-      <find>admin_css_files</find>
-      <find>TSP_EasyDev</find>
-      <find>tsp_</find>
-      <find>plugin_title</find>
       <find>shortcode-form</find>
       <find>EASY_DEV_SETTINGS_UI</find>
-      <find>TSP_ACRONYM</find>
       <find>TSP Easy Dev</find>
       <find>print_r</find>
       <find>STC_PLUGIN_FILE</find>
@@ -356,6 +70,17 @@
       <find>admin_menu</find>
       <find>TSP_EASY_DEV_TITLE</find>
       <find>EASY_DEV_FORM_FIELDS</find>
+      <find>easy-dev-shortcode-form-with-wrapper</find>
+      <find>load_term_metadata_box</find>
+      <find>@return output</find>
+      <find>.postbox</find>
+      <find>Optonal</find>
+      <find>TSP_ACRONYM</find>
+      <find>default_term_fields</find>
+      <find>postbox</find>
+      <find>tspedev_save_image_url</find>
+      <find>field_prefix</find>
+      <find>@(param|return) output</find>
     </findStrings>
     <replaceStrings>
       <replace>Let A Pro Do IT!</replace>
@@ -369,10 +94,13 @@
       <replace>TSP_EASY_DEV_</replace>
       <replace>LAPDI Easy Dev</replace>
       <replace>TSP_Easy_Dev</replace>
+      <replace>@return void - output</replace>
+      <replace>Optional</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/classes/lib</dir>
       <dir>$PROJECT_DIR$/classes/lib/Smarty</dir>
+      <dir>$PROJECT_DIR$/classes</dir>
       <dir>$PROJECT_DIR$</dir>
     </dirStrings>
   </component>
@@ -385,7 +113,6 @@
         <option value="$PROJECT_DIR$/assets/templates/easy-dev-form-fields.tpl" />
         <option value="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_templatecompilerbase.php" />
         <option value="$PROJECT_DIR$/assets/js/easy-dev-comm.js" />
-        <option value="$PROJECT_DIR$/assets/js/easy-dev-global.js" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/README.txt" />
         <option value="&lt;1451d4c9-d790-4ebc-84b7-e36cb821096c&gt;/Users/SharronDenice/Sites/_testsites/wordpress_latest/wp-config.php" />
@@ -394,20 +121,22 @@
         <option value="$PROJECT_DIR$/assets/templates/easy-dev-options.tpl" />
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/assets/templates/form-fields.tpl" />
-        <option value="$PROJECT_DIR$/classes/TSP_Easy_Dev_Smarty.class.php" />
         <option value="$PROJECT_DIR$/classes/TSP_Easy_Dev_Posts.class.php" />
-        <option value="$PROJECT_DIR$/classes/TSP_Easy_Dev_Terms.class.php" />
-        <option value="$PROJECT_DIR$/assets/templates/easy-dev-shortcode-form-with-wrapper.tpl" />
-        <option value="$PROJECT_DIR$/assets/css/easy-dev-style-admin.css" />
         <option value="$PROJECT_DIR$/assets/css/easy-dev-style.css" />
         <option value="&lt;5b76bb24-8a59-4cda-9f81-69fb87cddeeb&gt;/www.letaprodoit.com/plugins/wordpress/plugins.json" />
         <option value="$PROJECT_DIR$/assets/templates/easy-dev-shortcode-ui.tpl" />
-        <option value="$PROJECT_DIR$/TSP_Easy_Dev.extend.php" />
         <option value="$PROJECT_DIR$/TSP_Easy_Dev.register.php" />
-        <option value="$PROJECT_DIR$/tsp-easy-dev.php" />
-        <option value="$PROJECT_DIR$/classes/TSP_Easy_Dev_Options.class.php" />
         <option value="$PROJECT_DIR$/TSP_Easy_Dev.config.php" />
+        <option value="$PROJECT_DIR$/TSP_Easy_Dev.extend.php" />
+        <option value="$PROJECT_DIR$/assets/css/easy-dev-style-admin.css" />
+        <option value="$PROJECT_DIR$/assets/templates/easy-dev-shortcode-form-with-wrapper.tpl" />
+        <option value="$PROJECT_DIR$/tsp-easy-dev.php" />
+        <option value="$PROJECT_DIR$/assets/js/easy-dev-global.js" />
         <option value="$PROJECT_DIR$/classes/TSP_Easy_Dev.class.php" />
+        <option value="$PROJECT_DIR$/classes/TSP_Easy_Dev_Terms.class.php" />
+        <option value="$PROJECT_DIR$/classes/TSP_Easy_Dev_Data.class.php" />
+        <option value="$PROJECT_DIR$/classes/TSP_Easy_Dev_Options.class.php" />
+        <option value="$PROJECT_DIR$/classes/TSP_Easy_Dev_Smarty.class.php" />
       </list>
     </option>
   </component>
@@ -452,17 +181,6 @@
             <path>
               <item name="Plugins: Easy Dev" type="b2602c69:ProjectViewProjectNode" />
               <item name="trunk" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Plugins: Easy Dev" type="b2602c69:ProjectViewProjectNode" />
-              <item name="trunk" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Plugins: Easy Dev" type="b2602c69:ProjectViewProjectNode" />
-              <item name="trunk" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -532,12 +250,12 @@
       <workItem from="1527292946919" duration="5950000" />
       <workItem from="1540043912075" duration="18861000" />
       <workItem from="1540099045643" duration="1126000" />
-      <workItem from="1540100235915" duration="18660000" />
+      <workItem from="1540100235915" duration="28791000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56436000" />
+    <option name="totallyTimeSpent" value="66567000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1600" height="938" extended-state="6" />
@@ -546,7 +264,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="File Transfer" order="11" visible="true" weight="0.15933412" />
+      <window_info anchor="bottom" id="File Transfer" order="11" weight="0.15933412" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.19976218" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32818073" />
@@ -602,28 +320,12 @@
   <component name="WordPressConfiguration" enabled="true">
     <wordpressPath>$USER_HOME$/Sites/www.thesoftwarepeople.com</wordpressPath>
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/classes/TSP_Easy_Dev_Data.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="56" column="11" lean-forward="true" selection-start-line="56" selection-start-column="11" selection-end-line="56" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classes/TSP_Easy_Dev_Terms.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1275">
-          <caret line="175" column="24" selection-start-line="175" selection-start-column="24" selection-end-line="175" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classes/TSP_Easy_Dev_Posts.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2205">
-          <caret line="209" column="24" selection-start-line="209" selection-start-column="24" selection-end-line="209" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/classes/TSP_Easy_Dev_Data.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="840">
@@ -642,13 +344,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2625">
           <caret line="175" column="24" selection-start-line="175" selection-start-column="24" selection-end-line="175" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classes/TSP_Easy_Dev_Data.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3705">
-          <caret line="403" column="42" selection-start-line="403" selection-start-column="33" selection-end-line="403" selection-end-column="42" />
         </state>
       </provider>
     </entry>
@@ -671,13 +366,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/templates/shortcode-form.tpl" />
     <entry file="file://$PROJECT_DIR$/assets/templates/shortcode-form-with-wrapper.tpl" />
-    <entry file="file://$PROJECT_DIR$/assets/js/easy-dev-global.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="96" column="32" lean-forward="true" selection-start-line="96" selection-start-column="32" selection-end-line="96" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/global_funcs.inc.php" />
     <entry file="file://$PROJECT_DIR$/assets/images/icon.png">
       <provider selected="true" editor-type-id="images" />
@@ -739,20 +427,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/easy-dev-style-admin.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="97" selection-start-line="97" selection-end-line="103" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classes/TSP_Easy_Dev_Terms.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="110" column="16" selection-start-line="110" selection-start-column="16" selection-end-line="110" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/templates/easy-dev-parent-page.tpl">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -760,13 +434,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="30" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/templates/easy-dev-child-page-default.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="32" column="32" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -784,66 +451,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/classes/TSP_Easy_Dev_Posts.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="613">
-          <caret line="43" column="25" selection-start-line="43" selection-start-column="25" selection-end-line="43" selection-end-column="25" />
-          <folding>
-            <element signature="e#1299#2477#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/templates/easy-dev-child-page-default-instructions.tpl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="15" lean-forward="true" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classes/TSP_Easy_Dev_Options.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="540" column="46" selection-start-line="540" selection-start-column="46" selection-end-line="540" selection-end-column="46" />
-          <folding>
-            <element signature="e#10039#10508#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classes/TSP_Easy_Dev.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="1087" selection-start-line="1087" selection-end-line="1087" />
-          <folding>
-            <element signature="e#5696#11022#0#PHP" expanded="true" />
-            <element signature="e#28538#29793#0#PHP" expanded="true" />
-            <element signature="e#33156#34784#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TSP_Easy_Dev.config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="43" column="48" lean-forward="true" selection-start-line="43" selection-start-column="48" selection-end-line="43" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TSP_Easy_Dev.extend.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="74" selection-start-line="32" selection-start-column="56" selection-end-line="32" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsp-easy-dev.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="59" column="81" lean-forward="true" selection-start-line="59" selection-start-column="4" selection-end-line="59" selection-end-column="81" />
-          <folding>
-            <element signature="e#10#752#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -854,16 +465,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TSP_Easy_Dev.register.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="97" column="104" lean-forward="true" selection-start-line="97" selection-start-column="53" selection-end-line="97" selection-end-column="104" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/templates/easy-dev-shortcode-form-with-wrapper.tpl">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/templates/easy-dev-shortcode-ui.tpl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -871,24 +472,153 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/assets/templates/easy-dev-child-page-default.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="32" column="32" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TSP_Easy_Dev.extend.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="38" lean-forward="true" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/css/easy-dev-style-admin.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="423">
+          <caret line="39" column="33" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/assets/templates/easy-dev-shortcode-form.tpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="40" selection-start-line="1" selection-start-column="20" selection-end-line="1" selection-end-column="40" />
+        <state>
+          <caret column="26" selection-start-column="10" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TSP_Easy_Dev.register.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="49" column="24" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/easy-dev-admin-script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#36#221#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TSP_Easy_Dev.config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-143">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/easy-dev-global.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="92" column="28" selection-start-line="92" selection-start-column="28" selection-end-line="92" selection-end-column="28" />
+          <folding>
+            <element signature="n#!!block;n#tspedev_show_media_window#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/templates/easy-dev-form-fields.tpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1035">
+        <state relative-caret-position="581">
           <caret line="69" column="39" selection-start-line="69" selection-start-column="32" selection-end-line="69" selection-end-column="39" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/assets/templates/easy-dev-shortcode-form-with-wrapper.tpl">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/TSP_Easy_Dev_Data.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="704">
+          <caret line="416" column="8" selection-start-line="416" selection-start-column="8" selection-end-line="416" selection-end-column="8" />
+          <folding>
+            <element signature="e#1210#1412#0#PHP" expanded="true" />
+            <element signature="e#8160#8564#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/TSP_Easy_Dev_Options.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="704">
+          <caret line="717" column="8" selection-start-line="717" selection-start-column="8" selection-end-line="717" selection-end-column="8" />
+          <folding>
+            <element signature="e#10039#10508#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/TSP_Easy_Dev_Posts.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1066">
+          <caret line="43" column="25" selection-start-line="43" selection-start-column="25" selection-end-line="43" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/TSP_Easy_Dev_Terms.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-601">
+          <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="72" />
+          <folding>
+            <element signature="e#849#1171#0#PHP" expanded="true" />
+            <element signature="e#2038#3950#0#PHP" />
+            <element signature="e#4385#5353#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/TSP_Easy_Dev_Tools.class.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/TSP_Easy_Dev_Widget.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1771" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/classes/TSP_Easy_Dev_Smarty.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="49" column="32" selection-start-line="49" selection-start-column="32" selection-end-line="49" selection-end-column="32" />
+        <state relative-caret-position="255">
+          <caret line="17" column="18" lean-forward="true" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
+          <folding>
+            <element signature="e#857#1748#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/TSP_Easy_Dev.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8820">
+          <caret line="768" column="12" selection-start-line="768" selection-start-column="11" selection-end-line="768" selection-end-column="12" />
+          <folding>
+            <element signature="e#5696#11022#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsp-easy-dev.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="15" column="7" lean-forward="true" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+          <folding>
+            <element signature="e#10#752#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

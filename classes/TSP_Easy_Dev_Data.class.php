@@ -44,6 +44,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Data' ) )
 		 * @since 1.0
 		 *
 		 * @param array $fields Required - Sets the fields
+         * @param string $field_type Required - The field type
 		 *
 		 * @return void
 		 */
@@ -414,4 +415,3 @@ if ( !class_exists( 'TSP_Easy_Dev_Data' ) )
 		}//end update_dynamic_fields
 	}//end TSP_Easy_Dev_Data
 }//endif
-?>

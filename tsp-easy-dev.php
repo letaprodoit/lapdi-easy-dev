@@ -49,7 +49,6 @@
     $easy_dev->add_script( TSP_EASY_DEV_ASSETS_JS_URL . 'easy-dev-admin-script.js',  array('jquery','jquery-ui-tabs'), true );
     $easy_dev->add_script( TSP_EASY_DEV_ASSETS_JS_URL . 'easy-dev-global.js',  array('jquery'), true );
     $easy_dev->add_script( TSP_EASY_DEV_VENDOR_URL . 'twbs/bootstrap/dist/js/bootstrap.min.js',  array('jquery'), true );
-    $easy_dev->add_script( TSP_EASY_DEV_VENDOR_URL . 'twbs/bootstrap/dist/js/npm.js',  array('jquery'), true );
 
     // STYLES: Queue Admin
     $easy_dev->add_css( TSP_EASY_DEV_VENDOR_URL . 'fortawesome/font-awesome/css/font-awesome.min.css', true );
@@ -60,3 +59,4 @@
     $easy_dev->set_plugin_icon( TSP_EASY_DEV_ASSETS_IMAGES_URL . 'icon_16.png' );
 
     $easy_dev->run( TSP_EASY_DEV_FILE );
+

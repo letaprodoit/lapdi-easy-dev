@@ -52,64 +52,69 @@ if ( !class_exists( 'TSP_Easy_Dev_Terms' ) )
 		 *
 		 * @since 1.0
 		 *
-		 * @param object $term Required - Passed in from hook the term object;
+		 * @param object $tag Required - Passed in from hook the term object;
 		 *
-		 * @return output to screen
+		 * @return void - output to screen
 		 */
-		public function load_term_metadata_box( $term )
+		public function load_term_metadata_box( $tag )
 		{
 			$term_ID = null;
 			
-			if (isset ( $term->term_id ))
+			if (isset ( $tag->term_id ))
 			{
-				$term_ID = $term->term_id;
+				$term_ID = $tag->term_id;
 			}//end if
-				
-			$term_fields = get_option( $this->options->get_value('term-fields-option-name') );
-			$defaults = new TSP_Easy_Dev_Data ( $term_fields, $term->taxonomy );
 
-		    $default_fields = $defaults->get_values();
-		    
-		    $category_data = array();
-		    
-		    // loop through the default fields in order to get all of the post
-		    // data in the database
-		    if ( ! empty ( $default_fields ))
-		    {
-			    // if this is NOT a new category entry then retrieve the associated data
-			    // for this category
-			    if (!empty ( $term_ID ))
-			    {
-				    $all_term_data = get_option( $this->options->get_value('term-data-option-name') );
-				    
-			        if (!empty ( $all_term_data ))
-			        {
-					    foreach ( $default_fields as $key => $value )
-					    {
-							if ( array_key_exists( $term_ID, $all_term_data ) )
-							{
-								if ( array_key_exists( $key, $all_term_data[$term_ID] ) )
-								{
-									$category_data[$key]    = $all_term_data[$term_ID][$key];
-								}//end if
-							}//end if
-					    }//end foreach
-			        }//end if
-			    }//end if
-			    
-			    $defaults->set_values( $category_data );
-			    $form_fields = $defaults->get_values( true );
-		
-				$smarty = new TSP_Easy_Dev_Smarty( $this->options->get_value('smarty_template_dirs'), 
-					$this->options->get_value('smarty_cache_dir'), 
-					$this->options->get_value('smarty_compiled_dir'), true );
-					
-		    	$smarty->assign( 'form_fields', 	$form_fields );
-		    	$smarty->assign( 'ID', 				$term_ID );
-		    	$smarty->assign( 'name', 			$this->options->get_value('name') );
-		    	$smarty->assign( 'title', 			$this->options->get_value('title') );
-			    $smarty->display( 'easy-dev-shortcode-form-with-wrapper.tpl' );
-		    }//end if
+            $term_fields = get_option( $this->options->get_value('term-fields-option-name') );
+            $taxonomy = null;
+
+			if (is_object($tag) && !empty($tag->taxonomy))
+                $taxonomy =  $tag->taxonomy;
+
+			$defaults = new TSP_Easy_Dev_Data ( $term_fields, $taxonomy );
+
+            $default_fields = $defaults->get_values();
+
+            $category_data = array();
+
+            // loop through the default fields in order to get all of the post
+            // data in the database
+            if ( ! empty ( $default_fields ))
+            {
+                // if this is NOT a new category entry then retrieve the associated data
+                // for this category
+                if (!empty ( $term_ID ))
+                {
+                    $all_term_data = get_option( $this->options->get_value('term-data-option-name') );
+
+                    if (!empty ( $all_term_data ) && is_array($all_term_data))
+                    {
+                        foreach ( $default_fields as $key => $value )
+                        {
+                            if ( array_key_exists( $term_ID, $all_term_data ) )
+                            {
+                                if ( array_key_exists( $key, $all_term_data[$term_ID] ) )
+                                {
+                                    $category_data[$key]    = $all_term_data[$term_ID][$key];
+                                }//end if
+                            }//end if
+                        }//end foreach
+                    }//end if
+                }//end if
+
+                $defaults->set_values( $category_data );
+                $form_fields = $defaults->get_values( true );
+
+                $smarty = new TSP_Easy_Dev_Smarty( $this->options->get_value('smarty_template_dirs'),
+                    $this->options->get_value('smarty_cache_dir'),
+                    $this->options->get_value('smarty_compiled_dir'), true );
+
+                $smarty->assign( 'shortcode_fields', 	$form_fields );
+                $smarty->assign( 'ID', 				$term_ID );
+                $smarty->assign( 'name', 			$this->options->get_value('name') );
+                $smarty->assign( 'title', 			$this->options->get_value('title') );
+                $smarty->display( 'easy-dev-shortcode-form-with-wrapper.tpl' );
+            }//end if
 		}//end add_term_metadata_fields
 	
 		/**
@@ -131,16 +136,16 @@ if ( !class_exists( 'TSP_Easy_Dev_Terms' ) )
 		    {
 				$term_fields = get_option( $this->options->get_value('term-fields-option-name') );
 				$defaults = new TSP_Easy_Dev_Data ( $term_fields, $taxonomy );
-	
-			   	$defaults->set_values( $_POST );
-			    
+
+                $defaults->set_values( $_POST );
+
 			    $form_fields = $defaults->get_values();
-			    
+
+                $terms_data = array();
+
 			    // store the saved data for this term
 			    if (!empty ( $form_fields ))
 			    {
-				    $term_data = array();
-				    
 				    foreach ( $form_fields as $key => $value )
 				    {
 					    $terms_data[$term_ID][$key] = $value;
@@ -149,10 +154,13 @@ if ( !class_exists( 'TSP_Easy_Dev_Terms' ) )
 			    
 			    // get the stored term meta data
 				$all_term_data = get_option( $this->options->get_value('term-data-option-name') );
-				
+
+			    if (!is_array($all_term_data))
+			        $all_term_data = array();
+
 				$all_term_data[$term_ID] = $terms_data[$term_ID];
-				
-				update_option( $this->options->get_value('term-data-option-name'), $all_term_data, 'yes' );
+
+                update_option( $this->options->get_value('term-data-option-name'), $all_term_data, 'yes' );
 		    }//end if
 		}//end modify_term_data
 	

@@ -401,7 +401,7 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
          *
          * @param void
          *
-         * @return TSP_Easy_Dev_Options object reference
+         * @return TSP_Easy_Dev_Options - object reference
          */
         public function get_options_handler()
         {
@@ -554,7 +554,7 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
          * @since 1.0
          *
          * @param string $css Required - The full URL of the css file
-         * @param boolean $admin Optonal - Is the style for the admin or user interface
+         * @param boolean $admin Optional - Is the style for the admin or user interface
          *
          * @return void
          */
@@ -579,14 +579,14 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
          * @since 1.0
          *
          * @param string $script Required - The full URL of the script file
-         * @param array $required_scripts Optonal - Array of required script tags (ie 'jquery','jquery-ui-widget')
-         * @param boolean $admin Optonal - Is the script for the admin or user interface
-         * @param boolean $footer Optonal - Will the script be loaded in the footer
-         * @param varies $version Optonal - Script version number or false if none
+         * @param array $required_scripts Optional - Array of required script tags (ie 'jquery','jquery-ui-widget')
+         * @param boolean $admin Optional - Is the script for the admin or user interface
+         * @param boolean $footer Optional - Will the script be loaded in the footer
+         * @param int $version Optional - Script version number or false if none
          *
          * @return void
          */
-        public function add_script( $script, $required_scripts = array(), $admin = false, $footer = false, $version = false )
+        public function add_script( $script, $required_scripts = array(), $admin = false, $footer = false, $version = 0 )
         {
             if ( $admin )
             {
@@ -772,7 +772,7 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
         {
             $screen = get_current_screen();
 
-            if (!preg_match("/". TSP_ACRONYM . "|" . LAPDI_ACRONYM . "/", $screen->id))
+            if (!preg_match("/". TSP_ACRONYM . "|" . LAPDI_ACRONYM . "|edit-category/", $screen->id))
                 return;
 
             foreach ($this->admin_css_files as $style)
@@ -796,6 +796,13 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
                 wp_register_script($tag, $script, $data['required'], $data['version'], $data['footer']);
                 wp_enqueue_script($tag);
             }//endforeach
+
+            if (preg_match("/edit-category/", $screen->id))
+            {
+                wp_enqueue_script('media-upload');
+                wp_enqueue_script('thickbox');
+                wp_enqueue_style('thickbox');
+            }
         }//end enqueue_scripts
 
 
@@ -842,7 +849,7 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
          *
          * @since 1.2.1
          *
-         * @param string $message The message to display to the admin
+         * @param void
          *
          * @return void
          */
@@ -866,7 +873,7 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
          *
          * @since 1.2.1
          *
-         * @param string $message The message to display to the admin
+         * @param void
          *
          * @return void
          */
@@ -1112,5 +1119,4 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
             }//end if
         }//end process_required_plugins
     }//end TSP_Easy_Dev
-}//endif	
-?>
+}//endif
