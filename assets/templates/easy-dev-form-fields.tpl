@@ -75,7 +75,7 @@
 		</script>
 	{/if}
 {/function}
-<div class="form-group {$field_prefix}_form_element" id="{$field.name}_container_div" style="">
+<div class="row form-group {$field_prefix}_form_element" id="{$field.name}_container_div" style="">
 	{if 'reverse_view'|array_key_exists:$field}
 		<div class="col-sm-1">
             {getField field=$field}

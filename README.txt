@@ -75,6 +75,10 @@ Nothing. The plugin runs in real-time behind the scenes. Once installed, there a
 
 == Changelog ==
 
+= 2.0.1 =
+* Enhancement. Upgraded to bootstrap 4.1.3
+* Bug: Minor bug fixes
+
 = 2.0.0 =
 * Enhancement. New Version of LAPDI Easy Dev with all new features
 * Enhancement. Latest version of FontAwesome
@@ -157,6 +161,10 @@ Nothing. The plugin runs in real-time behind the scenes. Once installed, there a
 * Launch
 
 == Upgrade notice ==
+
+= 2.0.1 =
+Enhancement. Upgraded to bootstrap 4.1.3
+Bug: Minor bug fixes
 
 = 2.0.0 =
 Enhancement. New Version of LAPDI Easy Dev with all new features

@@ -250,3 +250,6 @@
 
         spl_autoload_register( 'fn_easy_dev_register_classes' );
     }//end if
+
+    include( TSP_EASY_DEV_PATH . 'TSP_Easy_Dev.config.php');
+    include( TSP_EASY_DEV_PATH . 'TSP_Easy_Dev.extend.php');

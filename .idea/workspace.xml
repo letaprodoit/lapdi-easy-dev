@@ -2,11 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ca7ade9c-6e87-4238-8102-309f688595fe" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/SharronDenice.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/SharronDenice.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/README.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/easy-dev-comm.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/easy-dev-comm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/easy-dev-global.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/easy-dev-global.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TSP_Easy_Dev.config.php" beforeDir="false" afterPath="$PROJECT_DIR$/TSP_Easy_Dev.config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TSP_Easy_Dev.register.php" beforeDir="false" afterPath="$PROJECT_DIR$/TSP_Easy_Dev.autoload.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/easy-dev-style-admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/easy-dev-style-admin.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/templates/easy-dev-form-fields.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/assets/templates/easy-dev-form-fields.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsp-easy-dev.php" beforeDir="false" afterPath="$PROJECT_DIR$/tsp-easy-dev.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,8 +30,8 @@
     <option name="PATCH_PATH" value="" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
@@ -36,6 +39,45 @@
                 <caret line="2" column="38" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
               </first_editor>
               <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tsp-easy-dev.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tsp-easy-dev.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="26" column="30" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="30" />
+              <folding>
+                <element signature="e#10#752#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TSP_Easy_Dev.config.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TSP_Easy_Dev.config.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="34" column="48" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TSP_Easy_Dev.autoload.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TSP_Easy_Dev.autoload.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="659">
+              <caret line="242" column="26" selection-start-line="242" selection-start-column="26" selection-end-line="242" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.txt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="282">
+              <caret line="78" column="2" selection-start-line="78" selection-start-column="2" selection-end-line="78" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -95,6 +137,7 @@
       <dir>$PROJECT_DIR$/classes/lib/Smarty</dir>
       <dir>$PROJECT_DIR$/classes</dir>
       <dir>$PROJECT_DIR$</dir>
+      <dir>$PROJECT_DIR$/vendor</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -103,7 +146,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/assets/templates/easy-dev-form-fields.tpl" />
         <option value="$PROJECT_DIR$/classes/lib/Smarty/sysplugins/smarty_internal_templatecompilerbase.php" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="&lt;1451d4c9-d790-4ebc-84b7-e36cb821096c&gt;/Users/SharronDenice/Sites/_testsites/wordpress_latest/wp-config.php" />
@@ -116,19 +158,21 @@
         <option value="$PROJECT_DIR$/assets/css/easy-dev-style.css" />
         <option value="&lt;5b76bb24-8a59-4cda-9f81-69fb87cddeeb&gt;/www.letaprodoit.com/plugins/wordpress/plugins.json" />
         <option value="$PROJECT_DIR$/assets/templates/easy-dev-shortcode-ui.tpl" />
-        <option value="$PROJECT_DIR$/TSP_Easy_Dev.config.php" />
         <option value="$PROJECT_DIR$/TSP_Easy_Dev.extend.php" />
-        <option value="$PROJECT_DIR$/assets/css/easy-dev-style-admin.css" />
         <option value="$PROJECT_DIR$/assets/templates/easy-dev-shortcode-form-with-wrapper.tpl" />
         <option value="$PROJECT_DIR$/classes/TSP_Easy_Dev.class.php" />
         <option value="$PROJECT_DIR$/classes/TSP_Easy_Dev_Terms.class.php" />
         <option value="$PROJECT_DIR$/classes/TSP_Easy_Dev_Data.class.php" />
         <option value="$PROJECT_DIR$/classes/TSP_Easy_Dev_Options.class.php" />
         <option value="$PROJECT_DIR$/classes/TSP_Easy_Dev_Smarty.class.php" />
-        <option value="$PROJECT_DIR$/tsp-easy-dev.php" />
         <option value="$PROJECT_DIR$/TSP_Easy_Dev.register.php" />
         <option value="$PROJECT_DIR$/assets/js/easy-dev-comm.js" />
         <option value="$PROJECT_DIR$/assets/js/easy-dev-global.js" />
+        <option value="$PROJECT_DIR$/assets/templates/easy-dev-form-fields.tpl" />
+        <option value="$PROJECT_DIR$/assets/css/easy-dev-style-admin.css" />
+        <option value="$PROJECT_DIR$/tsp-easy-dev.php" />
+        <option value="$PROJECT_DIR$/TSP_Easy_Dev.autoload.php" />
+        <option value="$PROJECT_DIR$/TSP_Easy_Dev.config.php" />
         <option value="$PROJECT_DIR$/README.txt" />
       </list>
     </option>
@@ -173,6 +217,23 @@
             <path>
               <item name="Plugins: Easy Dev" type="b2602c69:ProjectViewProjectNode" />
               <item name="trunk" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Plugins: Easy Dev" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Plugins: Easy Dev" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Plugins: Easy Dev" type="b2602c69:ProjectViewProjectNode" />
+              <item name="trunk" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -246,6 +307,8 @@
       <workItem from="1540100235915" duration="29064000" />
       <workItem from="1540139196170" duration="1842000" />
       <workItem from="1540143245502" duration="1970000" />
+      <workItem from="1540169299943" duration="187000" />
+      <workItem from="1540253801052" duration="1976000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1540137791753</created>
@@ -265,7 +328,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70652000" />
+    <option name="totallyTimeSpent" value="72815000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1600" height="938" extended-state="6" />
@@ -274,14 +337,15 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="File Transfer" order="11" visible="true" weight="0.15933412" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.19976218" />
+      <window_info anchor="bottom" id="File Transfer" order="11" weight="0.15933412" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="7" visible="true" weight="0.19976218" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32818073" />
       <window_info anchor="right" id="Remote Host" order="3" weight="0.30102697" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25994864" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15982029" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="4" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32818073" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
@@ -292,7 +356,6 @@
       <window_info anchor="bottom" id="Messages" order="9" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32818073" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -435,13 +498,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="36" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/deployment.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -477,24 +533,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/easy-dev-style-admin.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="39" column="33" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/templates/easy-dev-shortcode-form.tpl">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="26" selection-start-column="10" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/templates/easy-dev-form-fields.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="581">
-          <caret line="69" column="39" selection-start-line="69" selection-start-column="32" selection-end-line="69" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -551,30 +593,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tsp-easy-dev.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="7" lean-forward="true" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
-          <folding>
-            <element signature="e#10#752#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TSP_Easy_Dev.register.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2584">
-          <caret line="37" column="103" selection-start-line="37" selection-start-column="103" selection-end-line="37" selection-end-column="103" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/easy-dev-admin-script.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-          <folding>
-            <element signature="e#36#221#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -592,17 +614,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TSP_Easy_Dev.config.php">
+    <entry file="file://$PROJECT_DIR$/assets/templates/easy-dev-form-fields.tpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="25" column="77" lean-forward="true" selection-start-line="25" selection-start-column="77" selection-end-line="25" selection-end-column="77" />
+        <state relative-caret-position="404">
+          <caret line="77" column="16" selection-start-line="77" selection-start-column="16" selection-end-line="77" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.txt">
+    <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2355">
-          <caret line="157" lean-forward="true" selection-start-line="157" selection-end-line="157" />
+        <state relative-caret-position="60">
+          <caret line="4" column="23" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/css/easy-dev-style-admin.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="453">
+          <caret line="37" column="1" selection-start-line="37" selection-start-column="1" selection-end-line="37" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -613,6 +642,37 @@
             <caret line="2" column="38" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsp-easy-dev.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="30" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="30" />
+          <folding>
+            <element signature="e#10#752#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TSP_Easy_Dev.config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="34" column="48" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TSP_Easy_Dev.autoload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="659">
+          <caret line="242" column="26" selection-start-line="242" selection-start-column="26" selection-end-line="242" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="78" column="2" selection-start-line="78" selection-start-column="2" selection-end-line="78" selection-end-column="2" />
         </state>
       </provider>
     </entry>

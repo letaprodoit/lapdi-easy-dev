@@ -5,7 +5,7 @@
     Description: 	Easy Dev is a <strong>Framework</strong> for WordPress Plugin development. See <a target="_blank" href="https://lab.letaprodoit.com/public/wiki/wordpress-ed:MainPage">Framework Docs</a> for information and instructions. <a target="_blank" href="https://twitter.com/#bringbackOOD">#bringbackOOD</a>
     Author: 		Let A Pro Do IT!
     Author URI: 	http://www.letaprodoit.com/
-    Version: 		2.0.0
+    Version: 		2.0.1
     Text Domain: 	tsped
     Copyright: 		Copyright � 2013 Let A Pro Do IT!, LLC (www.letaprodoit.com). All rights reserved
     License: 		APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
@@ -28,9 +28,7 @@
 
     global $easy_dev_settings;
 
-    include( TSP_EASY_DEV_PATH . 'TSP_Easy_Dev.register.php');
-    include( TSP_EASY_DEV_PATH . 'TSP_Easy_Dev.config.php');
-    include( TSP_EASY_DEV_PATH . 'TSP_Easy_Dev.extend.php');
+    include( TSP_EASY_DEV_PATH . 'TSP_Easy_Dev.autoload.php');
 
     //--------------------------------------------------------
     // initialize the plugin

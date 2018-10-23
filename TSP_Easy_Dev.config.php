@@ -5,6 +5,9 @@
     if ( !defined( 'TSP_PARENT_MENU_POS' )) define('TSP_PARENT_MENU_POS', 	2617638.180);
     /* @end */
 
+    LAPDI_Settings::$file_debug = TSP_EASY_DEV_PATH . 'debug.log';
+    LAPDI_Settings::$debug = false;
+
     /**
     * Every plugin that uses Easy Dev must define the DS variable that sets the path deliminter
     *
@@ -23,14 +26,13 @@
     $easy_dev_settings['name'] 					= TSP_EASY_DEV_NAME;
     $easy_dev_settings['key'] 					= $easy_dev_settings['TextDomain'];
     $easy_dev_settings['title']					= $easy_dev_settings['Name'];
-    $easy_dev_settings['title_short']			= $easy_dev_settings['Name'];
 
     $easy_dev_settings['option_prefix']			= TSP_EASY_DEV_NAME . "-option";
 
     $easy_dev_settings['file']	 				= TSP_EASY_DEV_FILE;
     $easy_dev_settings['base_name']	 			= TSP_EASY_DEV_BASE_NAME;
 
-    $easy_dev_settings['widget_width']	 	= 300;
+    $easy_dev_settings['widget_width']	 	    = 300;
     $easy_dev_settings['widget_height'] 		= 350;
 
     $easy_dev_settings['smarty_template_dirs']	= array( TSP_EASY_DEV_ASSETS_TEMPLATES_PATH );
