@@ -55,6 +55,8 @@ if ( !class_exists( 'TSP_Easy_Dev_Posts' ) )
 		 * @param void
 		 *
 		 * @return void - output to screen
+         *
+         * @throws SmartyException
 		 */
 		public function add_post_metadata_fields ()
 		{
@@ -85,7 +87,7 @@ if ( !class_exists( 'TSP_Easy_Dev_Posts' ) )
 						$this->options->get_value('smarty_cache_dir'), 
 						$this->options->get_value('smarty_compiled_dir'), true );
 						
-			    	$smarty->assign( 'form_fields', $form_fields );
+			    	$smarty->assign( 'shortcode_fields', $form_fields );
 			    	$smarty->assign( 'class', 'widefat' );
 				    $smarty->display( 'easy-dev-shortcode-form.tpl' );
 			    }//end if

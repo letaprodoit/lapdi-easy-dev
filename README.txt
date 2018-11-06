@@ -4,7 +4,7 @@ Donate link: https://www.letaprodoit.com/apps/plugins/wordpress/easy-dev-for-wor
 Tags: Framework, OO, object oriented, learn, wordpress, add_filter, add_action, tutorial, plugin, application, interface, development, developer
 Requires at least: 4.5.0
 Tested up to: 5.0.0
-Stable tag: 2.0.0
+Stable tag: 2.0.2
 License: Apache v2.0
 License URI: http://www.apache.org/licenses/LICENSE-2.0
 
@@ -74,6 +74,12 @@ Nothing. The plugin runs in real-time behind the scenes. Once installed, there a
 
 
 == Changelog ==
+
+= 2.0.2 =
+* Bug: Fixed bug with post metaboxes
+* Enhancement: Auto detect term and post options
+* Enhancement: Allow population of field values if post or term ID given
+* Enhancement: Added support for callback buttons
 
 = 2.0.1 =
 * Enhancement. Upgraded to bootstrap 4.1.3
@@ -161,6 +167,12 @@ Nothing. The plugin runs in real-time behind the scenes. Once installed, there a
 * Launch
 
 == Upgrade notice ==
+
+= 2.0.2 =
+Bug: Fixed bug with post metaboxes
+Enhancement: Auto detect term and post options
+Enhancement: Allow population of field values if post or term ID given
+Enhancement: Added support for callback buttons
 
 = 2.0.1 =
 Enhancement. Upgraded to bootstrap 4.1.3

@@ -129,14 +129,16 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 			{
 				add_filter( 'plugin_action_links', 	array( $this, 'add_settings_link'), 10, 2 );
 			}//end if
-			
-			if ( $this->has_term_options )
-			{
+
+            if ( array_key_exists('category_fields', $this->settings['plugin_options'] ) && !empty($this->settings['plugin_options']['category_fields']) )
+            {
+                $this->has_term_options = true;
 				$this->pro_term = new TSP_Easy_Dev_Terms( $this );
 			}//endif
-						
-			if ( $this->has_post_options )
-			{
+
+            if ( array_key_exists('post_fields', $this->settings['plugin_options'] ) && !empty($this->settings['plugin_options']['post_fields']) )
+            {
+                $this->has_post_options = true;
 				$this->pro_post = new TSP_Easy_Dev_Posts( $this );
 			}//endif
 			

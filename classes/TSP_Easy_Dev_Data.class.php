@@ -45,15 +45,37 @@ if ( !class_exists( 'TSP_Easy_Dev_Data' ) )
 		 *
 		 * @param array $fields Required - Sets the fields
          * @param string $field_type Required - The field type
+         * @param integer|false $post_id optional - the post id
+         * @param integer|false $term_id optional - the term id
 		 *
 		 * @return void
 		 */
-		public function __construct( $fields, $field_type ) 
+		public function __construct( $fields, $field_type, $post_id = false, $term_id = false)
 		{
 			$this->update_realtime_fields( $fields, $field_type );
 			$this->update_dynamic_fields( $fields, $field_type );
 			$this->set( $fields );
 
+            if ($post_id)
+            {
+                $default_fields = $this->get_values();
+                $data = array();
+                foreach ( $default_fields as $key => $value )
+                {
+                    $data[$key]    = get_post_meta( $post_id, $key, 1 );
+                }//end foreach
+                $this->set_values( $data );
+            }
+            if ($term_id)
+            {
+                $default_fields = $this->get_values();
+                $data = array();
+                foreach ( $default_fields as $key => $value )
+                {
+                    $data[$key]    = get_term_meta( $term_id, $key, 1 );
+                }//end foreach
+                $this->set_values( $data );
+            }
 		}//end __construct
 
 		/**

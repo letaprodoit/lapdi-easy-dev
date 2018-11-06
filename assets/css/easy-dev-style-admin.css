@@ -33,6 +33,10 @@ body {
 .tsped-badge{
     font-size: 9px !important;
 }
+.control-label {
+    font-size: 13px;
+    margin-top: 10px;
+}
 .ui-tabs-panel label.control-label {
     font-size: 14px;
 }
@@ -268,7 +272,8 @@ body {
 .ui-tabs-vertical .ui-tabs-nav li a i.fa {
 	padding-right: 10px;
     margin-left: -20px;
-}.tspedev_url_display {
+}
+.tspedev_url_display {
     overflow: hidden;
     width: 100%;
     display: block;

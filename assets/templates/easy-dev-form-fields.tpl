@@ -1,6 +1,46 @@
 {function name=getField level=0}          {* short-hand *}
 	{if $field.type == 'INPUT'}
 	   <input class="{$class} form-control" id="{$field.id}" name="{$field.name}" value="{$field.value}" />
+    {elseif $field.type == 'BUTTON' && 'api_endpoint'|array_key_exists:$field}
+        <button type="button" {if !$field.enabled}disabled{/if} class="{$class} {$field.class} form-control" id="{$field.id}" name="{$field.name}">{$field.value}</button>
+        <script>
+            jQuery('#{$field.id}').on('click', function() {
+                // Disable all buttons in this section once the button is clicked
+                jQuery(".{$field_prefix}_form_element button[type=button]").prop("disabled", true);
+                // Add a spinner icon to the button that was clicked
+                jQuery("#{$field.id}").html("Busy <i class='fa fa-spinner fa-spin'></i>");
+
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+
+                    if (this.readyState === 4 && this.status === 200) {
+                        var response = JSON.parse(this.responseText);
+
+                        setTimeout(function () {
+                            // Enable all buttons in this section once the button is clicked
+                            jQuery(".{$field_prefix}_form_element button[type=button]").prop("disabled", false);
+                            // Remove the spinner icon from the button that was clicked
+                            jQuery("#{$field.id}").html("{$field.value}");
+
+                            if (response.success) {
+                                // @TODO: Display pretty alert box
+                                alert('Update completed successfully.');
+                            }
+                            else {
+                                // @TODO: Display pretty alert box
+                                alert('Update did NOT complete successfully. Contact administrator.');
+                            }
+                        }, 2000);
+                    }
+                };
+
+                var method =  ('{$field.api_method}' === '') ? 'GET' : '{$field.api_method}';
+
+                xhttp.open(method, '{$field.api_endpoint}', true);
+                xhttp.setRequestHeader('Content-type','application/json; charset=utf-8');
+                xhttp.send();
+            });
+        </script>
 	{elseif $field.type == 'TEXTAREA'}
 	   <textarea class="{$class} form-control" id="{$field.id}" name="{$field.name}">{$field.value}</textarea>
     {elseif $field.type == 'BLANK'}
@@ -79,9 +119,16 @@
 	{if 'reverse_view'|array_key_exists:$field}
 		<div class="col-sm-1">
             {getField field=$field}
-	</div>
+	    </div>
         {if $field.type != 'HEADER'}
             <label for="{$field.id}" class="col-sm-11 control-label">{$field.label}{if 'tag'|array_key_exists:$field}&nbsp;<span class="{$field.tag_class}">{$field.tag}</span>{/if}</label>
+        {/if}
+    {elseif 'button_view'|array_key_exists:$field}
+        <div class="col-sm-2">
+            {getField field=$field}
+        </div>
+        {if $field.type != 'HEADER'}
+            <label for="{$field.id}" class="col-sm-10 control-label">{$field.label}{if 'tag'|array_key_exists:$field}&nbsp;<span class="{$field.tag_class}">{$field.tag}</span>{/if}</label>
         {/if}
 	{else}
         {if $field.type != 'HEADER'}

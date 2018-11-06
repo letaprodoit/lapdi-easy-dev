@@ -1049,7 +1049,12 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
             {
                 foreach ( $this->incompatiable_plugins as $a_plugin => $a_plugin_info )
                 {
-                    $plugin_data = get_plugin_data( WP_PLUGIN_DIR . "/{$a_plugin}/{$a_plugin}.php", false, false );
+                    if (!preg_match("/(\.php)$/", $a_plugin))
+                    {
+                        $a_plugin .= "/{$a_plugin}.php";
+                    }
+
+                    $plugin_data = get_plugin_data( WP_PLUGIN_DIR . "/{$a_plugin}", false, false );
                     $plugin_version = $plugin_data['Version'];
 
                     if (array_key_exists('version', $a_plugin_info) && (!version_compare($plugin_version, $a_plugin_info['version'], $a_plugin_info['operator'])))
@@ -1060,13 +1065,13 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 
                         deactivate_plugins( $this->plugin_name . DS . $this->plugin_name.'.php' );
                     }
-                    else if( is_plugin_active( $a_plugin . DS . $a_plugin . '.php' ) )
+                    else if( is_plugin_active( $a_plugin ) )
                     {
                         $this->message = $a_plugin_info['title'] . " <strong>was deactivated</strong>, this plugin is not compatible with {$this->plugin_title}.";
 
                         add_action( 'admin_notices', array ( $this, 'display_notice') );
 
-                        deactivate_plugins( $a_plugin . DS . $a_plugin . '.php' );
+                        deactivate_plugins( $a_plugin );
                     }//endif
                 }//endforeach
             }//end if
@@ -1089,7 +1094,12 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
             {
                 foreach ( $this->required_plugins as $a_plugin => $a_plugin_info )
                 {
-                    $plugin_data = get_plugin_data( WP_PLUGIN_DIR . "/{$a_plugin}/{$a_plugin}.php", false, false );
+                    if (!preg_match("/(\.php)$/", $a_plugin))
+                    {
+                        $a_plugin .= "/{$a_plugin}.php";
+                    }
+
+                    $plugin_data = get_plugin_data( WP_PLUGIN_DIR . "/{$a_plugin}", false, false );
                     $plugin_version = $plugin_data['Version'];
 
                     if (array_key_exists('version', $a_plugin_info) && (!version_compare($plugin_version,$a_plugin_info['version'], $a_plugin_info['operator'])))
@@ -1100,7 +1110,7 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 
                         deactivate_plugins( $this->plugin_name . DS . $this->plugin_name.'.php' );
                     }
-                    else if( !is_plugin_active( $a_plugin . DS . $a_plugin . '.php' ) )
+                    else if( !is_plugin_active( $a_plugin ) )
                     {
                         $this->message = $this->plugin_title . " <strong>was not installed</strong>, plugin requires the installation and activation of <a href='plugin-install.php?tab=search&type=term&s={$a_plugin_info['title']}'>{$a_plugin_info['title']}</a>.";
 
@@ -1110,9 +1120,9 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
                     }//endif
                     else
                     {
-                        if (file_exists( $a_plugin . DS . $a_plugin . '.php' ))
+                        if (file_exists( WP_PLUGIN_DIR . "/{$a_plugin}" ))
                         {
-                            include_once $a_plugin . DS . $a_plugin . '.php';
+                            include_once WP_PLUGIN_DIR . "/{$a_plugin}";
                         }//end else
                     }
                 }//endforeach

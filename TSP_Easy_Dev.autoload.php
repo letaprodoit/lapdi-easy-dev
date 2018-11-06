@@ -222,12 +222,12 @@
     @define('TSP_EASY_DEV_TMP_PATH',				$upload_dir['basedir'] . '/tsp_plugins/' );
 
 
-    include( TSP_EASY_DEV_PATH . 'vendor/autoload.php');
+    include( TSP_EASY_DEV_VENDOR_PATH . 'autoload.php');
 
     //--------------------------------------------------------
     // Register classes
     //--------------------------------------------------------
-    if ( !function_exists( 'fn_easy_dev_register_classes' ) )
+    if ( !function_exists( TSP_EASY_DEV_FIELD_PREFIX . '_register_classes' ) )
     {
         /**
          * Hook implementation for spl_autoload_register
@@ -240,15 +240,15 @@
          *
          * @return void
          */
-        function fn_easy_dev_register_classes( $class )
+        function tspedev_register_classes( $class )
         {
             if (file_exists( TSP_EASY_DEV_CLASS_PATH . $class . '.class.php' ))
             {
                 include_once TSP_EASY_DEV_CLASS_PATH . $class . '.class.php';
             }//end if
-        }//end fn_easy_dev_register_classes
+        }//end tspedev_register_classes
 
-        spl_autoload_register( 'fn_easy_dev_register_classes' );
+        spl_autoload_register( TSP_EASY_DEV_FIELD_PREFIX . '_register_classes' );
     }//end if
 
     include( TSP_EASY_DEV_PATH . 'TSP_Easy_Dev.config.php');
