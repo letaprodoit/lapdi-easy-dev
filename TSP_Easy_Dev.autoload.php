@@ -6,7 +6,7 @@
     Author: 		Let A Pro Do IT!
     Author URI: 	http://www.letaprodoit.com/
     Version: 		1.0.3
-    Copyright: 		Copyright © 2013 Let A Pro Do IT!, LLC (www.letaprodoit.com). All rights reserved
+    Copyright: 		Copyright © 2021 Let A Pro Do IT!, LLC (www.letaprodoit.com). All rights reserved
     License: 		APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
     */
 

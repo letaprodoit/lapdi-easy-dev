@@ -6,7 +6,7 @@
          * @package TSP_Easy_Dev
          * @author sharrondenice, letaprodoit
          * @author Sharron Denice, Let A Pro Do IT!
-         * @copyright 2013 Let A Pro Do IT!
+         * @copyright 2021 Let A Pro Do IT!
          * @license APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
          */
 

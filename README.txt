@@ -1,10 +1,10 @@
 === LAPDI Easy Dev ===
 Contributors: letaprodoit,sharrondenice
-Donate link: https://www.letaprodoit.com/apps/plugins/wordpress/easy-dev-for-wordpress.html
+Donate link: https://letaprodoit.com/apps/plugins/wordpress/easy-dev-for-wordpress.html
 Tags: Framework, OO, object oriented, learn, wordpress, add_filter, add_action, tutorial, plugin, application, interface, development, developer
 Requires at least: 4.5.0
-Tested up to: 5.0.0
-Stable tag: 2.0.2
+Tested up to: 5.6.1
+Stable tag: 2.0.1
 License: Apache v2.0
 License URI: http://www.apache.org/licenses/LICENSE-2.0
 
@@ -43,7 +43,7 @@ Includes all of the features of the standard version AND…
 * Additional images and resources
 * `Upgrades includes fixes and new functionality from our community of developers`
 
-Visit [Let A Pro Do IT!'s Marketplace](http://www.letaprodoit.com/software/) to download the [Professional Version of Easy Dev Developers](http://www.letaprodoit.com/software/plugins/wordpress/easy-dev-for-wordpress.html).
+Visit [Let A Pro Do IT!'s Marketplace](https://letaprodoit.com/software/) to download the [Professional Version of Easy Dev Developers](https://letaprodoit.com/software/plugins/wordpress/easy-dev-for-wordpress.html).
 
 == Installation ==
 
@@ -74,16 +74,8 @@ Nothing. The plugin runs in real-time behind the scenes. Once installed, there a
 
 
 == Changelog ==
-
-= 2.0.2 =
-* Bug: Fixed bug with post metaboxes
-* Enhancement: Auto detect term and post options
-* Enhancement: Allow population of field values if post or term ID given
-* Enhancement: Added support for callback buttons
-
 = 2.0.1 =
-* Enhancement. Upgraded to bootstrap 4.1.3
-* Bug: Minor bug fixes
+* Maintenance
 
 = 2.0.0 =
 * Enhancement. New Version of LAPDI Easy Dev with all new features
@@ -167,16 +159,6 @@ Nothing. The plugin runs in real-time behind the scenes. Once installed, there a
 * Launch
 
 == Upgrade notice ==
-
-= 2.0.2 =
-Bug: Fixed bug with post metaboxes
-Enhancement: Auto detect term and post options
-Enhancement: Allow population of field values if post or term ID given
-Enhancement: Added support for callback buttons
-
-= 2.0.1 =
-Enhancement. Upgraded to bootstrap 4.1.3
-Bug: Minor bug fixes
 
 = 2.0.0 =
 Enhancement. New Version of LAPDI Easy Dev with all new features
