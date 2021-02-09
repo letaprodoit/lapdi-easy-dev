@@ -314,7 +314,10 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 		 * @return TSP_Easy_Dev_Posts reference to TSP_Easy_Dev_Posts object
 		 */
 		public function get_pro_post()
-		{
+		{			
+			if (empty($this->pro_post))
+				$this->pro_post = new TSP_Easy_Dev_Posts( $this );
+
 			return $this->pro_post;
 		}//end get_pro_post
 		
@@ -332,6 +335,9 @@ if ( !class_exists( 'TSP_Easy_Dev_Options' ) )
 		 */
 		public function get_pro_term()
 		{
+			if (empty($this->pro_term))
+				$this->pro_term = new TSP_Easy_Dev_Terms( $this );
+				
 			return $this->pro_term;
 		}//end get_term_post
 

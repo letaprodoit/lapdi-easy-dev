@@ -1,10 +1,10 @@
 <?php
     /*
     Name: 			LAPDI Easy Dev
-    URI: 			https://www.letaprodoit.com/apps/plugins/wordpress/easy-dev-for-wordpress/
+    URI: 			https://letaprodoit.com/apps/plugins/wordpress/easy-dev-for-wordpress/
     Description: 	Easy Dev is a <strong>Framework</strong> for WordPress Plugin development. See <a target="_blank" href="https://lab.letaprodoit.com/public/wiki/wordpress-ed:MainPage">Framework Docs</a> for information and instructions. <a target="_blank" href="https://twitter.com/#bringbackOOD">#bringbackOOD</a>
     Author: 		Let A Pro Do IT!
-    Author URI: 	http://www.letaprodoit.com/
+    Author URI: 	https://letaprodoit.com/
     Version: 		1.0.3
     Copyright: 		Copyright © 2021 Let A Pro Do IT!, LLC (www.letaprodoit.com). All rights reserved
     License: 		APACHE v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
@@ -101,13 +101,13 @@
      *
      * @var string
      */
-    @define('TSP_STORE_URL', 			            "https://www.letaprodoit.com/apps/plugins/wordpress/");
+    @define('TSP_STORE_URL', 			            "https://letaprodoit.com/apps/plugins/wordpress/");
     /**
      * The Store URL
      *
      * @var string
      */
-    @define('TSP_PLUGINS_URL', 			            "https://www.letaprodoit.com/plugins/wordpress/plugins.json");
+    @define('TSP_PLUGINS_URL', 			            "https://letaprodoit.com/plugins/wordpress/plugins.json");
     /**
      * The Ratings URL
      *

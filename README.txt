@@ -4,7 +4,7 @@ Donate link: https://letaprodoit.com/apps/plugins/wordpress/easy-dev-for-wordpre
 Tags: Framework, OO, object oriented, learn, wordpress, add_filter, add_action, tutorial, plugin, application, interface, development, developer
 Requires at least: 4.5.0
 Tested up to: 5.6.1
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 License: Apache v2.0
 License URI: http://www.apache.org/licenses/LICENSE-2.0
 
@@ -74,6 +74,9 @@ Nothing. The plugin runs in real-time behind the scenes. Once installed, there a
 
 
 == Changelog ==
+= 2.0.2 =
+* Bug fix. Fixed null exception
+
 = 2.0.1 =
 * Maintenance
 
@@ -159,6 +162,12 @@ Nothing. The plugin runs in real-time behind the scenes. Once installed, there a
 * Launch
 
 == Upgrade notice ==
+
+= 2.0.2 =
+* Bug fix. Fixed null exception
+
+= 2.0.1 =
+* Maintenance
 
 = 2.0.0 =
 Enhancement. New Version of LAPDI Easy Dev with all new features
