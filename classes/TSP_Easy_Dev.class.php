@@ -1104,7 +1104,12 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
 
                     if (array_key_exists('version', $a_plugin_info) && (!version_compare($plugin_version,$a_plugin_info['version'], $a_plugin_info['operator'])))
                     {
-                        $this->message = $this->plugin_title . " <strong>was not installed</strong>, plugin requires the installation and activation of <a href='plugin-install.php?tab=search&type=term&s={$a_plugin_info['title']}'>{$a_plugin_info['title']}</a> version {$a_plugin_info['version']}.";
+                        $url = "plugin-install.php?tab=search&type=term&s={$a_plugin_info['title']}'>{$a_plugin_info['title']}";
+
+                        if (array_key_exists('url', $a_plugin_info))
+                            $url = $a_plugin_info['url'];
+                            
+                        $this->message = $this->plugin_title . " <strong>was not installed</strong>, plugin requires the installation and activation of <a href='{$url}'></a> version {$a_plugin_info['version']}.";
 
                         add_action( 'admin_notices', array ( $this, 'display_error') );
 
@@ -1112,7 +1117,12 @@ if ( !class_exists( 'TSP_Easy_Dev' ) )
                     }
                     else if( !is_plugin_active( $a_plugin ) )
                     {
-                        $this->message = $this->plugin_title . " <strong>was not installed</strong>, plugin requires the installation and activation of <a href='plugin-install.php?tab=search&type=term&s={$a_plugin_info['title']}'>{$a_plugin_info['title']}</a>.";
+                        $url = "plugin-install.php?tab=search&type=term&s={$a_plugin_info['title']}";
+
+                        if (array_key_exists('url', $a_plugin_info))
+                            $url = $a_plugin_info['url'];
+
+                        $this->message = $this->plugin_title . " <strong>was not installed</strong>, plugin requires the installation and activation of <a href='{$url}'>{$a_plugin_info['title']}</a>.";
 
                         add_action( 'admin_notices', array ( $this, 'display_error') );
 
