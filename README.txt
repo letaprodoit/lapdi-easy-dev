@@ -3,8 +3,9 @@ Contributors: letaprodoit,sharrondenice
 Donate link: https://letaprodoit.com/apps/plugins/wordpress/easy-dev-for-wordpress.html
 Tags: Framework, OO, object oriented, learn, wordpress, add_filter, add_action, tutorial, plugin, application, interface, development, developer
 Requires at least: 4.5.0
-Tested up to: 5.7.2
-Stable tag: 2.0.3
+Tested up to: 7.0
+Requires PHP: 7.4
+Stable tag: 2.0.4
 License: Apache v2.0
 License URI: http://www.apache.org/licenses/LICENSE-2.0
 
@@ -74,6 +75,9 @@ Nothing. The plugin runs in real-time behind the scenes. Once installed, there a
 
 
 == Changelog ==
+= 2.0.4 =
+* Maintenance. Confirm compatibility metadata for WordPress 7.0 and document the Git-to-SVN release workflow.
+
 = 2.0.3 =
 * Feature. Allow required plugins to specify a URL for easy download
 
@@ -165,6 +169,9 @@ Nothing. The plugin runs in real-time behind the scenes. Once installed, there a
 * Launch
 
 == Upgrade notice ==
+= 2.0.4 =
+* Maintenance. Confirm compatibility metadata for WordPress 7.0 and document the Git-to-SVN release workflow.
+
 = 2.0.3 =
 * Feature. Allow required plugins to specify a URL for easy download
 
