@@ -8,10 +8,11 @@ In practice this means:
 
 1. Develop and review changes in Git.
 2. Tag a release in Git when the plugin is ready.
-3. Copy the Git release contents into the WordPress.org SVN `trunk/` folder.
-4. Copy the same release contents into a new WordPress.org SVN `tags/<version>/` folder.
-5. Remove any Git-only files, especially `.git/`, from the SVN working copy before committing.
-6. Commit the finished release to WordPress.org SVN.
+3. Make sure the GitHub working copy inside the WordPress.org SVN `trunk/` folder is up to date.
+4. Leave `trunk/` intact. Do not delete or replace its contents during tagging.
+5. Copy the contents of `trunk/` into a new WordPress.org SVN `tags/<version>/` folder.
+6. Remove the copied `.git/` folder from `tags/<version>/` before committing to SVN.
+7. Commit the finished release to WordPress.org SVN.
 
 The WordPress Plugin Handbook describes the Plugin Directory SVN repository as a release repository rather than a normal development repository, so only finished releases should be pushed there.
 
@@ -29,8 +30,8 @@ plugin-slug/
 
 Use each folder as follows:
 
-- `trunk/`: contains the current release candidate/current stable plugin files copied from GitHub.
-- `tags/<version>/`: contains a frozen copy of the exact release files for that version.
+- `trunk/`: contains the current GitHub working copy for the plugin. Keep this folder intact during the release tagging step.
+- `tags/<version>/`: contains a frozen copy of the `trunk/` contents for that version, minus the copied `.git/` folder.
 - `assets/`: contains WordPress.org directory assets that are reused by the readme/plugin listing, such as icons, banners, and screenshots.
 
 ## Manual release workflow
@@ -79,46 +80,39 @@ cd PLUGIN_SLUG-svn
 
 You should now have `assets/`, `tags/`, and `trunk/` in the SVN working copy.
 
-### 3. Update the SVN `trunk/` folder from GitHub
+### 3. Confirm SVN `trunk/` already has the current GitHub release contents
 
-Export the exact Git tag into a temporary folder. `git archive` is preferred because it does not include `.git/`.
+The `trunk/` folder stays intact during release tagging. Do not empty, delete, or replace `trunk/` as part of creating a version tag.
+
+Before creating the SVN tag, make sure the GitHub repository inside `trunk/` is already updated to the release commit/version:
 
 ```bash
-cd /path/to/git/PLUGIN_SLUG
-git archive --format=tar VERSION | tar -x -C /tmp/PLUGIN_SLUG-VERSION
+cd /path/to/PLUGIN_SLUG-svn/trunk
+git status --short
+git pull --ff-only
 ```
 
-Replace the SVN `trunk/` contents with the exported Git release:
+If `trunk/` is not a Git working copy in a particular checkout, update it using your normal GitHub-to-`trunk/` sync process first, then come back to these steps. The important rule is that the `tags/VERSION/` folder is created from the finalized contents of `trunk/`.
+
+### 4. Copy `trunk/` into a new SVN `tags/VERSION/` folder
+
+Create a new immutable tag folder for the release by copying the current `trunk/` contents.
 
 ```bash
 cd /path/to/PLUGIN_SLUG-svn
-rm -rf trunk/*
-rsync -av --delete /tmp/PLUGIN_SLUG-VERSION/ trunk/
-```
-
-Important: if you copy with Finder, Explorer, `cp`, or `rsync` from a live Git checkout instead of `git archive`, remove Git-only files before committing:
-
-```bash
-find trunk -name .git -type d -prune -exec rm -rf {} +
-find trunk -name .gitignore -type f -delete
-```
-
-### 4. Add a new version folder under SVN `tags/`
-
-Create a new immutable tag folder for the release. The `tags/VERSION/` folder should contain the same plugin files as `trunk/`.
-
-```bash
 rm -rf tags/VERSION
 mkdir -p tags/VERSION
-rsync -av --delete trunk/ tags/VERSION/
+rsync -av trunk/ tags/VERSION/
 ```
 
-Make sure no `.git/` folder exists in the new tag:
+After copying, remove the copied Git metadata from inside the tag folder so it is not committed with Subversion:
 
 ```bash
+rm -rf tags/VERSION/.git
 find tags/VERSION -name .git -type d -prune -exec rm -rf {} +
-find tags/VERSION -name .gitignore -type f -delete
 ```
+
+Do not remove `.git/` from `trunk/` if `trunk/` is intentionally maintained as the GitHub working copy. Only remove the copied `.git/` folder from `tags/VERSION/`.
 
 ### 5. Store reusable readme/plugin listing images in SVN `assets/`
 
@@ -151,10 +145,11 @@ svn diff --summarize
 
 Confirm the SVN changes include:
 
-- Updated files under `trunk/`.
-- A new `tags/VERSION/` folder.
-- Any reused readme/listing images under `assets/`.
-- No `.git/` folder and no accidental local build/cache files.
+- `trunk/` remains intact.
+- A new `tags/VERSION/` folder exists and contains a copy of `trunk/`.
+- `tags/VERSION/.git` has been removed before the SVN commit.
+- Any reused readme/listing images are under `assets/`.
+- No accidental local build/cache files are included in the SVN commit.
 
 ### 7. Commit the WordPress.org release
 
@@ -178,9 +173,9 @@ A GitHub Actions workflow can automate the SVN copy/commit process, but it shoul
 1. Trigger on a Git tag.
 2. Check out the Git tag.
 3. Check out the WordPress.org SVN repository.
-4. Copy the Git tag contents into SVN `trunk/`.
-5. Copy the same contents into `tags/<version>/`.
-6. Remove `.git/` and other Git-only files from SVN paths.
+4. Leave SVN `trunk/` intact after it has been updated to the release contents.
+5. Copy `trunk/` into `tags/<version>/`.
+6. Remove `tags/<version>/.git` before committing to SVN.
 7. Copy reused readme/listing images into SVN `assets/`.
 8. Commit to SVN using WordPress.org credentials stored as GitHub repository secrets.
 
