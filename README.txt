@@ -76,6 +76,7 @@ Nothing. The plugin runs in real-time behind the scenes. Once installed, there a
 
 == Changelog ==
 = 2.0.4 =
+* Security. Updated bundled Smarty to 4.5 (from 3.1) to clear CVE-2024-35226 and Bootstrap to 4.6 (from 4.1.3) to clear CVE-2019-8331.
 * Maintenance. Confirm compatibility metadata for WordPress 7.0 and document the Git-to-SVN release workflow.
 
 = 2.0.3 =
@@ -170,7 +171,7 @@ Nothing. The plugin runs in real-time behind the scenes. Once installed, there a
 
 == Upgrade notice ==
 = 2.0.4 =
-* Maintenance. Confirm compatibility metadata for WordPress 7.0 and document the Git-to-SVN release workflow.
+* Security. Updated bundled Smarty and Bootstrap to clear known vulnerabilities (CVE-2024-35226, CVE-2019-8331). Recommended update.
 
 = 2.0.3 =
 * Feature. Allow required plugins to specify a URL for easy download
