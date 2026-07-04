@@ -1,7 +1,7 @@
 === LAPDI Easy Dev ===
-Contributors: letaprodoit,sharrondenice
+Contributors: sharrondenice
 Donate link: https://letaprodoit.com/apps/plugins/wordpress/easy-dev-for-wordpress.html
-Tags: Framework, OO, object oriented, learn, wordpress, add_filter, add_action, tutorial, plugin, application, interface, development, developer
+Tags: framework, object oriented, oo, developer, tutorial
 Requires at least: 4.5.0
 Tested up to: 7.0
 Requires PHP: 7.4
