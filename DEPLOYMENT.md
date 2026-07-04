@@ -16,6 +16,8 @@ In practice this means:
 
 The WordPress Plugin Handbook describes the Plugin Directory SVN repository as a release repository rather than a normal development repository, so only finished releases should be pushed there.
 
+> **Do not keep the working Git checkout inside Dropbox (or any file-sync folder).** Dropbox syncs the `.git/` directory and creates "conflicted copy" duplicates of git's internal ref files, which corrupts the repository. A typical symptom is `git pull`/`git log` failing with `fatal: bad object origin/<branch> (... conflicted copy ...)`. If it happens, delete the stray files with `find .git -iname '*conflicted copy*' -delete`, prune the bad ref (`git remote prune origin`), and re-fetch — or just re-clone outside Dropbox, since everything is safe on GitHub. Keep the release checkout on a path Dropbox does not sync, or mark `.git` as ignored (`xattr -w com.dropbox.ignored 1 .git` on macOS).
+
 ## WordPress.org SVN folder layout
 
 A typical WordPress.org plugin SVN checkout has this shape:
@@ -34,6 +36,40 @@ Use each folder as follows:
 - `tags/<version>/`: contains a frozen copy of the `trunk/` contents for that version, minus the copied `.git/` folder.
 - `assets/`: contains WordPress.org directory assets that are reused by the readme/plugin listing, such as icons, banners, and screenshots.
 
+## Local toolchain prerequisites
+
+Generating `vendor/` requires a working local PHP and Composer. Releases have stalled here before, so verify the toolchain launches cleanly before starting:
+
+```bash
+php -v            # must print a version with no dyld/abort error
+composer --version
+```
+
+Known breakages seen on macOS/Homebrew and their fixes:
+
+- **PHP aborts with `dyld: Library not loaded: ...libicuio.NN.dylib`.** A Homebrew upgrade replaced `icu4c` and the PHP binary is still linked against the removed major version. Rebuild PHP against the current library:
+
+  ```bash
+  brew reinstall icu4c
+  brew reinstall php
+  php -v
+  ```
+
+- **`brew reinstall php` refuses with "Refusing to load formula from untrusted tap shivammathur/php".** PHP was installed from the third-party `shivammathur/php` tap and Homebrew gates untrusted taps. Trust it once, then reinstall:
+
+  ```bash
+  brew trust shivammathur/php
+  brew reinstall php
+  ```
+
+- **Composer prints a wall of "Implicitly marking parameter ... as nullable is deprecated" notices.** The installed Composer is too old for the current PHP (e.g. Composer 2.0.9 on PHP 8.5). Update Composer itself — it still runs, but the noise buries real messages like security-audit warnings:
+
+  ```bash
+  composer self-update
+  ```
+
+Composer resolves against whatever local PHP you have. The published plugin targets **PHP 7.4**, and the current dependency set (Smarty 4.5, Bootstrap 4.6) supports 7.4, so a `vendor/` generated on a newer local PHP is still safe for customers. To confirm resolution against the 7.4 floor in a throwaway copy without editing the committed `composer.json`, run `composer update` after `composer config platform.php 7.4` in a scratch directory.
+
 ## Manual release workflow
 
 Replace `PLUGIN_SLUG` and `VERSION` in the commands below. For this plugin, `PLUGIN_SLUG` is likely `tsp-easy-dev` and the next release in this maintenance pass is `2.0.4`.
@@ -51,6 +87,15 @@ Confirm the working tree is clean. Then update release metadata in Git:
 - `README.txt`: `Stable tag`, `Tested up to`, `Requires at least`, `Requires PHP`, changelog, and upgrade notice.
 - Main plugin file: `Version`, `Requires at least`, `Requires PHP`, and `Tested up to` plugin headers.
 - Any docs needed for the release.
+
+Harden the bundled dependencies before tagging. Keep the `composer.json` constraints on versions that clear known advisories while preserving the PHP 7.4 floor, then confirm with an audit:
+
+```bash
+composer update --no-dev
+composer audit          # must report no advisories
+```
+
+The framework only uses stable Smarty APIs (`assign`, `display`, `setTemplateDir`, `setCompileDir`, `setCacheDir`), so staying within a single Smarty major line is safe across minor bumps. Current known-good floors: `smarty/smarty: ^4.5` (Smarty 3.x is EOL and carries CVE-2024-35226) and `twbs/bootstrap: ^4.6` (4.1.3 is affected by CVE-2019-8331). Do not move to Smarty 5 without also raising the `Requires PHP` header — Smarty 5 requires PHP 8.0.
 
 Run checks before tagging:
 
@@ -94,15 +139,36 @@ git pull --ff-only
 
 If `trunk/` is not a Git working copy in a particular checkout, update it using your normal GitHub-to-`trunk/` sync process first, then come back to these steps. The important rule is that the `tags/VERSION/` folder is created from the finalized contents of `trunk/`.
 
-### 4. Copy `trunk/` into a new SVN `tags/VERSION/` folder
+### 4. Generate the production `vendor/` folder, then copy `trunk/` into `tags/VERSION/`
 
-Create a new immutable tag folder for the release by copying the current `trunk/` contents.
+The `vendor/` directory is **git-ignored** (see `.gitignore`) and is never committed to Git. It is generated at release time and lives only inside the frozen SVN tag. Generate it from inside the `trunk/` working copy first:
+
+```bash
+cd /path/to/PLUGIN_SLUG-svn/trunk
+composer install --no-dev --optimize-autoloader
+```
+
+If `composer install` errors that the lock file does not satisfy the `composer.json` constraints (this happens after the dependency versions were bumped in step 1, because a stale `composer.lock` still pins the old versions), regenerate the lock instead — `install` only reads the lock, `update` rebuilds it:
+
+```bash
+composer update --no-dev --optimize-autoloader
+```
+
+`composer.lock` is git-ignored too, so it stays local; WordPress.org ships the resolved `vendor/` in the tag, not the lock.
+
+Now create a new immutable tag folder for the release by copying the current `trunk/` contents (including the freshly generated `vendor/`):
 
 ```bash
 cd /path/to/PLUGIN_SLUG-svn
 rm -rf tags/VERSION
 mkdir -p tags/VERSION
 rsync -av trunk/ tags/VERSION/
+```
+
+After the tag is copied, remove the generated `vendor/` from `trunk/` so `trunk/` stays a clean mirror of the Git working copy (where `vendor/` is ignored). The tag keeps its own copy:
+
+```bash
+rm -rf trunk/vendor
 ```
 
 After copying, remove the copied Git metadata from inside the tag folder so it is not committed with Subversion:
@@ -185,9 +251,11 @@ Do not enable this automation until SVN credentials are available as repository 
 
 The plugin keeps its existing backward-compatible WordPress floor of 4.5 while declaring compatibility with WordPress 7.0. WordPress 7.0 reports a PHP requirement of 7.4, so this plugin now declares PHP 7.4 as the supported runtime floor for current WordPress compatibility.
 
+Bundled dependencies were reviewed for the 2.0.4 pass and pinned to advisory-free floors that still support PHP 7.4: `smarty/smarty: ^4.5` (clears CVE-2024-35226; Smarty 3.x is EOL) and `twbs/bootstrap: ^4.6` (clears CVE-2019-8331). Re-run `composer audit` before each future release and bump these floors if new advisories appear.
+
 ## Next hardening tasks before a public release
 
 - Run the plugin under WordPress 4.5, 5.7, 6.9, and 7.0 test installs.
 - Run PHP compatibility checks for PHP 7.4 through the newest PHP version used by target hosts.
-- Review bundled dependencies and decide whether to commit a production `vendor/` directory for WordPress.org distribution.
+- Re-run `composer audit` at each release and keep the bundled `vendor/` free of known advisories (dependency review for 2.0.4 is complete — see the Compatibility target section).
 - Test the manual SVN workflow once before automating it with GitHub Actions.
